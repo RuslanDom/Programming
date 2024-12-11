@@ -1,0 +1,25 @@
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:bank_id:Работник с ID 1: Иванов Иван Иванович
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2024 11:35:42] "GET /bank_api/1/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2024 11:35:42] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:bank_id:Работник с ID 1: Иванов Иван Иванович
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2024 11:39:35] "GET /bank_api/1/1 HTTP/1.1" 200 -
+INFO:bank_id:Работник с ID 2: Петров Петр Петрович
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2024 11:42:11] "GET /bank_api/1/2 HTTP/1.1" 200 -
+WARNING:bank_id:Неправильно выполненный запрос на работника
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2024 11:42:23] "[31m[1mGET /bank_api/1/6 HTTP/1.1[0m" 400 -
+INFO:bank_id:Работник с ID 2: Петров Петр Петрович
+INFO:werkzeug:127.0.0.1 - - [08/Dec/2024 11:44:35] "GET /bank_api/1/2 HTTP/1.1" 200 -
+2024-12-08 11:47:32,946 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-12-08 11:47:32,946 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-12-08 11:47:39,918 - bank_id - WARNING - Неправильно выполненный запрос на работника
+2024-12-08 11:47:39,918 - werkzeug - INFO - 127.0.0.1 - - [08/Dec/2024 11:47:39] "[31m[1mGET /bank_api/1/6 HTTP/1.1[0m" 400 -
+2024-12-08 11:47:44,718 - bank_id - INFO - Работник с ID 1: Иванов Иван Иванович
+2024-12-08 11:47:44,718 - werkzeug - INFO - 127.0.0.1 - - [08/Dec/2024 11:47:44] "GET /bank_api/1/1 HTTP/1.1" 200 -
+2024-12-08 11:48:11,747 - bank_id - INFO - Работник с ID 2: Петров Петр Петрович
+2024-12-08 11:48:11,747 - werkzeug - INFO - 127.0.0.1 - - [08/Dec/2024 11:48:11] "GET /bank_api/1/2 HTTP/1.1" 200 -
+2024-12-08 11:48:56,280 - bank_id - INFO - Работник с ID 3: Антонов Антон Антонович
+2024-12-08 11:48:56,280 - werkzeug - INFO - 127.0.0.1 - - [08/Dec/2024 11:48:56] "GET /bank_api/1/3 HTTP/1.1" 200 -
