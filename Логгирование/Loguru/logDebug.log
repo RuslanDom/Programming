@@ -1,0 +1,83 @@
+2024-08-27T08:34:50.628081+0300 DEBUG https://crossoutdb.com
+2024-08-27T08:34:51.129744+0300 DEBUG <Response [200]>
+2024-08-27T08:35:07.555435+0300 DEBUG https://crossoutdb.com
+2024-08-27T08:35:08.129354+0300 DEBUG <Response [200]>
+2024-08-27T08:36:36.466870+0300 DEBUG https://crossoutdb.com
+2024-08-27T08:36:36.950995+0300 DEBUG <Response [200]>
+2024-08-27T08:36:44.601520+0300 DEBUG https://crossoutdb.com
+2024-08-27T08:36:45.101256+0300 DEBUG <Response [200]>
+2024-08-27T08:36:45.101256+0300 ERROR An error has been caught in function '<module>', process 'MainProcess' (9780), thread 'MainThread' (9328):
+Traceback (most recent call last):
+
+> File "C:\Users\Admin\Desktop\Programming\Логгирование\Loguru\Настройка loguru.py", line 33, in <module>
+    get_div(get_soup)
+    │       └ <function get_soup at 0x0000020D21B9AE80>
+    └ <function get_div at 0x0000020D21B9B240>
+
+  File "C:\Users\Admin\Desktop\Programming\Логгирование\Loguru\Настройка loguru.py", line 30, in get_div
+    return soup.find_all("div")  # .find и .find_all поиск по дереву HTML
+           └ <function get_soup at 0x0000020D21B9AE80>
+
+AttributeError: 'function' object has no attribute 'find_all'
+2024-08-27T08:38:44.626854+0300 DEBUG https://crossoutdb.com
+2024-08-27T08:38:45.110948+0300 DEBUG <Response [200]>
+2024-08-27T08:38:45.110948+0300 ERROR An error has been caught in function '<module>', process 'MainProcess' (2276), thread 'MainThread' (6992):
+Traceback (most recent call last):
+
+> File "C:\Users\Admin\Desktop\Programming\Логгирование\Loguru\Настройка loguru.py", line 33, in <module>
+    get_div(get_soup)
+    │       └ <function get_soup at 0x000002BD2899AE80>
+    └ <function get_div at 0x000002BD2899B240>
+
+  File "C:\Users\Admin\Desktop\Programming\Логгирование\Loguru\Настройка loguru.py", line 30, in get_div
+    return soup.find_all("div")  # .find и .find_all поиск по дереву HTML
+           └ <function get_soup at 0x000002BD2899AE80>
+
+AttributeError: 'function' object has no attribute 'find_all'
+2024-08-27T08:38:57.987225+0300 DEBUG https://crossoutdb.com
+2024-08-27T08:38:58.471359+0300 DEBUG <Response [200]>
+2024-08-27T08:38:58.481119+0300 ERROR An error has been caught in function '<module>', process 'MainProcess' (4924), thread 'MainThread' (3924):
+Traceback (most recent call last):
+
+> File "C:\Users\Admin\Desktop\Programming\Логгирование\Loguru\Настройка loguru.py", line 35, in <module>
+    get_div(get_soup)
+    │       └ <function get_soup at 0x00000228A633AE80>
+    └ <function get_div at 0x00000228A633B240>
+
+  File "C:\Users\Admin\Desktop\Programming\Логгирование\Loguru\Настройка loguru.py", line 30, in get_div
+    return soup.find_all("div")  # .find и .find_all поиск по дереву HTML
+           └ <function get_soup at 0x00000228A633AE80>
+
+AttributeError: 'function' object has no attribute 'find_all'
+2024-08-27T08:39:19.572702+0300 DEBUG https://crossoutdb.com
+2024-08-27T08:39:20.079246+0300 DEBUG <Response [200]>
+2024-08-27T08:39:36.297462+0300 DEBUG https://crossoutdb.com
+2024-08-27T08:39:36.798176+0300 DEBUG <Response [200]>
+2024-08-27T08:39:36.806933+0300 ERROR An error has been caught in function '<module>', process 'MainProcess' (8304), thread 'MainThread' (3088):
+Traceback (most recent call last):
+
+> File "C:\Users\Admin\Desktop\Programming\Логгирование\Loguru\Настройка loguru.py", line 35, in <module>
+    get_div(get_soup)
+    │       └ <function get_soup at 0x00000256E5D12E80>
+    └ <function get_div at 0x00000256E5D13240>
+
+  File "C:\Users\Admin\Desktop\Programming\Логгирование\Loguru\Настройка loguru.py", line 30, in get_div
+    return soup.find_all("div")  # .find и .find_all поиск по дереву HTML
+           └ <function get_soup at 0x00000256E5D12E80>
+
+AttributeError: 'function' object has no attribute 'find_all'
+2024-08-27T08:40:45.074395+0300 DEBUG https://crossoutdb.com
+2024-08-27T08:40:45.573108+0300 DEBUG <Response [200]>
+2024-08-27T08:40:45.581892+0300 ERROR An error has been caught in function '<module>', process 'MainProcess' (9412), thread 'MainThread' (11588):
+Traceback (most recent call last):
+
+> File "C:\Users\Admin\Desktop\Programming\Логгирование\Loguru\Настройка loguru.py", line 36, in <module>
+    get_div(get_soup)
+    │       └ <function get_soup at 0x000002160BBA6D40>
+    └ <function get_div at 0x000002160BBA7100>
+
+  File "C:\Users\Admin\Desktop\Programming\Логгирование\Loguru\Настройка loguru.py", line 30, in get_div
+    return soup.find_all("div")  # .find и .find_all поиск по дереву HTML
+           └ <function get_soup at 0x000002160BBA6D40>
+
+AttributeError: 'function' object has no attribute 'find_all'

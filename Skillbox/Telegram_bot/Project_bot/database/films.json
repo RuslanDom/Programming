@@ -1,0 +1,210 @@
+{
+    "1273699": {
+        "name": "Третий день",
+        "alternativeName": "The Third Day",
+        "type": "tv-series",
+        "year": "2020",
+        "rating": {
+            "kp": 6.28,
+            "imdb": 6.4,
+            "filmCritics": 0,
+            "russianFilmCritics": 87.5,
+            "await": null
+        },
+        "ageRating": 18,
+        "poster": "https://image.openmoviedb.com/kinopoisk-images/1777765/ee9590cd-64bf-4a5e-96ce-4d55a4b6a5a2/orig",
+        "genres": [
+            "ужасы",
+            "триллер",
+            "драма",
+            "детектив"
+        ],
+        "countries": "Великобритания"
+    },
+    "1045251": {
+        "name": "Страна Лавкрафта",
+        "alternativeName": "Lovecraft Country",
+        "type": "tv-series",
+        "year": "2020",
+        "rating": {
+            "kp": 6.024,
+            "imdb": 7.1,
+            "filmCritics": 0,
+            "russianFilmCritics": 85.7143,
+            "await": null
+        },
+        "ageRating": 18,
+        "poster": "https://image.openmoviedb.com/kinopoisk-images/1946459/b85794d4-aa51-43dc-82b2-062a6c5bd742/orig",
+        "genres": [
+            "фантастика",
+            "фэнтези",
+            "детектив",
+            "драма",
+            "ужасы",
+            "приключения"
+        ],
+        "countries": "США"
+    },
+    "5202702": {
+        "name": null,
+        "alternativeName": "Me Gunther Horror Show",
+        "type": "tv-series",
+        "year": "2020",
+        "rating": {
+            "kp": 0,
+            "imdb": 0,
+            "filmCritics": 0,
+            "russianFilmCritics": 0,
+            "await": 0
+        },
+        "ageRating": null,
+        "poster": null,
+        "genres": [
+            "ужасы",
+            "фантастика",
+            "триллер",
+            "комедия",
+            "детектив"
+        ],
+        "countries": "США"
+    },
+    "5202549": {
+        "name": null,
+        "alternativeName": "Dr. Gangrene's Edgar Allan Poe-Down",
+        "type": "tv-series",
+        "year": "2020",
+        "rating": {
+            "kp": 0,
+            "imdb": 0,
+            "filmCritics": 0,
+            "russianFilmCritics": 0,
+            "await": 0
+        },
+        "ageRating": null,
+        "poster": null,
+        "genres": [
+            "документальный",
+            "ужасы",
+            "комедия",
+            "история"
+        ],
+        "countries": "США"
+    },
+    "5191128": {
+        "name": null,
+        "alternativeName": "Wildcards: Nightlinger's Traveling Carnival of the Extraordinary",
+        "type": "tv-series",
+        "year": "2020",
+        "rating": {
+            "kp": 0,
+            "imdb": 0,
+            "filmCritics": 0,
+            "russianFilmCritics": 0,
+            "await": 0
+        },
+        "ageRating": null,
+        "poster": null,
+        "genres": [
+            "ужасы",
+            "приключения",
+            "вестерн"
+        ],
+        "countries": "США"
+    },
+    "5207694": {
+        "name": null,
+        "alternativeName": "The South Jersey Horror Podcast",
+        "type": "tv-series",
+        "year": "2020",
+        "rating": {
+            "kp": 0,
+            "imdb": 0,
+            "filmCritics": 0,
+            "russianFilmCritics": 0,
+            "await": 0
+        },
+        "ageRating": null,
+        "poster": null,
+        "genres": [
+            "ужасы"
+        ],
+        "countries": "США"
+    },
+    "5191649": {
+        "name": null,
+        "alternativeName": "Official_Unofficial",
+        "type": "tv-series",
+        "year": "2020",
+        "rating": {
+            "kp": 0,
+            "imdb": 0,
+            "filmCritics": 0,
+            "russianFilmCritics": 0,
+            "await": 0
+        },
+        "ageRating": null,
+        "poster": null,
+        "genres": [
+            "ужасы"
+        ],
+        "countries": "США"
+    },
+    "5190156": {
+        "name": null,
+        "alternativeName": "Creeps",
+        "type": "tv-series",
+        "year": "2020",
+        "rating": {
+            "kp": 0,
+            "imdb": 0,
+            "filmCritics": 0,
+            "russianFilmCritics": 0,
+            "await": 0
+        },
+        "ageRating": null,
+        "poster": null,
+        "genres": [
+            "ужасы"
+        ],
+        "countries": "США"
+    },
+    "5185212": {
+        "name": null,
+        "alternativeName": "Month of Macabre",
+        "type": "tv-series",
+        "year": "2020",
+        "rating": {
+            "kp": 0,
+            "imdb": 0,
+            "filmCritics": 0,
+            "russianFilmCritics": 0,
+            "await": 0
+        },
+        "ageRating": null,
+        "poster": null,
+        "genres": [
+            "ужасы",
+            "триллер"
+        ],
+        "countries": "США"
+    },
+    "5175515": {
+        "name": null,
+        "alternativeName": "Barren",
+        "type": "tv-series",
+        "year": "2020",
+        "rating": {
+            "kp": 0,
+            "imdb": 0,
+            "filmCritics": 0,
+            "russianFilmCritics": 0,
+            "await": 0
+        },
+        "ageRating": null,
+        "poster": null,
+        "genres": [
+            "ужасы"
+        ],
+        "countries": "США"
+    }
+}
