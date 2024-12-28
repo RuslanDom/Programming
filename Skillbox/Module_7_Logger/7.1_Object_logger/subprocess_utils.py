@@ -4,11 +4,11 @@ import shlex
 
 KERNEL_VERSION = None
 
-logger = logging.getLogger('subprocess_utils')
-
+logger = logging.getLogger('logger_utils.subprocess_utils')  # sublogger logger_utils.subprocess_utils
+logger.setLevel('DEBUG')  # subprocess_utils на DEBUG
 
 def get_kernel_version() -> str:
-    logger.info('Start get kernel')
+    logger.info('Start getting kernel')
     command = shlex.split('uname -a')
     global KERNEL_VERSION
     if KERNEL_VERSION is None:
@@ -22,3 +22,4 @@ def get_kernel_version() -> str:
         logger.debug('Kernel version: {}'.format(KERNEL_VERSION))
     logger.info('Return kernel version')
     return KERNEL_VERSION
+
