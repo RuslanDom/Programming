@@ -21,7 +21,7 @@ module_logger.addHandler(custom_handler)  # Добавляем обработч�
 formatter = logging.Formatter(fmt="%(asctime)s | %(levelname)s | %(name)s | %(message)s")  # Вид(формат) логов
 custom_handler.setFormatter(formatter)  # Добавляем формат нашему обработчику
 
-file_handler = logging.FileHandler('file_log', mode='a')  # Куда и как записывать логи
+file_handler = logging.FileHandler('file_log.log', mode='a')  # Куда и как записывать логи
 file_handler.setFormatter(formatter)  # Формат для записи логов
 module_logger.addHandler(file_handler)  # Какой логгер будет писаться в файл
 
