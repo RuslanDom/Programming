@@ -1,8 +1,8 @@
 import flet as ft
 from flet_route import Routing, path
-from app2.pages.login import LoginPage
-from app2.pages.signup import SignupPage
-from app2.pages.app_page import AppPage
+from Flet.project_2.app2.pages.login import LoginPage
+from Flet.project_2.app2.pages.signup import SignupPage
+from Flet.project_2.app2.pages.app_page import AppPage
 
 
 class Router:
