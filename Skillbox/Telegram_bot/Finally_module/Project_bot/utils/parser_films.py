@@ -1,7 +1,7 @@
 import json
 from bs4 import BeautifulSoup
 import requests
-from Finally_module.Project_bot.config_data.config import API_KEY
+from Skillbox.Telegram_bot.Finally_module.Project_bot.config_data.config import API_KEY
 from typing import Dict
 
 

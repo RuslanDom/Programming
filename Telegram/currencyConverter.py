@@ -5,10 +5,14 @@ from telebot import types
 bot = telebot.TeleBot('6810749735:AAHNXFI4x1tBk_IQa7UJJrjCO8swfD1zl7A')
 convert = CurrencyConverter()
 amount = 0
+
+
 @bot.message_handler(commands=['start'])
 def start(message):
     bot.send_message(message.chat.id, 'Привет, введите сумму: ')
     bot.register_next_step_handler(message, summa)
+
+
 def summa(message):
     global amount
     amount = message.text.strip()
@@ -20,8 +24,6 @@ def summa(message):
     but_5 = types.InlineKeyboardButton('Другое значение', callback_data='else')
     markup.add(but_1, but_2, but_3, but_4, but_5)
     bot.send_message(message.chat.id, 'Выбирите валюту', reply_markup=markup)
-
-
 
 
 bot.polling(none_stop=True)

@@ -3,8 +3,8 @@ from aiogram import Router
 from aiogram.types import Message
 from aiogram.filters import Command
 
-from Finally_module.Project_bot.database.commands_data import get_data, history_insert
-from Finally_module.Project_bot.utils.patter_string import set_string
+from Skillbox.Telegram_bot.Finally_module.Project_bot.database.commands_data import get_data, history_insert
+from Skillbox.Telegram_bot.Finally_module.Project_bot.utils.patter_string import set_string
 
 router = Router()
 

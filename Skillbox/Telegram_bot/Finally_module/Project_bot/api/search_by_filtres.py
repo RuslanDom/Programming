@@ -1,5 +1,5 @@
 from typing import Dict
-from Finally_module.Project_bot.utils.parser_films import parser
+from Skillbox.Telegram_bot.Finally_module.Project_bot.utils.parser_films import parser
 
 
 def get_search_by_filter(year='2024', type_="movie", genres="комедия", countries="США") -> Dict:

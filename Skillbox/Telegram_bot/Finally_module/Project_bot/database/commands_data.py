@@ -1,6 +1,6 @@
 import json
 from typing import Dict
-from Finally_module.Project_bot.models.models import FoundItems, db, UserHistory
+from Skillbox.Telegram_bot.Finally_module.Project_bot.models.models import FoundItems, db, UserHistory
 
 
 def history_insert(user_id, message) -> None:

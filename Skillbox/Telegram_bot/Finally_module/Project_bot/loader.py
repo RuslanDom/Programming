@@ -1,8 +1,8 @@
 from aiogram import Dispatcher, Bot
-from Finally_module.Project_bot.config_data.config import BOT_TOKEN
-from Finally_module.Project_bot.handlers import basic_handlers, get_response, set_history, echo, search_handler, help
-from Finally_module.Project_bot.models.models import create_models
-from Finally_module.Project_bot.utils.set_commands import set_command
+from Skillbox.Telegram_bot.Finally_module.Project_bot.config_data.config import BOT_TOKEN
+from Skillbox.Telegram_bot.Finally_module.Project_bot.handlers import basic_handlers, get_response, set_history, echo, search_handler, help
+from Skillbox.Telegram_bot.Finally_module.Project_bot.models.models import create_models
+from Skillbox.Telegram_bot.Finally_module.Project_bot.utils.set_commands import set_command
 
 
 async def run():

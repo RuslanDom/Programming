@@ -2,11 +2,11 @@ from aiogram import Router, F, Bot
 from aiogram.types import Message, CallbackQuery
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
-from Finally_module.Project_bot.api.search_by_filtres import get_search_by_filter
-from Finally_module.Project_bot.database.commands_data import insert_data, clear_search_data, history_insert
-from Finally_module.Project_bot.state.User_state import UserState
+from Skillbox.Telegram_bot.Finally_module.Project_bot.api.search_by_filtres import get_search_by_filter
+from Skillbox.Telegram_bot.Finally_module.Project_bot.database.commands_data import insert_data, clear_search_data, history_insert
+from Skillbox.Telegram_bot.Finally_module.Project_bot.state.User_state import UserState
 
-from Finally_module.Project_bot.keyboards.inline import (
+from Skillbox.Telegram_bot.Finally_module.Project_bot.keyboards.inline import (
     movie_or_series_keyboard,
     Year_Genres_Countries_keyboard,
     yes_no_keyboard,

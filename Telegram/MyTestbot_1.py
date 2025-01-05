@@ -1,14 +1,18 @@
 import telebot
 from currency_converter import CurrencyConverter
 from telebot import types
+
 bot = telebot.TeleBot('6810749735:AAHNXFI4x1tBk_IQa7UJJrjCO8swfD1zl7A')
 amount = 0
 cur = CurrencyConverter()
-@bot.message_handler(commands=['start'])
 
+
+@bot.message_handler(commands=['start'])
 def start(message):
     bot.send_message(message.chat.id, 'Hello\nEnter number: \n')
     bot.register_next_step_handler(message, summa)
+
+
 def summa(message):
     global amount
     try:
@@ -28,16 +32,21 @@ def summa(message):
     else:
         bot.send_message(message.chat.id, 'You must enter the correct values!')
         bot.register_next_step_handler(message, summa)
-@bot.callback_query_handler(func=lambda call:True)
+
+
+@bot.callback_query_handler(func=lambda call: True)
 def converter(call):
     if call.data != 'else':
         values = call.data.upper().split('/')
         result = cur.convert(amount, values[0], values[1])
-        bot.send_message(call.message.chat.id, f'Result {values[0]}/{values[1]} : {round(result, 2)}\n Enter new values: ')
+        bot.send_message(call.message.chat.id,
+                         f'Result {values[0]}/{values[1]} : {round(result, 2)}\n Enter new values: ')
         bot.register_next_step_handler(call.message, summa)
     else:
         bot.send_message(call.message.chat.id, 'Enter the desired currencies using the symbol "/": ')
         bot.register_next_step_handler(call.message, choice)
+
+
 def choice(message):
     try:
         values = message.text.upper().split('/')
@@ -49,63 +58,7 @@ def choice(message):
         bot.register_next_step_handler(message, choice)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 bot.polling(none_stop=True)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 # import telebot
 # import requests
@@ -154,47 +107,6 @@ bot.polling(none_stop=True)
 #
 #
 # bot.polling(none_stop=True)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 # import telebot
@@ -264,32 +176,6 @@ bot.polling(none_stop=True)
 #
 # bot.polling(none_stop=True)
 #
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 # import telebot

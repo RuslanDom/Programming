@@ -1,6 +1,6 @@
 from aiogram import Router, Bot
 from aiogram.types import Message
-from Finally_module.Project_bot.database.commands_data import history_insert
+from Skillbox.Telegram_bot.Finally_module.Project_bot.database.commands_data import history_insert
 
 router = Router()
 

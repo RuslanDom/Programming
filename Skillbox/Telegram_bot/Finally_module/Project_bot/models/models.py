@@ -1,5 +1,5 @@
 from peewee import *
-from Finally_module.Project_bot.config_data.config import DB_PATH
+from Skillbox.Telegram_bot.Finally_module.Project_bot.config_data.config import DB_PATH
 
 db = SqliteDatabase("database/common_base.db")
 

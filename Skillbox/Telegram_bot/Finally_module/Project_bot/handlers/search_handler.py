@@ -2,12 +2,10 @@ from aiogram import Router
 from aiogram.fsm.context import FSMContext
 from aiogram.types import Message
 from aiogram.filters import Command
-from Finally_module.Project_bot.state.User_state import UserState
-from Finally_module.Project_bot.api.search_of_name import search
-from Finally_module.Project_bot.database.commands_data import insert_data, get_data, history_insert
-
-
-from Finally_module.Project_bot.utils.patter_string import set_string
+from Skillbox.Telegram_bot.Finally_module.Project_bot.state.User_state import UserState
+from Skillbox.Telegram_bot.Finally_module.Project_bot.api.search_of_name import search
+from Skillbox.Telegram_bot.Finally_module.Project_bot.database.commands_data import insert_data, get_data, history_insert
+from Skillbox.Telegram_bot.Finally_module.Project_bot.utils.patter_string import set_string
 
 router = Router()
 

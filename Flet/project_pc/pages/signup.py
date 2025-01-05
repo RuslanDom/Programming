@@ -1,3 +1,5 @@
+import time
+
 import flet as ft
 from flet_route import Params, Basket
 from Flet.project_pc.utils.style import *
@@ -8,7 +10,7 @@ class SignupPage:
 
     validation = Validator()
 
-    error_field = ft.Text("", color="#ffffff", size=20)
+    error_field = ft.Text("", color="#ffffff", size=20, text_align=ft.TextAlign.CENTER)
 
     def view(self, page: ft.Page, params: Params, basket: Basket):
         page.title = "Страница регистрации"
@@ -18,7 +20,7 @@ class SignupPage:
         page.window.min_height = 400
         page.theme_mode = 'DARK'
 
-        def update_field(e):
+        def update_BG_field(e):
             self.error_field.value = ""
             self.email_input.content.bgcolor = secondBgColor
             self.login_input.content.bgcolor = secondBgColor
@@ -32,8 +34,7 @@ class SignupPage:
                 bgcolor=secondBgColor,
                 border=ft.InputBorder.NONE,
                 color=secondFontColor,
-                filled=True,
-                on_change=lambda e: update_field(e)
+                filled=True
             ),
             border_radius=15
         )
@@ -95,6 +96,7 @@ class SignupPage:
             email_value = self.email_input.content.value
             password_value = self.password_input.content.value
             repeat_pass_value = self.repeat_password_input.content.value
+            update_BG_field(e)
             if login_value and email_value and password_value and repeat_pass_value:
                 if not self.validation.check_email(email_value):
                     self.error_field.value = "НЕ ВЕРНЫЙ ФОРМАТ EMAIL!"
@@ -109,6 +111,13 @@ class SignupPage:
                     self.repeat_password_input.content.bgcolor = errorFieldBgColor
                     page.update()
                 else:
+                    self.error_field.value = "ПОЗДРАВЛЯЕМ!\nУСПЕШНАЯ РЕГИСТРАЦИЯ!"
+                    self.email_input.content.value =\
+                        self.login_input.content.value =\
+                        self.password_input.content.value =\
+                        self.repeat_password_input.content.value = ""
+                    page.update()
+                    time.sleep(3)
                     self.error_field.value = ""
                     page.update()
             else:
