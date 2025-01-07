@@ -38,7 +38,7 @@ class TestLoginPage:
         page.window.min_height = 400
 
         login_link = ft.Container(
-            ft.Text("Страница авторизации", color=defaultFontColor),
+            ft.Text("Страница авторизации", color="GREEN",  size=20),
             on_click=lambda e: page.go("/")
         )
 
@@ -51,8 +51,9 @@ class TestLoginPage:
                             ft.Container(),
                             ft.Column(
                                 controls=[
-                                    self.email_input,
-                                    self.password_input,
+                                    # self.email_input,
+                                    # self.password_input,
+                                    ft.Text("УСПЕШНЫЙ ВХОД НА СТРАНИЦУ!!!", color='YELLOW', size=45),
                                     login_link
                                 ],
                                 alignment=ft.MainAxisAlignment.CENTER,
@@ -60,7 +61,8 @@ class TestLoginPage:
                             )
                         ],
                         alignment=ft.MainAxisAlignment.CENTER,
-                        horizontal_alignment=ft.CrossAxisAlignment.START
+                        horizontal_alignment=ft.CrossAxisAlignment.CENTER
+                        # horizontal_alignment=ft.CrossAxisAlignment.START
                     ),
                     image_src="usa_banner_twilight.png",
                     image_fit=ft.ImageFit.COVER,

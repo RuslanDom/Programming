@@ -1,13 +1,17 @@
+import time
+
 import flet as ft
 from flet_route import Params, Basket
 from Flet.project_pc.utils.style import *
-
+from Flet.project_pc.utils.Database import Database
+from Flet.project_pc.utils.function import hash_password
 
 class LoginPage:
+    error_field = ft.Text("", color="#ffffff", size=20, text_align=ft.TextAlign.CENTER)
 
-    email_input = ft.Container(
+    login_input = ft.Container(
         content=ft.TextField(
-            label="Укажите EMAIL",
+            label="Укажите ваш логин",
             bgcolor=secondBgColor,
             border=ft.InputBorder.NONE,
             color=secondFontColor,
@@ -36,6 +40,31 @@ class LoginPage:
         page.window.min_width = 800
         page.window.min_height = 400
         page.theme_mode = "DARK"
+
+        def authorization(e):
+            db = Database()
+            login = self.login_input.content.value
+            userpass = self.password_input.content.value
+            if login and userpass:
+                userpass = hash_password(userpass)
+                if db.authorization_user(login=login, userpass=userpass):
+                    page.session.set("auth_user", True)
+                    page.go('/test')
+                    self.login_input.content.value = self.password_input.content.value = ''
+                    page.update()
+                else:
+                    self.error_field.value = "ВВЕДЕНЫ НЕВЕРНЫЕ ДАННЫЕ!"
+                    self.error_field.update()
+                    time.sleep(3)
+                    self.error_field.value = ""
+                    self.error_field.update()
+            else:
+                self.error_field.value = "ВВЕДИТЕ ДАННЫЕ!"
+                self.error_field.update()
+                time.sleep(3)
+                self.error_field.value = ""
+                self.error_field.update()
+
 
         signup_link = ft.Container(
                                         ft.Text("Создать аккаунт", color=defaultFontColor),
@@ -66,7 +95,8 @@ class LoginPage:
                                         size=25,
                                         weight=ft.FontWeight.NORMAL
                                     ),
-                                    self.email_input,
+                                    self.error_field,
+                                    self.login_input,
                                     self.password_input,
                                     ft.Container(
                                         ft.Text("Авторизация",
@@ -74,7 +104,8 @@ class LoginPage:
                                         alignment=ft.alignment.center,
                                         height=40,
                                         bgcolor=hoverBgColor,
-                                        border_radius=15
+                                        border_radius=15,
+                                        on_click=lambda e: authorization(e)
                                     ),
                                     signup_link,
                                     test_link

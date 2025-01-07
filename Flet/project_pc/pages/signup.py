@@ -4,6 +4,7 @@ import flet as ft
 from flet_route import Params, Basket
 from Flet.project_pc.utils.style import *
 from Flet.project_pc.utils.validation import Validator
+from Flet.project_pc.utils.function import hash_password
 
 
 class SignupPage:
@@ -99,7 +100,11 @@ class SignupPage:
             update_BG_field(e)
             if login_value and email_value and password_value and repeat_pass_value:
                 db = Database()
-                if not self.validation.check_email(email_value):
+                if db.check_login(login_value):
+                    self.error_field.value = "ТАКОЙ LOGIN УЖЕ ЕСТЬ СУЩЕСТВУЕТ!"
+                    self.login_input.content.bgcolor = errorFieldBgColor
+                    page.update()
+                elif not self.validation.check_email(email_value):
                     self.error_field.value = "НЕ ВЕРНЫЙ ФОРМАТ EMAIL!"
                     self.email_input.content.bgcolor = errorFieldBgColor
                     page.update()
@@ -116,6 +121,7 @@ class SignupPage:
                     self.repeat_password_input.content.bgcolor = errorFieldBgColor
                     page.update()
                 else:
+                    db.insert_user(login=login_value, email=email_value, userpass=hash_password(password_value))
                     self.error_field.value = "ПОЗДРАВЛЯЕМ!\nУСПЕШНАЯ РЕГИСТРАЦИЯ!"
                     self.email_input.content.value =\
                         self.login_input.content.value =\

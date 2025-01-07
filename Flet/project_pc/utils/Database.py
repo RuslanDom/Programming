@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Table, MetaData, select
+from sqlalchemy import create_engine, Table, MetaData, select, insert, and_
 from dotenv import load_dotenv
 from sqlalchemy.orm import sessionmaker, declarative_base
 import os
@@ -25,5 +25,14 @@ class Database:
         result = self.session.execute(select(self.users).where(self.users.c.email == email))
         return result.fetchone()
 
+    def check_login(self, login):
+        result = self.session.execute(select(self.users).where(self.users.c.login == login))
+        return result.fetchone()
 
+    def insert_user(self, login, email, userpass):
+        self.session.execute(insert(self.users).values(login=login, email=email, userpass=userpass))
+        self.session.commit()
 
+    def authorization_user(self, login, userpass):
+        result = self.session.execute(select(self.users).where(and_(self.users.c.login == login, self.users.c.userpass == userpass)))
+        return result.fetchone()
