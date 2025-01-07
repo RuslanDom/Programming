@@ -1,5 +1,5 @@
 import time
-
+from Flet.project_pc.utils.Database import Database
 import flet as ft
 from flet_route import Params, Basket
 from Flet.project_pc.utils.style import *
@@ -98,8 +98,13 @@ class SignupPage:
             repeat_pass_value = self.repeat_password_input.content.value
             update_BG_field(e)
             if login_value and email_value and password_value and repeat_pass_value:
+                db = Database()
                 if not self.validation.check_email(email_value):
                     self.error_field.value = "НЕ ВЕРНЫЙ ФОРМАТ EMAIL!"
+                    self.email_input.content.bgcolor = errorFieldBgColor
+                    page.update()
+                elif db.check_email(email_value):
+                    self.error_field.value = "ТАКОЙ EMAIL УЖЕ ЕСТЬ СУЩЕСТВУЕТ!"
                     self.email_input.content.bgcolor = errorFieldBgColor
                     page.update()
                 elif not self.validation.check_password(password_value):
