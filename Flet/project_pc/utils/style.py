@@ -1,3 +1,5 @@
+import flet as ft
+
 # Стилизация
 
 defaultBgColor = "#731d14"
@@ -17,6 +19,9 @@ defaultHeightWindow = "600"
 # Поле с ошибкой
 errorFieldBgColor = "#b15204"
 
-
+# Стиль меню
+style_meny = ft.ButtonStyle(color={ft.ControlState.HOVERED: ft.colors.WHITE,
+                                   ft.ControlState.DEFAULT: ft.colors.YELLOW
+                                   }, icon_size=20, overlay_color=hoverBgColor, shadow_color=hoverBgColor)
 
 

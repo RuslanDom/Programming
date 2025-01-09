@@ -9,30 +9,6 @@ from Flet.project_pc.utils.function import hash_password
 class LoginPage:
     error_field = ft.Text("", color="#ffffff", size=20, text_align=ft.TextAlign.CENTER)
 
-    login_input = ft.Container(
-        content=ft.TextField(
-            label="Укажите ваш логин",
-            bgcolor=secondBgColor,
-            border=ft.InputBorder.NONE,
-            color=secondFontColor,
-            filled=True
-                             ),
-        border_radius=15
-    )
-
-    password_input = ft.Container(
-        content=ft.TextField(
-            label="Введите пароль",
-            bgcolor=secondBgColor,
-            border=ft.InputBorder.NONE,
-            color=secondFontColor,
-            filled=True,
-            password=True,
-            can_reveal_password=True
-        ),
-        border_radius=15
-    )
-
     def view(self, page: ft.Page, params: Params, basket: Basket):
         page.title = "Страница авторизации"
         page.window.width = defaultWidthWindow
@@ -40,6 +16,30 @@ class LoginPage:
         page.window.min_width = 800
         page.window.min_height = 400
         page.theme_mode = "DARK"
+
+        self.login_input = ft.Container(
+            content=ft.TextField(
+                label="Укажите ваш логин",
+                bgcolor=secondBgColor,
+                border=ft.InputBorder.NONE,
+                color=secondFontColor,
+                filled=True
+            ),
+            border_radius=15
+        )
+
+        self.password_input = ft.Container(
+            content=ft.TextField(
+                label="Введите пароль",
+                bgcolor=secondBgColor,
+                border=ft.InputBorder.NONE,
+                color=secondFontColor,
+                filled=True,
+                password=True,
+                can_reveal_password=True
+            ),
+            border_radius=15
+        )
 
         def authorization(e):
             db = Database()
@@ -49,7 +49,7 @@ class LoginPage:
                 userpass = hash_password(userpass)
                 if db.authorization_user(login=login, userpass=userpass):
                     page.session.set("auth_user", True)
-                    page.go('/test')
+                    page.go('/panel')
                     self.login_input.content.value = self.password_input.content.value = ''
                     page.update()
                 else:
@@ -72,8 +72,13 @@ class LoginPage:
                                     )
 
         test_link = ft.Container(
-            ft.Text("Тестовая страница", color=defaultFontColor),
+            ft.Text("Тестовая страница", color="GREEN"),
             on_click=lambda e: page.go("/test")
+        )
+
+        panel_link = ft.Container(
+            ft.Text("Панель управления", color=defaultFontColor),
+            on_click=lambda e: page.go("/panel")
         )
 
         return ft.View(
@@ -108,6 +113,7 @@ class LoginPage:
                                         on_click=lambda e: authorization(e)
                                     ),
                                     signup_link,
+                                    panel_link,
                                     test_link
                                 ]
                             )

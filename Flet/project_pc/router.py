@@ -3,6 +3,8 @@ from flet_route import Routing, path
 from pages.signup import SignupPage
 from pages.login import LoginPage
 from pages.test_login import TestLoginPage
+from pages.dashboard import DashboardPage
+
 
 class Router:
     def __init__(self, page: ft.Page):
@@ -10,7 +12,8 @@ class Router:
         self.app_routes = [
             path(url='/', clear=True, view=LoginPage().view),
             path(url='/test', clear=False, view=TestLoginPage().view),
-            path(url='/signup', clear=False, view=SignupPage().view)
+            path(url='/signup', clear=False, view=SignupPage().view),
+            path(url='/panel', clear=False, view=DashboardPage().view)
         ]
 
         Routing(
