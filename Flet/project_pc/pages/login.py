@@ -67,9 +67,9 @@ class LoginPage:
 
 
         signup_link = ft.Container(
-                                        ft.Text("Создать аккаунт", color=defaultFontColor),
-                                        on_click=lambda e: page.go("/signup")
-                                    )
+                                    ft.Text("Создать аккаунт", color=defaultFontColor),
+                                    on_click=lambda e: page.go("/signup")
+                                )
 
         test_link = ft.Container(
             ft.Text("Тестовая страница", color="GREEN"),

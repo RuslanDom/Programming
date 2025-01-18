@@ -1,31 +1,60 @@
 import flet as ft
 from flet_route import Params, Basket
 from Flet.project_pc.utils.style import *
+import os
+from pathlib import Path
+from dotenv import load_dotenv, set_key
 
 
 class DashboardPage:
+    load_dotenv()
+    AUTH_USER = False
+    env_file_path = Path(".")/".env"
+    token_bot = os.getenv("BOT_TOKEN")
+    channel_link = os.getenv("CHANNEL")
 
     def view(self, page: ft.Page,  params: Params, basket: Basket):
+
+        self.AUTH_USER = page.session.get('auth_user')
         page.title = "Панель управления"
-        page.theme_mode = 'Dark'
+        page.theme_mode = 'Lime'
         page.window.width = defaultWidthWindow
         page.window.height = defaultHeightWindow
         page.window.min_width = 800
         page.window.min_height = 400
 
-        # ФУНКЦИЯ ВСТАВКИ ТОКЕНА ТЕЛЕБОТА
-        def insert_token(label):
-            return ft.TextField(
-                '',
-                label=f"{label}",
-                label_style=ft.TextStyle(color=ft.colors.YELLOW),
-                # bgcolor=secondBgColor,
-                bgcolor=ft.colors.GREEN_300,
-                filled=True,
-                # color=secondFontColor,
-                color=ft.colors.WHITE,
-                border=ft.InputBorder.NONE
-            )
+        # ФУНКЦИЯ СОХРАНЕНИЯ
+        def save_settings(e):
+            token = token_input.content.value
+            channel = channel_input.content.value
+            # Изменить токен-бот который хранится в .env на значение введенное от пользователя
+            set_key(dotenv_path=self.env_file_path, key_to_set="BOT_TOKEN", value_to_set=token)
+            set_key(dotenv_path=self.env_file_path, key_to_set="CHANNEL", value_to_set=channel)
+            # Отключение возможности редактирования полей
+            token_input.content.disabled = True
+            channel_input.content.disabled = True
+            # Внести полученные значения в сессию
+            page.session.set("TOKEN", token)
+            page.session.set("CHANNEL", channel)
+            token_input.content.bgcolor = ft.colors.GREEN_100
+            token_input.content.color = "GREEN"
+            channel_input.content.bgcolor = ft.colors.GREEN_100
+            channel_input.content.color = "GREEN"
+            send_btn.text = " Сохранено "
+            page.update()
+
+        def change_settings(e):
+            token_input.content.value = ''
+            channel_input.content.value = ''
+            token_input.content.bgcolor = ft.colors.GREEN_300
+            channel_input.content.bgcolor = ft.colors.GREEN_300
+            token_input.content.color = "WHITE"
+            channel_input.content.color = "WHITE"
+            token_input.content.disabled = False
+            channel_input.content.disabled = False
+
+            send_btn.text = "Сохранить данные"
+            page.update()
 
         # SIDEBAR
         logo = ft.Container(
@@ -46,8 +75,10 @@ class DashboardPage:
             content=ft.Column(
                 [
                     ft.Text('Меню', color="GREEN", size=25, weight=ft.FontWeight.BOLD),
-                    ft.TextButton("Главная", icon=ft.icons.SPACE_DASHBOARD_ROUNDED, style=style_meny),
-                    ft.TextButton("Постинг", icon=ft.icons.POST_ADD, style=style_meny),
+                    ft.TextButton("Главная", icon=ft.icons.SPACE_DASHBOARD_ROUNDED, style=style_meny,
+                                  on_click=lambda e: page.go('/panel')),
+                    ft.TextButton("Постинг", icon=ft.icons.POST_ADD, style=style_meny,
+                                  on_click=lambda e: page.go('/post')),
                     ft.TextButton("Текстовая кнопка", icon=ft.icons.VERIFIED_USER, style=style_meny),
                 ],
                 alignment=ft.MainAxisAlignment.CENTER,
@@ -56,19 +87,69 @@ class DashboardPage:
         )
         # END SIDEBAR
 
-        # ЭЛЕМЕНТЫ ПОЛУЧЕНИЯ И СОХРАНЕНИЯ ДАННЫХ
+        # СТИЛЬ ТЕКСТОВОГО ПОЛЯ ВСТАВКИ ТОКЕНА ТЕЛЕБОТА
+        def style_input_token(label):
+            return ft.TextField(
+                '',
+                label=f"{label}",
+                label_style=ft.TextStyle(color=ft.colors.YELLOW),
+                bgcolor=ft.colors.GREEN_300,
+                filled=True,
+                color=ft.colors.WHITE,
+                border=ft.InputBorder.NONE
+            )
+
+        # СТИЛЬ ТЕКСТОВОГО ПОЛЯ DISABLED (если нужно сразу закрыть поля при наличии имеющегося токена и канала(channel))
+        # def input_disabled(value):
+        #     return ft.TextField(value=value, disabled=True, border=ft.InputBorder.NONE,
+        #                         bgcolor=ft.colors.GREEN_100, filled=True, color=ft.colors.GREEN)
+
+        # ТЕКСТОВЫЕ ПОЛЯ ДЛЯ ПОЛУЧЕНИЯ И СОХРАНЕНИЯ ДАННЫХ
+
         token_input = ft.Container(
-            content=insert_token("Введите токен бота"),
-            border_radius=15
-        )
-
+            content=style_input_token("Введите токен бота"),
+            border_radius=15)
         channel_input = ft.Container(
-            content=insert_token("Введите название канала"),
-            border_radius=15
-        )
+            content=style_input_token("Введите название канала"),
+            border_radius=15)
 
-        send_btn = ft.ElevatedButton("Сохранить данные", bgcolor=ft.colors.GREEN_300, color="YELLOW", icon='settings')
+        if page.session.get("TOKEN"):
+            token_input.content.bgcolor = ft.colors.GREEN_100
+            token_input.content.disabled = True
+            token_input.content.value = page.session.get("TOKEN")
+        elif self.token_bot:
+            token_input.content.bgcolor = ft.colors.GREEN_100
+            token_input.content.disabled = True
+            token_input.content.value = self.token_bot
+        else:
+            token_input.content.disabled = False
 
+        if page.session.get("CHANNEL"):
+            channel_input.content.bgcolor = ft.colors.GREEN_100
+            channel_input.content.disabled = True
+            channel_input.content.value = page.session.get("CHANNEL")
+        elif self.channel_link:
+            channel_input.content.bgcolor = ft.colors.GREEN_100
+            channel_input.content.disabled = True
+            channel_input.content.value = self.channel_link
+        else:
+            channel_input.content.disabled = False
+        page.update()
+
+        # elif page.session.get('CHANNEL'):
+        #     channel_input = ft.Container(
+        #         content=input_disabled(page.session.get('CHANNEL')),
+        #         border_radius=15)
+        # else:
+        #     channel_input = ft.Container(
+        #         content=input_disabled(self.channel_link),
+        #         border_radius=15)
+
+        send_btn = ft.ElevatedButton("Сохранить данные", bgcolor=ft.colors.GREEN_300, color="YELLOW",
+                                     icon='save', width=200, on_click=lambda e: save_settings(e))
+
+        change_data = ft.ElevatedButton("Изменить данные", bgcolor=ft.colors.GREEN_300, color="YELLOW",
+                                     icon='settings', width=200, on_click=lambda e: change_settings(e))
 
         # START HEADER
         header = ft.Container(
@@ -126,7 +207,8 @@ class DashboardPage:
                                         header,
                                         token_input,
                                         channel_input,
-                                        send_btn
+                                        send_btn,
+                                        change_data
                                     ]
                                 )
                             )

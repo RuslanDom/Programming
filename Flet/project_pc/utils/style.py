@@ -25,3 +25,4 @@ style_meny = ft.ButtonStyle(color={ft.ControlState.HOVERED: ft.colors.WHITE,
                                    }, icon_size=20, overlay_color=hoverBgColor, shadow_color=hoverBgColor)
 
 
+
