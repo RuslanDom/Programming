@@ -14,23 +14,27 @@ def search():
     if not cell_tower_ids:
         return f"Вы должны указать хотя бы один cell_tower_id", 400
 
+    # Проверка date_from
     pattern_date = '^[0-9]{2,4}+\.[0-9]{,2}+\.[0-9]{,2}$'
     date_from: Optional[str] = request.args.get('date_from', type=str, default=None)
     if date_from:
         if not re.match(pattern=pattern_date, string=date_from):
-            return "Дата указана не верно",400
+            return "Дата указана не верно", 400
 
+    # Проверка phone_prefix
     phone_prefixes: List[str] = request.args.getlist("phone_prefix")
     pattern_prefix = '^[0-9]{3}+\*$'
     for i in range(len(phone_prefixes)):
         if not re.match(pattern_prefix, phone_prefixes[i]):
             return f"Не верно указан префикс: {phone_prefixes[i]}", 400
 
+    # Проверка protocol
     protocols: List[str] = request.args.getlist('protocol')
     pattern_protocol = '[2G3G4G]'
     for i in range(len(protocols)):
         if not re.match(pattern_protocol, protocols[i]):
             return f'Не верно указан протокол: {protocols[i]}', 400
+        
     signal_level: Optional[float] = request.args.get('signal_level', type=float, default=None)
 
     return (

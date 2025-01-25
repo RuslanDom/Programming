@@ -1,0 +1,93 @@
+html,
+body {
+  font-family: "Arial";
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+a {
+  color: #0059b2;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #cc0000;
+  text-decoration: underline;
+}
+
+.clear {
+  clear: both;
+}
+
+ul.mainmeny {
+  list-style: none;
+  background: #3f4137;
+  height: 60px;
+  margin: 0;
+  padding: 0;
+  color: #fdc073;
+  font-size: 20px;
+  overflow: hidden;
+}
+
+ul.mainmeny li {
+  float: left;
+  margin: 18px 40px 0 50px;
+}
+
+ul.mainmeny li.last {
+  float: right;
+}
+
+ul.mainmeny li a {
+  color: #fdc073;
+  text-decoration: none;
+}
+
+ul.mainmeny li a:hover {
+  color: #fda83d;
+}
+
+div.content {
+  margin: 20px;
+}
+
+.form-contact label {
+  display: inline-block;
+  min-width: 80px;
+  margin: 0 0 0 10px;
+}
+
+.form.contact p {
+  margin: 10px 0 10px 0;
+}
+
+.form-contact input[type="submit"],
+textarea {
+  font-size: 16px;
+  background: #faffff;
+  margin: 0 0 0 10px;
+}
+
+.form-contact input:hover {
+  background: #005656;
+}
+
+.flash {
+  padding: 10px;
+}
+
+.flash.success {
+  border: 2px solid #21db56;
+  background: #aeffc5;
+}
+
+.flash.error {
+  border: 2px solid #db3d21;
+  background: #a00d0d;
+}
+
+
+
