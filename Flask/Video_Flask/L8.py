@@ -1,6 +1,7 @@
 import os
 import sqlite3
 from flask import Flask, render_template, request, g
+from fdatabase import FDatabase
 
 # Конфигурация
 DATABASE = "/tmp/flatsite.db"
@@ -38,17 +39,18 @@ def create_db():
     db.close()
 
 
-@app.route("/")
-def index():
-    db = get_db()
-    return render_template("index.html", menu=[])
-
-
 def get_db():
     # Соединение с БД, если ещё не установлено
     if not hasattr(g, "link_db"):
         g.link_db = connect_db()
     return g.link_db
+
+
+@app.route("/")
+def index():
+    db = get_db()
+    dbase = FDatabase(db)
+    return render_template("index.html", menu=dbase.getMeny())
 
 
 @app.teardown_appcontext

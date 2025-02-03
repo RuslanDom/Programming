@@ -1,12 +1,15 @@
 from itertools import cycle
 
 def xor(message, key):
-    return bytes(a^b for a, b in zip(message, cycle(key)))
+    return bytes(a ^ b for a, b in zip(message, cycle(key)))
+
+
+
 
 # key = b'key'
-# value = 'hello world'.encode()
-# print(value.decode())
-# res = xor(value, key)
+# value = 'hello world'
+# print(value)
+# res = xor(value.encode(), key)
 # answer = xor(res, key).decode()
 #
 # print(res)

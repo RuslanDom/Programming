@@ -62,13 +62,13 @@ div.content {
 
 .form-contact p {
   margin: 10px 0 10px 0;
+  padding: 0 0 0 20px;
 }
 
 .form-contact input[type="submit"],
 textarea {
   font-size: 16px;
   background: #faffff;
-  margin: 0 0 0 10px;
 }
 
 .form-contact input:hover {
