@@ -17,9 +17,9 @@
   </head>
   <body>
     {% block content %}
-    <ul class="mainmeny">
-      {% for el in meny %}
-      <li><a href="{{ el.url }}">{{ el.name }}</a></li>
+    <ul class="mainmenu">
+      {% for el in menu %}
+      <li><a href="{{ el.url }}">{{ el.title }}</a></li>
       {% endfor %}
     </ul>
     <div class="clear"></div>
