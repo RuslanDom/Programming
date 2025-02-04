@@ -27,7 +27,7 @@ def get_db_only_in_app():
     return g.link_db
 
 
-def insert_meny():
+def insert_menu():
     try:
         db = connect_db()
         path = os.path.join(app.root_path, "sql_commands/insert_menu.sql")
@@ -42,11 +42,26 @@ def insert_meny():
         print("Error insert database", e)
 
 
+def create_table():
+    try:
+        conn = connect_db()
+        cur = conn.cursor()
+        path = os.path.join(app.root_path, "sql_commands/create_table_mainmenu.sql")
+        print(path)
+        with app.open_resource(path, 'r') as f:
+            cur.executescript(f.read())
+        conn.commit()
+        conn.close()
+        print("Success create table mainmenu")
+    except BaseException as e:
+        print("Error create table", e)
+
+
 @app.route("/")
 def index():
     db = get_db_only_in_app()
     dbase = FDatabase(db)  # Создаём экземпляр класса где инициализируем connect и cursor
-    return render_template("index.html", menu=dbase.getMeny())
+    return render_template("index.html", menu=dbase.getMenu())
 
 
 
@@ -56,7 +71,8 @@ def close_db(error):
         g.link_db.close()
 
 
-# insert_meny()
+# insert_menu()
+# create_table()
 if __name__ == "__main__":
     app.config["WTF_CSRF_ENABLED"] = False
     app.run(debug=True)

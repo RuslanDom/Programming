@@ -1,5 +1,5 @@
 import unittest
-from Flask.flask_WTForms import *
+from Flask.Rest.flask_WTForms import *
 import json
 
 

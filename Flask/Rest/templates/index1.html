@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="keywords" lang="ru" content="интернет-магазин автозапчастей, магазин автозапчастей, магазин запчастей, купить запчасти">
+	<meta name="description" content="Купить запчасти выгодно в интернет-магазине с доставкой по Москве, Московской области и регионам РФ">
+	<meta name="Document-state" content="Dynamic">
+	<meta name="Resource-type" content="document">
+	<meta property="og:url" content="https://shifter.ru/internet-magazin-avtozapchastey" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Интернет-магазин автозапчастей" />
+<meta property="og:description" content="Купить запчасти выгодно в интернет-магазине с доставкой по Москве, Московской области и регионам РФ" />
+<meta property="og:image" content="" />
+
+
+	<title>Интернет-магазин автозапчастей</title>
+	<link rel="icon" href="/favicon.ico?time=1702623248" type="image/svg+xml">
+
+
+<link rel="preconnect" href="https://astatic.nodacdn.net" />
+<script src="https://astatic.nodacdn.net/common.jscripts/jquery/jquery-1.7.min.js"></script>
+<script src="https://astatic.nodacdn.net/common.jscripts/jquery/jquery.script.load.polyfill.js?1"></script>
+<script src="https://astatic.nodacdn.net/common.jscripts/jquery/ui/jquery-ui-1.8.16.min.js"></script>
+<link rel="stylesheet" href="https://astatic.nodacdn.net/common.jscripts/jquery/ui/custom-theme/jquery-ui-1.9.2.custom.min.css">
+<script src="https://astatic.nodacdn.net/common.jscripts/jquery/ui/jquery-ui-i18n.min.js?2"></script>
+<script src="https://astatic.nodacdn.net/common.jscripts/jquery/jquery.jgrowl_minimized.js"></script>
+<link rel="stylesheet" href="https://astatic.nodacdn.net/common.jscripts/jquery/jquery.jgrowl.min.css">
+<script src="https://astatic.nodacdn.net/common.jscripts/jquery/jquery.cookie.js"></script>
+<script src="https://astatic.nodacdn.net/common.jscripts/jquery/jquery.fancybox-2.1.7.min.js"></script>
+<link rel="stylesheet" href="https://static-files.nodacdn.net/js_libs/jquery/fb2/jquery.fancybox.min.css?4">
+<script src="https://static-files.nodacdn.net/js_libs/jquery/fb2/jquery.mousewheel-3.0.2.pack.js"></script>
+<script src="https://astatic.nodacdn.net/common.jscripts/jquery/jquery.maskedinput-1.4.1.js"></script>
+<script src="https://staticfe.nodacdn.net/input-phone-mask/bundle.js?v19"></script>
+<link rel="stylesheet" href="https://astatic.nodacdn.net/common.jscripts/jquery/ui/jquery.multiselect.css">
+<script src="https://astatic.nodacdn.net/common.jscripts/jquery/ui/jquery.multiselect.js"></script>
+
+<script src="https://astatic.nodacdn.net/common.jscripts/jquery/jquery.checkboxes.range.min.js?4"></script>
+
+<script src="https://astatic.nodacdn.net/common.jscripts/cssFramework.min.js?2"></script>
+
+<link rel="stylesheet" href="https://astatic.nodacdn.net/css/virtual.corrections.min.css?24">
+<link rel="stylesheet" href="https://astatic.nodacdn.net/css/global.tables.min.css?23">
+<link rel="stylesheet" href="https://astatic.nodacdn.net/css/carbase.min.css?28">
+<link rel="stylesheet" href="https://astatic.nodacdn.net/css/cssFramework.min.css?43">
+<link rel="stylesheet" href="https://astatic.nodacdn.net/css/adaptive.media.min.css?25">
+<link rel="stylesheet" href="https://astatic.nodacdn.net/css/goods.catalog.min.css?33">
+<link rel="stylesheet" href="https://astatic.nodacdn.net/css/data.format.css">
+<script>
+	$(function() {
+		(function () {
+			// Синхронизируем значения в виджете и старого input
+			if ($.ui.wGoodsQuantityBuy !== undefined) {
+				$.ui.wGoodsQuantityBuy.prototype.inputChangeCallbackTrash = function () {
+					if ($(this).closest('form').length) {
+						$(this).closest('td').find('.quantityInputFake').val($(this).val());
+					}
+				};
+			}
+		})();
+	})
+</script>
+
+<script>
+	var SiteLocale = '';
+	var OriginalSiteLocale = 'ru_RU';
+</script>
+<!-- Include Required Prerequisites -->
+<script src="https://astatic.nodacdn.net/common.jscripts/daterangepicker/moment-with-locales.min.js"></script>
+<!-- Include Date Range Picker -->
+<script src="https://astatic.nodacdn.net/common.jscripts/daterangepicker/daterangepicker.min.js?1"></script>
+<link rel="stylesheet" type="text/css"
+      href="https://astatic.nodacdn.net/common.jscripts/daterangepicker/daterangepicker.min.css?1"/>
+<script>
+    var langDateRange = {
+        specificDate: 'Один день',
+        allDatesBefore: 'Все даты до',
+        allDatesAfter: 'Все даты после',
+        dateRange: 'Выбрать дни',
+        rangeStartTitle: 'С:',
+        rangeEndTitle: 'По:',
+        nextLinkText: 'След.',
+        prevLinkText: 'Пред.'
+    };
+
+    moment.locale('ru');
+    /* */
+    var localizedDateTimePickerTexts = {
+        today: 'Сегодня',
+        /*5 дней назад*/
+        fiveAndMoreDaysAgo: '5 дней назад и более',
+        /*7 дней назад*/
+        sevenAndMoreDaysAgo: '7 дней назад и более',
+        /*За последние 7 дней*/
+        last7days: 'За последние 7 дней',
+        /*За последние 10 дней*/
+        last10days: 'За последние 10 дней',
+        /*10 дней назад и более*/
+        tenAndMoreDaysAgo: '10 дней назад и более',
+        /*За этот месяц*/
+        thisMonth: 'За этот месяц',
+        /*За последние 30 дней*/
+        lastThirtyDays: 'За последние 30 дней',
+        /*Предыдущий месяц*/
+        previousMonth: 'Предыдущий месяц',
+        /*За последние 12 месяцев*/
+        thisLastYear: 'За последние 12 месяцев',
+        /*За этот год*/
+        thisYear: 'За этот год'
+    };
+    function getDateTimePickerAliasByLabel(label) {
+        for (var alias in localizedDateTimePickerTexts) {
+            if (localizedDateTimePickerTexts[alias] == label) {
+                return alias;
+            }
+        }
+        return label;
+    }
+    function getDateTimePickerLabelByAlias(alias) {
+        if(localizedDateTimePickerTexts[alias]) {
+            return localizedDateTimePickerTexts[alias];
+        }
+        return false;
+    }
+    var dateRangePickerRanges = {
+        /* Сегодня*/
+        'Сегодня': [
+            moment().format('DD.MM.YYYY'),
+            moment().format('DD.MM.YYYY')
+        ],
+        /* Неделя назад*/
+        'За последние 7 дней': [
+            moment().subtract(1, 'week').format('DD.MM.YYYY'),
+            moment().format('DD.MM.YYYY')
+        ],
+        /* Этот месяц*/
+        'За этот месяц': [
+            moment().startOf('month').format('DD.MM.YYYY'),
+            moment().format('DD.MM.YYYY')
+        ],
+        /* За последние 30 дней*/
+        'За последние 30 дней': [
+            moment().subtract(1, 'month').format('DD.MM.YYYY'),
+            moment().format('DD.MM.YYYY')
+        ],
+        /* Этот год*/
+        'За этот год': [
+            moment().startOf('year').format('DD.MM.YYYY'),
+            moment().format('DD.MM.YYYY')
+        ],
+        /* Предыдущий месяц*/
+        'Предыдущий месяц': [
+            moment().subtract(1, 'month').startOf('month').format('DD.MM.YYYY'),
+            moment().subtract(1, 'month').endOf('month').format('DD.MM.YYYY')
+        ],
+        /* Предыдущий год */
+        'Предыдущий год': [
+            moment().subtract(1, 'year').startOf('year').format('DD.MM.YYYY'),
+            moment().subtract(1, 'year').endOf('year').format('DD.MM.YYYY')
+        ],
+        /* За последние 6 месяцев */
+        'За последние 6 месяцев': [
+            moment().subtract(6, 'month').startOf('month').format('DD.MM.YYYY'),
+            moment().format('DD.MM.YYYY')
+        ],
+        /* За последние 12 месяцев */
+        'За последние 12 месяцев': [
+            moment().subtract(1, 'year').format('DD.MM.YYYY'),
+            moment().format('DD.MM.YYYY')
+        ]
+    };
+    var dateRangePickerLocale = {
+        format: "DD.MM.YYYY",
+        separator: " - ",
+        customRangeLabel: 'Выбрать дни',
+        fromLabel: "С:",
+        toLabel: "По:"
+    };
+    var dateRangePickerOptions = {
+        ranges: dateRangePickerRanges,
+        locale: dateRangePickerLocale,
+        linkedCalendars: false,
+        showDropdowns: true,
+        minYear: 2005,
+        minDate: new Date('2005-01-01'),
+        maxYear: new Date().getFullYear(),
+        maxDate: new Date(),
+        autoApply: true
+    };
+</script>
+<script>
+	var popupMessageCloseAllNotifications = '[ Закрыть все уведомления ]';
+	var popupMessageAddItemToBasket = 'Товар добавлен в корзину';
+	var alertMessageAddItemToBasket = 'Такой товар уже есть в корзине в количестве xx штук. Добавить?';
+	var alertMessageAddItemToMultiBasket = 'Такой товар уже есть XX. Добавить по YY шт?';
+	var alertMessageAddItemToMultiBasketCnt = 'в корзине XX в кол-ве YY шт';
+	var alertMessageAddItemToMultiBasketSingle = 'Такой товар уже есть XX. Добавить YY шт?';
+	var addToCartAuthError = '<strong>Для добавления товаров в корзину необходимо авторизоваться<\/strong>';
+	var addToCartDataError = '<strong>Ошибка при добавлении в корзину.<br />Попробуйте перезагрузить страницу с результатами поиска<\/strong>';
+	var addToCartLimitError = '<strong>Для дальнейшего добавления новых позиций в корзину необходимо авторизоваться.<\/strong>';
+	var addToCartCookieLimitError = '<strong>Для добавления этого товара в корзину необходимо авторизоваться.<\/strong>';
+	var addToCartAlreadyInCartError = '<strong>Обработка данного товара имеет ограничения. Необходимо удалить товар из корзины, после чего выполнить его повторный поиск и добавить в корзину с нужным количеством.<br /><\/strong>';
+	var addToCartError = '<strong>Ошибка при добавлении в корзину<\/strong>';
+	var answerOptionPositive = 'Да';
+	var answerOptionNegative = 'Нет';
+	var chooseVendorDefaultOption = 'Выберите марку';
+	var carbaseApplBlockCarManufacturer = 'Марка';
+	var chooseModelDefaultOption = 'Выберите модель';
+	var carbaseApplBlockCarModel = 'Модель';
+	var chooseYearDefaultOption = 'Выберите год';
+	var carbaseApplBlockCarYear = 'Год выпуска';
+	var chooseModificationDefaultOption = 'Выберите модификацию';
+	var carbaseApplBlockCarModification = 'Модификация';
+	var packingAddToTrashMessage = 'Можно заказать только партиями по {PACKING_VALUES} и т.д. штук.';
+	var packingTrashOrderMessage = 'Деталь {BRAND_NUMBER} можно заказать только партиями по {PACKING_VALUES} и т.д. штук.';
+	var confirmCartClear = 'Вы действительно хотите очистить корзину?';
+	var clientId = null;
+	var clientCode = '';
+	var md5CodeTemplate = 'd41d8cd98f00b204e9800998ecf8427e';
+	var clientName = '';
+	var clientEmail = '';
+	var clientMobile = '';
+	var resellerId = 6928708;
+	var offices = [];
+	var firstOfficeId = 0;
+		var personalManagerId = 0;
+	var personalManagerName = "";
+	var serviceManagerId = 0;
+	var serviceManagerName = "";
+	var serviceManager2Id = 0;
+	var serviceManager2Name = "";
+	var serviceManager3Id = 0;
+	var serviceManager3Name = "";
+	var serviceManager4Id = 0;
+	var serviceManager4Name = "";
+	var profileId = 10262894;
+	var btnSendRequestValue = 'Записаться';
+	var deliveryAddressPickupLabel = 'Самовывоз: г. Москва, ул. Маршала Конева, 1 (Пн-Сб 09:00 - 19:00) м. Октябрьское Поле - 9 мин. пешком, МЦК Панфиловская - 5 мин. пешком. Срок хранения заказа 3 дня.';
+	var deliveryAddressNewAddressLabel = 'Новый адрес доставки:';
+</script>
+
+<script src="https://astatic.nodacdn.net/common.jscripts/jquery/jquery.ui.touch-punch.min.js"></script>
+<script src="https://static-files.nodacdn.net/js_libs/js_misc.min.js?23"></script>
+
+	<script src="https://astatic.nodacdn.net/common.jscripts/jquery/jquery.browser.min.js"></script>
+	<script>
+		var initSearchFormOnExtendedAutocomplete = true;
+	</script>
+
+	<link href="//static-files.nodacdn.net/skins/base.template23/desktop/ru_RU/css/style.css?v875" rel="stylesheet" />
+    <style>
+        .blueGrayTemplateTheme {
+            --mainThemeColor: #FFA600;
+            --mainThemeColor-lighten5: #ffab0d;
+            --mainThemeColor-lighten8: #ffae15;
+            --mainThemeColor-lighten10: #ffaf1a;
+            --mainThemeColor-lighten37: #ffc75f;
+            --mainThemeColor-darken25: #c07d00;
+                                                    --mainThemeColor-lighten15: #ffb427;
+                --mainThemeColor-lighten40: #ffca66;
+                                                                                                                                                        }
+            </style>
+
+<script src="//static-files.nodacdn.net/skins/base.template23/desktop/ru_RU/js/script.js?v370"></script>
+
+	<link rel="stylesheet" href="https://astatic.nodacdn.net/css/adaptive.search.min.css?2">
+	<link rel="stylesheet" href="https://astatic.nodacdn.net/css/open.sans.css?2">
+	<script type="text/javascript">
+var __cs = __cs || [];
+__cs.push(["setCsAccount", "SOAtzToBzY7XbGVpUgmg0Gy1UUte6niX"]);
+</script>
+<script type="text/javascript" async src="https://app.uiscom.ru/static/cs.min.js"></script>
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(23370436, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/23370436" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+	<style>
+    .head .headSearch .headEmail:not(:empty):before,
+    .head .headSearch .headPhone:not(:empty):before {
+        top: 12px;
+    }
+
+    .head .headInfo .headPhone,
+    .head .headInfo .headEmail {
+    	flex-grow: 1;
+    }
+
+    .head .headInfo .headEmail {
+		justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    @media (max-width: 767px) {
+		.head .headSearch .headInfo,
+        .head .headInfo .headEmail {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+
+div .searchProgressBar .searchProgressBarBg {
+		border: 2px solid var(--mainThemeColor);
+	}
+
+	div #asyncSearchProgressBar {
+		background: var(--mainThemeColor);
+	}
+</style>
+</head>
+<body class="internet-magazin-avtozapchasteyPage blueGrayTemplateTheme innerPage clientPage">
+
+
+
+
+	<div class="darkscreen" id="darkscreen"></div>
+	<aside class="mainAsideMobile">
+					<div class="wMyGarageCarWrapper">
+
+	<a
+					href="#modalFormLogin" class="wMyGarageCarButton wMyGarageCarAddLink widgetGuestAuthLink"
+			>
+		<svg xmlns="http://www.w3.org/2000/svg" width="42" height="30" viewBox="0 0 29 21" fill="none">
+			<path fill-rule="evenodd" clip-rule="evenodd" d="M2.06081 15.1897C2.38631 14.2841 3.01092 13.5066 3.83864 12.9769C4.66636 12.4472 5.65138 12.1946 6.64232 12.2578C7.63326 12.321 8.57528 12.6965 9.32361 13.3268C10.0719 13.957 10.5851 14.807 10.7844 15.7461H18.2156C18.4136 14.806 18.9262 13.9548 19.6746 13.3236C20.423 12.6924 21.3657 12.3162 22.3573 12.2529C23.349 12.1897 24.3347 12.4429 25.1627 12.9736C25.9906 13.5042 26.6148 14.2829 26.9392 15.1897C27.1294 15.9857 27.1415 16.4296 27.1458 17.2192C27.699 16.9754 28.1678 16.5832 28.4966 16.0894C28.8253 15.5955 29.0001 15.0209 29 14.4339V12.3117C29.0001 11.3478 28.6704 10.4108 28.0621 9.64645C27.4538 8.88206 26.6009 8.33305 25.636 8.08475L21.8424 7.10849L19.0476 2.24994C18.6551 1.56789 18.0807 0.999592 17.384 0.603977C16.6873 0.208362 15.8937 -0.000170656 15.0854 1.04788e-07H8.95737C8.00635 -0.000159743 7.07938 0.288522 6.30777 0.825156C5.53616 1.36179 4.95903 2.11917 4.65813 2.99001L3.16644 7.30969C2.24788 7.58976 1.44569 8.14511 0.876301 8.89513C0.306914 9.64515 -3.75662e-05 10.5508 1.2421e-08 11.4807V14.4339C-5.37928e-05 15.0209 0.174697 15.5955 0.503435 16.0894C0.832174 16.5832 1.30104 16.9754 1.85419 17.2192C1.8337 16.2625 1.86893 15.8019 2.06081 15.1897ZM10.875 6.99827H5.18375L6.37638 3.54462C6.55681 3.02169 6.90323 2.56688 7.3665 2.24468C7.82977 1.92248 8.38638 1.74925 8.95737 1.74957H10.875V6.99827ZM16.4649 2.11296C16.8823 2.35043 17.2265 2.69128 17.4616 3.10023L19.7073 6.99827H12.6875V1.74957H15.0873C15.5718 1.75003 16.0474 1.87549 16.4649 2.11296Z" fill="currentColor"/>
+			<path d="M10 17.5C10 19.433 8.433 21 6.5 21C4.567 21 3 19.433 3 17.5C3 15.567 4.567 14 6.5 14C8.433 14 10 15.567 10 17.5Z" fill="currentColor"/>
+			<path d="M26 17.5C26 19.433 24.433 21 22.5 21C20.567 21 19 19.433 19 17.5C19 15.567 20.567 14 22.5 14C24.433 14 26 15.567 26 17.5Z" fill="currentColor"/>
+		</svg>
+	</a>
+
+<div class="wMyGarageCar">
+            <a href="#modalFormLogin" class="wMyGarageCarAddLink widgetGuestAuthLink">
+            <img class="wMyGarageCarImage" src="https://pubimg.nodacdn.net/images/015c5250c6c7f0fb6781fd6efe9f8376de.png" alt="">
+            <span class="wMyGarageCarName">Добавить в гараж</span>
+        </a>
+    </div>
+			</div>
+				<div class="wMenu wMenuMobile">
+	<ul id="my-menu-mobile" class="horizontal">
+					<li class="menuItem main">
+				<a href="/"   				   class="menuItemLink">
+					Главная
+				</a>
+							</li>
+					<li class="menuItem Zapros_VIN_birtix24">
+				<a href="/Zapros_VIN_birtix24"   				   class="menuItemLink">
+					VIN-запрос
+				</a>
+							</li>
+					<li class="menuItem contacts">
+				<a href="/contacts"   				   class="menuItemLink">
+					Контакты
+				</a>
+							</li>
+					<li class="menuItem kupit-zapchasti">
+				<a href="/kupit-zapchasti"   				   class="menuItemLink">
+					Как купить запчасти
+				</a>
+							</li>
+					<li class="menuItem dostavka-zapchastey">
+				<a href="/dostavka-zapchastey"   				   class="menuItemLink">
+					Доставка
+				</a>
+							</li>
+					<li class="menuItem internet-magazin-avtozapchastey act">
+				<a href="/internet-magazin-avtozapchastey"   				   class="menuItemLink">
+					О нас
+				</a>
+							</li>
+					<li class="menuItem vozvrat-zapchastey">
+				<a href="/vozvrat-zapchastey"   				   class="menuItemLink">
+					Гарантия и возврат
+				</a>
+							</li>
+			</ul>
+</div>
+		<div class="asideCatalogs">
+			<ul>
+<li><a href="/carbase">Запчасти для ТО</a></li>
+<li><a href="/auto2dV2" target="_blank" rel="noopener noreferrer">Оригинальные каталоги</a></li>
+<li><a href="/oils_catalog">Масла</a></li>
+<li><a href="/batteries_catalog">Аккумуляторы</a></li>
+<li><a href="/lamps_catalog">Лампы</a></li>
+<li><a href="/tires_catalog">Шины</a></li>
+<li><a href="/disks_catalog">Диски колесные</a></li>
+</ul>
+		</div>
+	</aside>
+	<div class="siteWrapper">
+		<div class="topBar">
+			<div class="topBarIn">
+				<nav class="mainNav">
+					<div class="wMenu">
+	<ul id="my-menu" class="horizontal">
+					<li class="menuItem main">
+				<a href="/" 						 class="menuItemLink">
+					Главная
+				</a>
+							</li>
+					<li class="menuItem Zapros_VIN_birtix24">
+				<a href="/Zapros_VIN_birtix24" 						 class="menuItemLink">
+					VIN-запрос
+				</a>
+							</li>
+					<li class="menuItem contacts">
+				<a href="/contacts" 						 class="menuItemLink">
+					Контакты
+				</a>
+							</li>
+					<li class="menuItem kupit-zapchasti">
+				<a href="/kupit-zapchasti" 						 class="menuItemLink">
+					Как купить запчасти
+				</a>
+							</li>
+					<li class="menuItem dostavka-zapchastey">
+				<a href="/dostavka-zapchastey" 						 class="menuItemLink">
+					Доставка
+				</a>
+							</li>
+					<li class="menuItem internet-magazin-avtozapchastey act">
+				<a href="/internet-magazin-avtozapchastey" 						 class="menuItemLink">
+					О нас
+				</a>
+							</li>
+					<li class="menuItem vozvrat-zapchastey">
+				<a href="/vozvrat-zapchastey" 						 class="menuItemLink">
+					Гарантия и возврат
+				</a>
+							</li>
+			</ul>
+</div>
+				</nav>
+				<div class="mobileTopBar">
+					<div class="mobileIcons">
+						<a class="openPanel" href="#"><span class="fr-icon-list"></span></a>
+						<div class="authMobile">
+							<a class="modalLoginLink" id="logInModalIcon" href="#modalFormLogin"><span class="fr-icon3-person"></span></a>
+						</div>
+					</div>
+					<div class="cartMobile">
+						<div class="wCart wCartMobile">
+	<div class="basketLegendContainer basketLegend cart">
+		<a href="/cart" title="0,0">
+			<span class="qty">0</span>
+													<span class="summContainer">
+				<span class="fr-text-nowrap">
+					<span class="moneySumm">0</span> ₽
+				</span>
+							</span>
+		</a>
+			</div>
+</div>
+					</div>
+				</div>
+				<div class="headAuth">
+					<a class="loginLink" id="logInModal" href="#modalFormLogin"><span>Вход</span></a> /
+<a href="/reg" class="logRegLink"><span>Регистрация</span></a>
+<div style="display: none"  class="wVisualFormLogin" id="modalFormLogin">
+	<div class="modalWindow">
+		<div class="modalWindowHeading">Авторизация</div>
+		<div id="userinfo" class="modalWindowBody loginForm">
+			<form name="login" method="post" id="lgnform_modal">
+
+				<div class="log">
+					<input type="text" name="login" id="login_modal" value="" placeholder="Логин"
+						   class="modalWindowControl"/>
+				</div>
+				<div class="pass">
+					<input name="pass" id="pass_modal" type="password" value="" placeholder="Пароль" class="modalWindowControl"/>
+					<span class="fr-icon2-eye-1 eyeTriggerPassword" title="Показать пароль" data-title-toggle="Скрыть пароль"></span>
+				</div>
+								<div class="modalWindowSubmit in">
+					<input type="submit" name="go" id="go_modal" value="Вход" class="modalWindowSubmitBtn"/>
+				</div>
+				<div class="remindPassBlock">
+					<a href="/remindpass" class="passRemind">Забыли пароль?</a>
+				</div>
+				<div class="reg">
+					<a href="/reg">Регистрация</a>
+				</div>
+			</form>
+												</div>
+	</div>
+</div>
+				</div>
+			</div>
+		</div>
+		<section class="siteSection">
+			<header class="head">
+				<div class="centered headTop">
+					<div class="locales">
+
+					</div>
+					<div class="logo">
+						    <svg xmlns="http://www.w3.org/2000/svg" style="display: none !important;">
+        <symbol id="abcp-default-logo" viewBox="0 0 207 44" fill="none">
+            <path id="abcp-default-logo__a" d="M0.0224106 22.657C-0.518852 11.5465 8.81792 1.09729 20.0491 0.171414C32.0922 -1.4158 44.1353 8.23976 44.8119 20.0116C45.2178 27.9477 44.8119 36.016 44.9472 43.9521H34.6632L34.2572 40.9099C29.7918 42.6294 25.0558 44.6134 20.0491 43.8198C9.35918 42.894 0.157726 33.3707 0.0224106 22.657ZM17.8841 11.2819C9.35919 14.4564 8.14134 27.2863 16.125 31.9157C23.2967 37.0742 34.5279 31.2544 34.5279 22.657C35.3398 14.3241 25.5971 7.57842 17.8841 11.2819Z" fill="#005D96"/>
+            <path id="abcp-default-logo__text" d="M57.9 40.87C56.92 40.87 55.9517 40.7183 54.995 40.415C54.0383 40.1117 53.2567 39.6917 52.65 39.155L54.645 35.27C55.065 35.6433 55.5433 35.935 56.08 36.145C56.64 36.355 57.1883 36.46 57.725 36.46C58.495 36.46 59.1017 36.2733 59.545 35.9C60.0117 35.55 60.4317 34.955 60.805 34.115L61.785 31.805L62.205 31.21L68.96 14.97H74.21L65.705 34.955C65.0983 36.4717 64.3983 37.6617 63.605 38.525C62.835 39.3883 61.9717 39.995 61.015 40.345C60.0817 40.695 59.0433 40.87 57.9 40.87ZM61.12 34.535L52.72 14.97H58.355L64.865 30.72L61.12 34.535ZM84.1853 34.08C82.1786 34.08 80.3936 33.66 78.8303 32.82C77.2903 31.98 76.0653 30.8367 75.1553 29.39C74.2686 27.92 73.8253 26.2517 73.8253 24.385C73.8253 22.495 74.2686 20.8267 75.1553 19.38C76.0653 17.91 77.2903 16.7667 78.8303 15.95C80.3936 15.11 82.1786 14.69 84.1853 14.69C86.1686 14.69 87.9419 15.11 89.5053 15.95C91.0686 16.7667 92.2936 17.8983 93.1803 19.345C94.0669 20.7917 94.5103 22.4717 94.5103 24.385C94.5103 26.2517 94.0669 27.92 93.1803 29.39C92.2936 30.8367 91.0686 31.98 89.5053 32.82C87.9419 33.66 86.1686 34.08 84.1853 34.08ZM84.1853 29.6C85.0953 29.6 85.9119 29.39 86.6353 28.97C87.3586 28.55 87.9303 27.955 88.3503 27.185C88.7703 26.3917 88.9803 25.4583 88.9803 24.385C88.9803 23.2883 88.7703 22.355 88.3503 21.585C87.9303 20.815 87.3586 20.22 86.6353 19.8C85.9119 19.38 85.0953 19.17 84.1853 19.17C83.2753 19.17 82.4586 19.38 81.7353 19.8C81.0119 20.22 80.4286 20.815 79.9853 21.585C79.5653 22.355 79.3553 23.2883 79.3553 24.385C79.3553 25.4583 79.5653 26.3917 79.9853 27.185C80.4286 27.955 81.0119 28.55 81.7353 28.97C82.4586 29.39 83.2753 29.6 84.1853 29.6ZM105.405 34.08C103.842 34.08 102.442 33.7767 101.205 33.17C99.9915 32.5633 99.0465 31.6417 98.3698 30.405C97.6932 29.145 97.3548 27.5467 97.3548 25.61V14.97H102.815V24.805C102.815 26.3683 103.142 27.5233 103.795 28.27C104.472 28.9933 105.417 29.355 106.63 29.355C107.47 29.355 108.217 29.18 108.87 28.83C109.523 28.4567 110.037 27.8967 110.41 27.15C110.783 26.38 110.97 25.4233 110.97 24.28V14.97H116.43V33.8H111.25V28.62L112.195 30.125C111.565 31.4317 110.632 32.4233 109.395 33.1C108.182 33.7533 106.852 34.08 105.405 34.08ZM120.788 33.8V14.97H126.003V20.29L125.268 18.75C125.828 17.42 126.726 16.4167 127.963 15.74C129.2 15.04 130.705 14.69 132.478 14.69V19.73C132.245 19.7067 132.035 19.695 131.848 19.695C131.661 19.6717 131.463 19.66 131.253 19.66C129.76 19.66 128.546 20.0917 127.613 20.955C126.703 21.795 126.248 23.1133 126.248 24.91V33.8H120.788ZM136.351 33.8V7.82999H138.101V33.8H136.351ZM151.917 33.94C150.167 33.94 148.604 33.5433 147.227 32.75C145.874 31.9567 144.789 30.86 143.972 29.46C143.179 28.06 142.782 26.4617 142.782 24.665C142.782 22.845 143.179 21.2467 143.972 19.87C144.789 18.47 145.874 17.3733 147.227 16.58C148.604 15.7867 150.167 15.39 151.917 15.39C153.667 15.39 155.231 15.7867 156.607 16.58C157.984 17.3733 159.069 18.47 159.862 19.87C160.656 21.2467 161.052 22.845 161.052 24.665C161.052 26.4617 160.656 28.06 159.862 29.46C159.069 30.86 157.984 31.9567 156.607 32.75C155.231 33.5433 153.667 33.94 151.917 33.94ZM151.917 32.365C153.317 32.365 154.577 32.05 155.697 31.42C156.817 30.7667 157.692 29.8567 158.322 28.69C158.952 27.5233 159.267 26.1817 159.267 24.665C159.267 23.125 158.952 21.7833 158.322 20.64C157.692 19.4733 156.817 18.575 155.697 17.945C154.577 17.2917 153.317 16.965 151.917 16.965C150.517 16.965 149.257 17.2917 148.137 17.945C147.041 18.575 146.166 19.4733 145.512 20.64C144.882 21.7833 144.567 23.125 144.567 24.665C144.567 26.1817 144.882 27.5233 145.512 28.69C146.166 29.8567 147.041 30.7667 148.137 31.42C149.257 32.05 150.517 32.365 151.917 32.365ZM173.376 40.73C171.72 40.73 170.145 40.4733 168.651 39.96C167.158 39.4467 165.945 38.735 165.011 37.825L165.956 36.495C166.866 37.335 167.951 37.9883 169.211 38.455C170.495 38.9217 171.871 39.155 173.341 39.155C175.791 39.155 177.588 38.5833 178.731 37.44C179.898 36.2967 180.481 34.5 180.481 32.05V26.975L180.831 24.245L180.551 21.515V15.53H182.231V31.84C182.231 34.8967 181.485 37.1367 179.991 38.56C178.521 40.0067 176.316 40.73 173.376 40.73ZM172.886 33.135C171.16 33.135 169.608 32.7617 168.231 32.015C166.878 31.245 165.793 30.195 164.976 28.865C164.183 27.5117 163.786 25.9717 163.786 24.245C163.786 22.495 164.183 20.955 164.976 19.625C165.793 18.295 166.878 17.2567 168.231 16.51C169.608 15.7633 171.16 15.39 172.886 15.39C174.543 15.39 176.025 15.7517 177.331 16.475C178.661 17.175 179.711 18.19 180.481 19.52C181.251 20.8267 181.636 22.4017 181.636 24.245C181.636 26.065 181.251 27.64 180.481 28.97C179.711 30.3 178.661 31.3267 177.331 32.05C176.025 32.7733 174.543 33.135 172.886 33.135ZM173.026 31.56C174.496 31.56 175.791 31.2567 176.911 30.65C178.031 30.02 178.906 29.1567 179.536 28.06C180.19 26.94 180.516 25.6683 180.516 24.245C180.516 22.7983 180.19 21.5267 179.536 20.43C178.906 19.3333 178.031 18.4817 176.911 17.875C175.791 17.2683 174.496 16.965 173.026 16.965C171.603 16.965 170.32 17.2683 169.176 17.875C168.056 18.4817 167.17 19.3333 166.516 20.43C165.886 21.5267 165.571 22.7983 165.571 24.245C165.571 25.6683 165.886 26.94 166.516 28.06C167.17 29.1567 168.056 30.02 169.176 30.65C170.32 31.2567 171.603 31.56 173.026 31.56ZM196.079 33.94C194.329 33.94 192.766 33.5433 191.389 32.75C190.036 31.9567 188.951 30.86 188.134 29.46C187.341 28.06 186.944 26.4617 186.944 24.665C186.944 22.845 187.341 21.2467 188.134 19.87C188.951 18.47 190.036 17.3733 191.389 16.58C192.766 15.7867 194.329 15.39 196.079 15.39C197.829 15.39 199.392 15.7867 200.769 16.58C202.146 17.3733 203.231 18.47 204.024 19.87C204.817 21.2467 205.214 22.845 205.214 24.665C205.214 26.4617 204.817 28.06 204.024 29.46C203.231 30.86 202.146 31.9567 200.769 32.75C199.392 33.5433 197.829 33.94 196.079 33.94ZM196.079 32.365C197.479 32.365 198.739 32.05 199.859 31.42C200.979 30.7667 201.854 29.8567 202.484 28.69C203.114 27.5233 203.429 26.1817 203.429 24.665C203.429 23.125 203.114 21.7833 202.484 20.64C201.854 19.4733 200.979 18.575 199.859 17.945C198.739 17.2917 197.479 16.965 196.079 16.965C194.679 16.965 193.419 17.2917 192.299 17.945C191.202 18.575 190.327 19.4733 189.674 20.64C189.044 21.7833 188.729 23.125 188.729 24.665C188.729 26.1817 189.044 27.5233 189.674 28.69C190.327 29.8567 191.202 30.7667 192.299 31.42C193.419 32.05 194.679 32.365 196.079 32.365Z" fill="black"/>
+        </symbol>
+    </svg>
+    <a href="/"><img src="//f.nodacdn.net/564093" width="900" height="265" caption="false" /></a>
+
+					</div>
+					<div class="headSearch">
+						<div class="headInfo">
+							<div class="headPhone headIcon"><span style="font-size: 24pt;"><span style="font-family: helvetica;"><a href="tel: +79954010246" style="text-decoration: none;">8(995)401-02-46</a></span></span></div>
+							<div class="headEmail headIcon"><span class="mailLink" style="font-family: helvetica;font-size: 24pt;"><a href="test@mail.ru" style="text-decoration: none;">test@mail.ru</a></span>
+
+<div class="fr-flex fr-flex-wrap fr-gap-4">
+    <a href="https://t.me/shifter_ru" target="_blank" rel="nofollow noopener noreferrer"><img src="//f.nodacdn.net/557686" width="100" height="32" caption="false"></a>
+    <a rel="nofollow" target="_blank" href="https://wa.me/79165727955?text=%D0%A1%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%81%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20shifter.ru"><img src="//f.nodacdn.net/557696" width="100" height="32" caption="false"></a>
+</div></div>
+							<div class="franch">
+
+
+							</div>
+						</div>
+						<div class="headSearchCart">
+							<div class="wSearchForm">
+			<script>
+			$(function() {
+				$('body').on('click', 'a[href^="/search/"], a[href^="/search?"]', function(e) {
+					if ($(this).attr('target') !== '_blank' && !e.ctrlKey && !e.metaKey && !e.shiftKey) {
+						$('#progressbar').show();
+					}
+				});
+
+				$('#srchform').submit(function() {
+					if ($.trim($('#pcode').val()) !== '') {
+						$('#progressbar').show();
+					}
+				});
+			});
+		</script>
+		<div id="progressbar" class="progressbar">
+			<div class="fr-spinner"></div>
+		</div>
+		<form method="get" name="searchform" id="srchform" action="/search">
+				<div class="searchFormContainer ">
+							<div class="code">
+					<input type="text" id="pcode" name="pcode" value="" placeholder="Введите код запчасти или VIN номер автомобиля" enterkeyhint="search">
+									</div>
+				<div class="find">
+					<button type="submit" title="Найти" name="go">
+						<span class="fr-icon3-search"></span>
+					</button>
+				</div>
+					</div>
+	</form>
+</div>
+															<div class="headGarage">
+									<div class="wMyGarageCarWrapper">
+
+	<a
+					href="#modalFormLogin" class="wMyGarageCarButton wMyGarageCarAddLink widgetGuestAuthLink"
+			>
+		<svg xmlns="http://www.w3.org/2000/svg" width="42" height="30" viewBox="0 0 29 21" fill="none">
+			<path fill-rule="evenodd" clip-rule="evenodd" d="M2.06081 15.1897C2.38631 14.2841 3.01092 13.5066 3.83864 12.9769C4.66636 12.4472 5.65138 12.1946 6.64232 12.2578C7.63326 12.321 8.57528 12.6965 9.32361 13.3268C10.0719 13.957 10.5851 14.807 10.7844 15.7461H18.2156C18.4136 14.806 18.9262 13.9548 19.6746 13.3236C20.423 12.6924 21.3657 12.3162 22.3573 12.2529C23.349 12.1897 24.3347 12.4429 25.1627 12.9736C25.9906 13.5042 26.6148 14.2829 26.9392 15.1897C27.1294 15.9857 27.1415 16.4296 27.1458 17.2192C27.699 16.9754 28.1678 16.5832 28.4966 16.0894C28.8253 15.5955 29.0001 15.0209 29 14.4339V12.3117C29.0001 11.3478 28.6704 10.4108 28.0621 9.64645C27.4538 8.88206 26.6009 8.33305 25.636 8.08475L21.8424 7.10849L19.0476 2.24994C18.6551 1.56789 18.0807 0.999592 17.384 0.603977C16.6873 0.208362 15.8937 -0.000170656 15.0854 1.04788e-07H8.95737C8.00635 -0.000159743 7.07938 0.288522 6.30777 0.825156C5.53616 1.36179 4.95903 2.11917 4.65813 2.99001L3.16644 7.30969C2.24788 7.58976 1.44569 8.14511 0.876301 8.89513C0.306914 9.64515 -3.75662e-05 10.5508 1.2421e-08 11.4807V14.4339C-5.37928e-05 15.0209 0.174697 15.5955 0.503435 16.0894C0.832174 16.5832 1.30104 16.9754 1.85419 17.2192C1.8337 16.2625 1.86893 15.8019 2.06081 15.1897ZM10.875 6.99827H5.18375L6.37638 3.54462C6.55681 3.02169 6.90323 2.56688 7.3665 2.24468C7.82977 1.92248 8.38638 1.74925 8.95737 1.74957H10.875V6.99827ZM16.4649 2.11296C16.8823 2.35043 17.2265 2.69128 17.4616 3.10023L19.7073 6.99827H12.6875V1.74957H15.0873C15.5718 1.75003 16.0474 1.87549 16.4649 2.11296Z" fill="currentColor"/>
+			<path d="M10 17.5C10 19.433 8.433 21 6.5 21C4.567 21 3 19.433 3 17.5C3 15.567 4.567 14 6.5 14C8.433 14 10 15.567 10 17.5Z" fill="currentColor"/>
+			<path d="M26 17.5C26 19.433 24.433 21 22.5 21C20.567 21 19 19.433 19 17.5C19 15.567 20.567 14 22.5 14C24.433 14 26 15.567 26 17.5Z" fill="currentColor"/>
+		</svg>
+	</a>
+
+<div class="wMyGarageCar">
+            <a href="#modalFormLogin" class="wMyGarageCarAddLink widgetGuestAuthLink">
+            <img class="wMyGarageCarImage" src="https://pubimg.nodacdn.net/images/015c5250c6c7f0fb6781fd6efe9f8376de.png" alt="">
+            <span class="wMyGarageCarName">Добавить в гараж</span>
+        </a>
+    </div>
+									</div>
+								</div>
+														<div class="wCart">
+	<div class="basketLegendContainer basketLegend">
+		<div class="cart">
+			<a href="/cart">
+				<span class="qty">0</span>
+				<div class="cartText">
+					<div class="cartTitle">Корзина</div>
+					на сумму:
+																					<span class="summContainer">
+						<span class="fr-text-nowrap">
+							<span class="moneySumm">0</span> ₽
+						</span>
+											</span>
+				</div>
+			</a>
+					</div>
+	</div>
+</div>
+						</div>
+					</div>
+				</div>
+				<div class="headBottom">
+					<ul>
+<li><a href="/carbase">Запчасти для ТО</a></li>
+<li><a href="/auto2dV2" target="_blank" rel="noopener noreferrer">Оригинальные каталоги</a></li>
+<li><a href="/oils_catalog">Масла</a></li>
+<li><a href="/batteries_catalog">Аккумуляторы</a></li>
+<li><a href="/lamps_catalog">Лампы</a></li>
+<li><a href="/tires_catalog">Шины</a></li>
+<li><a href="/disks_catalog">Диски колесные</a></li>
+</ul>
+				</div>
+			</header>
+			<div class="baseContent">
+								<article class="mainArticle">
+					<img src="//f.nodacdn.net/419549" alt="купить запчасти в интернет магазине" width="700" height="431" style="display: block; margin-left: auto; margin-right: auto;" /><br />
+<p><span><b>Мы рады приветствовать Вас в интернет-магазине автозапчастей для иномарок Шифтер.</b></span><span>&nbsp;</span></p>
+<span>Наша компания&nbsp;занимается торговлей авто запчастями&nbsp;для иномарок с 2006 года,&nbsp; наше юридическое лицо было зарегистрировано&nbsp; в 2006 году, т.е. мы уже более 12 лет сохраняем лицо надежного поставщика настоящих авто компонентов.</span>
+<p>В 2013 году наша компания открыла свой интернет-магазин.<br /><br />В 2022 нашему интернет-магазину авто запчастей исполнилось 10 лет!<br /><br />Наши основные направления:&nbsp;<span></span><span></span></p>
+<span></span><span></span><span></span><span></span>
+<ul>
+<li><span>Интернет-магазин автозапчастей для иномарок по минимальным ценам и срочной доставкой</span></li>
+<li><span>Комплексное снабжение&nbsp;запчастями смешанных автопарков с легковым и легким коммерческим транспортом.</span></li>
+<li><span>Комплексное снабжение запчастями таксопарков</span></li>
+<li><span>Снабжение&nbsp;запчастями авто сервисов и других авто ремонтных мастерских и предприятий.</span><br /><span></span></li>
+<li><span>Поставки авто запчастей в Государственные Бюджетные Учреждения.</span></li>
+</ul>
+<p><u><b><span>Наши преимущества:</span></b></u></p>
+<ul>
+<li><span>Мы продаем&nbsp;</span><span style="color: #ff0000;"><b>настоящие автозапчасти по минимальным ценам</b></span><span>&nbsp;в интернете.</span></li>
+<li><span>Мы&nbsp;</span><span style="color: #ff0000;"><b>не просим предоплату</b></span><span>&nbsp;-&nbsp;</span><b><span>оплата при получении</span></b><span>&nbsp;возможна даже по банковской карте. (Для клиентов из Москвы и МО, при отправке заказа за пределы МО - оплата заказа до отправки обязательна, так же предоплата необходима только для кузовных деталей, автохимии, АКБ и шин)</span></li>
+<li><span>При заказе до 16 часов текущего дня вы получаете&nbsp;</span><b><span>автозапчасти в день заказа</span></b><span>.</span></li>
+<li><span>При заказе после 16 часов Вы получаете автозапчасти на следующий рабочий день.</span></li>
+<li><b><span>Возврат</span></b><span>&nbsp;или обмен автозапчастей&nbsp;</span><b><span>без проблем</span></b><span>&nbsp;в течении семи дней по любой причине (в товарном виде и без следов установки).</span></li>
+<li><span>Прямая&nbsp;</span><b><span>гарантия от производителя</span></b><span>&nbsp;через наш Магазин.</span></li>
+<li><span>Возврат денег на Ваш расчетный счет в течении&nbsp;</span><b><span>10 дней</span></b><span>.</span></li>
+<li><span>В спорных ситуациях мы всегда встаем&nbsp;</span><b><span>на сторону клиента</span></b><span>.</span></li>
+<li><span style="color: #ff0000;"><b>Мы работаем с 2006 года</b></span><span>&nbsp;под одним юридическим лицом потому что у нас все честно и мы ничего не скрываем</span></li>
+<li><span>Доставка по Москве &nbsp;- бесплатно от 10000 р. (в пределах МКАД)&nbsp;</span></li>
+<li><b><span>Онлайн каталоги</span></b><span>&nbsp;для самостоятельного подбора деталей</span></li>
+<li><span>Мы&nbsp;</span><b><span>не продаем контрафакт</span></b><span>&nbsp;и прочие подделки - нам Важна наша репутация на рынке.</span></li>
+<li><b><span>Только сертифицированные и оригинальные товары</span></b></li>
+<li><span>Быстрое согласование с клиентом для подтверждения заказа</span></li>
+<li><b><span>Профессиональный</span></b><span>&nbsp;подбор запчастей</span></li>
+<li><span>Наши пункты выдачи запчастей есть&nbsp;</span><b><span>во всех крупных городах России</span></b></li>
+</ul>
+<span>Наш опыт работы &nbsp;позволяет с уверенностью заявлять, что&nbsp; мы сможем удовлетворить&nbsp;</span><strong><span>практически любые запросы клиентов</span></strong><span>, начиная от действительно&nbsp;</span><strong><span>профессионального подбора деталей</span></strong><span>, которые нужны именно Вам, до срочной&nbsp;</span><strong><span>доставки даже крупногабаритных узлов</span></strong><span>&nbsp;и деталей до нужного места назначения усилиями собственного автопарка.&nbsp;</span><br /><span></span><br /><span></span><span>Приоритетами нашей работы являются&nbsp;<strong>долгосрочные</strong>&nbsp;взаимовыгодные отношения со всеми клиентами, будь то крупное юридическое лицо или розничный покупатель. У нас нет стремления заработать на разовой продаже, главное - это когда люди обращаются к нам повторно и становятся нашими постоянными клиентами, для которых у нас есть действительно&nbsp;<strong>уникальные предложения</strong>. Мы ценим людей которые не хотят переплачивать и постоянно следят за ценами и качеством своих покупок. &nbsp;Дешево купить запчасти не сложно, но есть вероятность нарваться на подделку, а вот найти действительно лучшую цену на качественный товар с полным пакетом документов порой оказывается задачей не из легких, в решении которой мы Вам обязательно поможем! Сравните наши условия с вашим прежним местом покупок после регистрации на сайте.</span>
+				</article>
+			</div>
+		</section>
+		<footer class="footer">
+			<div class="footerContainer">
+				<div class="footerCopy">
+					<div class="centered"><p><span style="font-family: helvetica; font-size: 14pt;">&copy; 2006-2024, Все права защищены.</span><br /><span style="font-family: helvetica; font-size: 14pt;">Shifter.ru интернет-магазин запчастей.</span><br /><span style="font-family: helvetica; font-size: 14pt;">Экономия в деталях.</span></p>
+<a rel="nofollow" href="https://clck.yandex.ru/redir/dtype=stred/pid=47/cid=73582/path=dynamic.120x110/*https://market.yandex.ru/shop--shifter-ru/1138358/reviews"> <img src="https://clck.yandex.ru/redir/dtype=stred/pid=47/cid=73581/path=dynamic.120x110/*https://grade.market.yandex.ru/?id=1138358&amp;action=image&amp;size=1" border="0" alt="Читайте отзывы покупателей и оценивайте качество магазина на Яндекс.Маркете" /> </a></div>
+				</div>
+				<div class="centered">
+					<div class="footerBlock footerLogo"><span style="font-family: helvetica; font-size: 14pt;">График работы п</span><span style="font-size: 14pt;">ункта выдачи:</span><br /><span style="font-family: helvetica; font-size: 14pt;">Пн-Сб: с 09-00 до 19-00, Вс - выходной<br /></span><span style="font-size: 14pt;">График работы менеджеров по продаже:</span><br /><span style="font-size: 14pt;">Пн-Вс: с 09-00 до 19-00<br />График работы отдела возвратов:</span><br /><span style="font-size: 14pt;">Пн-Пт: с 10-00 до 18-00<br />График вечерней доставки:</span><br /><span style="font-size: 14pt;">Пн-Пт: с 19-30 до 23-30</span><br />
+<script data-b24-form="inline/15/p2layd" data-skip-moving="true">// <![CDATA[
+(function(w,d,u){ var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/180000|0); var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h); })(window,document,'https://cdn-ru.bitrix24.ru/b112799/crm/form/loader_15.js');
+// ]]></script></div>
+					<div class="footerBlock footerInfo"></div>
+				</div>
+
+	<script>
+		$(document).ready(function() {
+			$('a.abcpLink').css("cssText", "display: inline !important; z-index: 1; margin: auto auto 0;" +
+				"height: auto !important; width: auto !important; opacity: 1 !important;" +
+				"visibility: visible !important; font-size: 13px !important; color: #c0c0c0 !important;");
+		});
+	</script>
+
+<a class="abcpLink" title="Работает на платформе abcp.ru" target="_blank" href="https://www.abcp.ru/?utm_source=clientsites">Работает на Платформе abcp.ru</a>
+			</div>
+		</footer>
+	</div>
+</body>
+</html>

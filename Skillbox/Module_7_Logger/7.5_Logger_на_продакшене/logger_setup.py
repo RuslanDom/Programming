@@ -18,7 +18,7 @@ dict_config = {
         "file": {
             "class": "logging.handlers.TimedRotatingFileHandler",  # Удаляет устаревшие логи
             "when": "midnight",  # Каждую полночь бэкап логов
-            "backupCount": 5,  # Не более 5 дней логов
+            "backupCount": 5,  # Кол-во резервных копий файлов .log
             "level": "ERROR",
             "formatter": "simple",
             "filename": "workers_logs.log"
@@ -32,3 +32,8 @@ dict_config = {
     }
 }
 
+"""
+RotatingFileHandler поддерживает ротацию файлов журнала, основанную на максимальном размере файла. 
+Здесь должны быть определено два параметра: maxBytes и backupCount. 
+Параметр maxBytes сообщает обработчику, когда делать ротацию журнала. Параметр backupCount — количество файлов журнала.
+"""

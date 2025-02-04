@@ -1,6 +1,7 @@
 import os
 import sqlite3
 from flask import Flask, render_template, request, g
+from fdatabase import FDatabase
 
 
 # Конфигурация
@@ -33,7 +34,7 @@ def connect_db():
 def create_table():
     db = connect_db()
     # Читает файл со скриптами для создания таблицы
-    path = os.path.join(dir_path, "sq_db.sql")
+    path = os.path.join(dir_path, "sql_commands/create_table_mainmenu.sql")
     print(path)
     with app.open_resource(path, 'r') as f:
         cursor = db.cursor()
@@ -52,7 +53,8 @@ def get_db():
 @app.route("/")
 def index():
     db = get_db()
-    return render_template("index.html")
+    dbase = FDatabase(db)
+    return render_template("index.html", menu=dbase.getMenu())
 
 
 @app.teardown_appcontext
@@ -62,10 +64,10 @@ def close_db(error):
         g.link_db.close()
 
 
-# if __name__ == "__main__":
-#     app.config["WTF_CSRF_ENABLED"] = False
-#     app.run(debug=True)
+if __name__ == "__main__":
+    app.config["WTF_CSRF_ENABLED"] = False
+    app.run(debug=True)
 
 
 # Вызывается единожды для создания БД
-create_table()
+# create_table()

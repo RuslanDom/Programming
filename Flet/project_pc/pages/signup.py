@@ -1,10 +1,11 @@
 import time
-from Flet.project_pc.utils.Database import Database
+
 import flet as ft
 from flet_route import Params, Basket
 from Flet.project_pc.utils.style import *
 from Flet.project_pc.utils.validation import Validator
 from Flet.project_pc.utils.function import hash_password
+from Flet.project_pc.utils.Database import Database
 
 
 class SignupPage:

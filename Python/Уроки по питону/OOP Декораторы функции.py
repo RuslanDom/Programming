@@ -18,5 +18,5 @@ def validator(func):
 def open_url(url):
     webbrowser.open(url)
 
-open_url('file:///C:/Users/Admin/Desktop/Programming/Cross/index.html') #Открывает страницу по url
+open_url('file:///C:/Users/Admin/Desktop/Programming/Cross/index1.html') #Открывает страницу по url
 
