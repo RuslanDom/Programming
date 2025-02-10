@@ -18,6 +18,7 @@ meny = [
 
 @app.route("/")
 def index():
+    # url_for() - функция позволяет получить url адрес используя название функции которая выполняется по этому адресу
     print(url_for("index"))
     return render_template('index.html', meny=meny)
 
@@ -33,7 +34,7 @@ def profile(username):
     return "<h1>Пользователь: %s</h1>" % username
 
 
-@app.route("/set_age/<int:age>/<path:other>")  # path - ковертер
+@app.route("/set_age/<int:age>/<path:other>")  # path - можно использовать все символы URL и знак /
 def set_age(age, other):
     return "<h1>Возраст: %s Другое: %s</h1>" % (age, other)
 

@@ -40,7 +40,7 @@ def about():
     return render_template("about.html", meny=meny, title="О сайте")
 
 
-# Работа с form
+# Работа с flash()
 @app.route("/contact", methods=["POST", "GET"])
 def contact():
 

@@ -7,7 +7,7 @@ dict_config = {
         "disable exiting loggers": False,
         "formatters": {
                     "base": {
-                        "format": "%(name)s | %(asctime)s | %(level)s | %(message)s"
+                        "format": "%(name)s | %(asctime)s | %(levelname)s | %(message)s"
                     }
         },
         "handlers": {
@@ -15,7 +15,7 @@ dict_config = {
                 "class": logging.StreamHandler,
                 "level": "DEBUG",
                 "formatter": "base",
-                # "stream": sys.stdout
+                "stream": sys.stdout
             },
             "file": {
                 "class": handlers.TimedRotatingFileHandler,

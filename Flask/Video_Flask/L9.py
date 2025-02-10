@@ -1,4 +1,4 @@
-from flask import Flask, g, render_template
+from flask import Flask, g, render_template, request, flash
 import sqlite3
 import os
 from fdatabase import FDatabase
@@ -12,7 +12,7 @@ SECRET_KEY = os.urandom(10).hex()
 DEBUG = True
 
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("main")
 logging.config.dictConfig(dict_config)
 logger.setLevel("DEBUG")
 # print(logger)
@@ -56,19 +56,22 @@ def insert_menu():
         logger.exception("Error insert database", e)
 
 
-def create_table():
+def create_table(table_name):
     try:
         conn = connect_db()
         cur = conn.cursor()
-        path = os.path.join(app.root_path, "sql_commands/create_table_mainmenu.sql")
+        path = os.path.join(app.root_path, f"sql_commands/create_table_{table_name}.sql")
         print(path)
         with app.open_resource(path, 'r') as f:
             cur.executescript(f.read())
         conn.commit()
         conn.close()
-        logger.info("Success create table mainmenu")
+        logger.info(f"Success create table {table_name}")
     except BaseException as e:
         logger.exception("Error create table", e)
+
+
+
 
 
 @app.route("/")
@@ -80,6 +83,21 @@ def index():
     return render_template("index.html", menu=dbase.getMenu())
 
 
+@app.route("/addPost", methods=["GET", "POST"])
+def add_post():
+    db = get_db_only_in_app()
+    dbase = FDatabase(db)
+    form = request.form
+    if request.method == "POST":
+        if len(form.get("theme")) > 3 and len(form.get("news")) > 9:
+            if dbase.addPost(_theme=form["theme"], _news=form["news"]):
+                flash(category="success", message="Запись успешно создана")
+            else:
+                flash(category="error", message="Не удалось сохранить запись")
+        else:
+            flash(category="error", message="Не удалось сохранить запись")
+    return render_template("addPost.html", menu=dbase.getMenu())
+
 
 @app.teardown_appcontext
 def close_db(error):
@@ -89,7 +107,7 @@ def close_db(error):
 
 
 # insert_menu()
-# create_table()
+# create_table('posts')
 if __name__ == "__main__":
     logger.debug("Start app")
     app.config["WTF_CSRF_ENABLED"] = False

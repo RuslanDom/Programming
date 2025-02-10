@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+{{ super() }}
+{% for cat,msg in get_flashed_messages(True)%}
+<div class="flash {{cat}}">{{msg}}</div>
+{% endfor %}
+<h2>Форма регистрация новостей</h2>
+<form action="/addPost" method="post" class="form-contact">
+    <p><label>Тема</label><input type="text" name="theme" placeholder="Введите тему" required/></p>
+    <p><label>Новость</label></p>
+    <textarea name="news" rows="5" cols="30" placeholder="Введите текст"></textarea>
+    <p><input type="submit" value="Отправить"/></p>
+</form>
+{% endblock %}
+
+
+
+
+
+
+
+
+
