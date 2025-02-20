@@ -20,31 +20,31 @@ pygame.display.set_caption("Mr Avocado")
 # obj_1.fill((33,1,4))
 
 # Пишем текстовые надписи
-myFont = pygame.font.Font('Python/PyGame/Font/Agbalumo-Regular.ttf',40)
-myFont2 = pygame.font.Font('Python/PyGame/Font/Agbalumo-Regular.ttf',20)
-myFont3 = pygame.font.Font('Python/PyGame/Font/Agbalumo-Regular.ttf',10)
+myFont = pygame.font.Font('./Font/Agbalumo-Regular.ttf',40)
+myFont2 = pygame.font.Font('./Font/Agbalumo-Regular.ttf',20)
+myFont3 = pygame.font.Font('./Font/Agbalumo-Regular.ttf',10)
 text = myFont.render('GAME OVER', False, "white") # Второй параметр сглаживание - False
 returnText = myFont2.render("<<<RESTART>>>", False, "white")
 returnText_rect = returnText.get_rect(topleft=(230,240))
 
 # Создание врага
 zombe = [
-    pygame.image.load("Python/PyGame/image/Zombe1.png").convert_alpha(),
-    pygame.image.load("Python/PyGame/image/Zombe2.png").convert_alpha(),
-    pygame.image.load("Python/PyGame/image/Zombe3.png").convert_alpha()
+    pygame.image.load("./image/Zombe1.png").convert_alpha(),
+    pygame.image.load("./image/Zombe2.png").convert_alpha(),
+    pygame.image.load("./image/Zombe3.png").convert_alpha()
 ]
 ghost = [
-    pygame.image.load("Python/PyGame/image/ghost1.png").convert_alpha(),
-    pygame.image.load("Python/PyGame/image/ghost2.png").convert_alpha(),
-    pygame.image.load("Python/PyGame/image/ghost3.png").convert_alpha()
+    pygame.image.load("./image/ghost1.png").convert_alpha(),
+    pygame.image.load("./image/ghost2.png").convert_alpha(),
+    pygame.image.load("./image/ghost3.png").convert_alpha()
 ]
 # Подгружаем изображение
 
 vegetables = [
-    pygame.image.load("Python/PyGame/image/vegetables1.png").convert_alpha(),
-    pygame.image.load("Python/PyGame/image/vegetables2.png").convert_alpha(),
-    pygame.image.load("Python/PyGame/image/vegetables3.png").convert_alpha(),
-    pygame.image.load("Python/PyGame/image/vegetables4.png").convert_alpha()
+    pygame.image.load("./image/vegetables1.png").convert_alpha(),
+    pygame.image.load("./image/vegetables2.png").convert_alpha(),
+    pygame.image.load("./image/vegetables3.png").convert_alpha(),
+    pygame.image.load("./image/vegetables4.png").convert_alpha()
 ]
 
 # Настраиваем FPS
@@ -52,24 +52,24 @@ clock = pygame.time.Clock()
 
 # Добавляем звуки
 pygame.mixer.init()
-bgSound = pygame.mixer.Sound("Python/PyGame/saunds/saundtrek.wav")
-gameOverSound = pygame.mixer.Sound("Python/PyGame/saunds/super-mario-game-over.wav")
+bgSound = pygame.mixer.Sound("./saunds/saundtrek.wav")
+gameOverSound = pygame.mixer.Sound("./saunds/super-mario-game-over.wav")
 
 # Подкачка файла для background
-backGr = pygame.image.load("Python/PyGame/image/BG_forest.jpg").convert()
+backGr = pygame.image.load("./image/BG_forest.jpg").convert()
 bg_x = 0
 # Загружаем файлы для анимации ходьбы и прыжка
 walk = [
-    pygame.image.load("Python/PyGame/image/play.png").convert_alpha(),
-    pygame.image.load("Python/PyGame/image/play1.png").convert_alpha(),
-    pygame.image.load("Python/PyGame/image/play2.png").convert_alpha()
+    pygame.image.load("./image/play.png").convert_alpha(),
+    pygame.image.load("./image/play1.png").convert_alpha(),
+    pygame.image.load("./image/play2.png").convert_alpha()
     ]
 jump = [
-    pygame.image.load("Python/PyGame/image/play4.png").convert_alpha(),
-    pygame.image.load("Python/PyGame/image/play3.png").convert_alpha()
+    pygame.image.load("./image/play4.png").convert_alpha(),
+    pygame.image.load("./image/play3.png").convert_alpha()
 ]
 # Подключаем снаряды
-bullet = pygame.image.load("Python/PyGame/image/laser1.png").convert_alpha()
+bullet = pygame.image.load("./image/laser1.png").convert_alpha()
 bullets = []
 bulletCount = 2
 

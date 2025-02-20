@@ -1,21 +1,12 @@
-# array1 = [1, 2, 3]
-# array2 = [4, 5, 6]
-# result = [a1 + a2 for (a1, a2) in zip(array1, array2)]
-# print(result)
+import requests
 
+proxies = {
+    'http': 'socks5h://127.0.0.1:9050',
+    'https': 'socks5h://172.0.0.1:9050'
+}
 
-# path = '/test.txt'
-# with open('test_folder' + path, 'r') as f:
-#     res = f.read()
-# print(res)
+url = 'http://flibustaongezhld6dibs2dps6vm4nvqg2kp7vgowbu76tzopgnhazqd.onion/'
 
-
-# r = lambda e: e if e % 2 == 0 else 'Нечётное число'
-# print(r(int(input())))
-#
-# double = lambda x: x*2
-# print(double(5))
-
-print("HELLO, Buddy...")
-
+r = requests.get(url, proxies=proxies, verify=False)  # using TOR network
+print(r.text)
 
