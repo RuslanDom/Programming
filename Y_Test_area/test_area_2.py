@@ -1,7 +1,7 @@
-from itertools import cycle
-
-def xor(message, key):
-    return bytes(a ^ b for a, b in zip(message, cycle(key)))
+# from itertools import cycle
+#
+# def xor(message, key):
+#     return bytes(a ^ b for a, b in zip(message, cycle(key)))
 
 
 
@@ -52,7 +52,6 @@ def xor(message, key):
 #     logger.info('Сообщение')
 #     logger.error('Кавычка)"')
 #     logger.debug("Еще одно сообщение")
-
 
 
 

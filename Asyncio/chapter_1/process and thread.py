@@ -5,9 +5,17 @@ import time
 
 def task_1(num: int):
     res = 0
-    for i in range(1000000):
+    for i in range(10000000):
         res += i ** num
     # print(f'Задача выполнена: {res}')
+
+def sequential_task(num: int):
+    start = time.time()
+    for _ in range(3):
+        task_1(num)
+    end = time.time()
+    print(f"Время затраченное последовательно: {end - start}")
+
 
 def proc(i):
     p1 = Process(target=task_1, args=(i,))
@@ -38,6 +46,7 @@ def thread(i):
     print(f"Время затраченное с использованием потоков: {res_time}")
 
 if __name__ == "__main__":
+    sequential_task(5)
     proc(5)
     thread(5)
 
