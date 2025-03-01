@@ -68,11 +68,11 @@
         </library>
       </libraries>
     </data-source>
-    <data-source source="LOCAL" name="practise" uuid="4fec890d-473e-45b7-9324-e893545fe0c4">
+    <data-source source="LOCAL" name="practise" uuid="7f02f7f2-7f8f-4f9a-b5da-44cd3ee6708c">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/Skillbox/Module_13_Database_2/practice/practise.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:C:\Users\Admin\PycharmProjects\Programming\Skillbox\Module_13_Database_2\practice\practise.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
       <libraries>
         <library>

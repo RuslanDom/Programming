@@ -12,7 +12,7 @@ from math import factorial
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-N = 10000
+N = 100
 
 
 def factorial_sum(n):
@@ -34,8 +34,10 @@ def solve_thread():
     #     t.join()
 
     with ThreadPool(processes=5) as pool:
-        pool.apply_async(factorial_sum, args=(N, ))
-
+        thread = pool.apply_async(factorial_sum, args=(N, ))
+        # Число 1000000 можно записать в экспоненциальной форме как 1 x 10 ^ 6 или 1e+6. 9.4279e+155
+        # Число 0, 000001 можно записать в экспоненциальной форме 1 x 10 ^ -6 или 1e-6.
+        print("{:.1e}".format(thread.get()))  # 2e = 9.43e+155, 4e = 9.4279e+155
     end = time.time()
     logger.info("Время выполнения в потоковой обработке: {}".format(end - start))
 
