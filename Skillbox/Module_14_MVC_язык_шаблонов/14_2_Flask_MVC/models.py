@@ -20,7 +20,7 @@ class Book:
         return getattr(self, item)
 
 
-
+# Создание таблицы
 def init_db(initial_records: List[dict]):
     with sqlite3.connect('table_books.db') as connection:
         cursor = connection.cursor()
@@ -28,12 +28,12 @@ def init_db(initial_records: List[dict]):
         exists = cursor.fetchone()
         if not exists:
             cursor.executescript("""CREATE TABLE 'table_books' 
-                                    (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, author TEXT);)""")
+                                    (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, author TEXT);""")
 
             cursor.executemany("""INSERT INTO table_books (title, author) VALUES (?, ?);""",
                                [(item['title'], item['author']) for item in initial_records])
 
-
+# Получение данных из таблицы
 def get_all_books():
     with sqlite3.connect('table_books.db') as connection:
         cursor = connection.cursor()
@@ -41,3 +41,6 @@ def get_all_books():
         all_books = cursor.fetchall()
         return [Book(*row) for row in all_books]
 
+
+# if __name__ == '__main__':
+#     init_db(DATA)
