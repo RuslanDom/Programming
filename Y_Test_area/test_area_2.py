@@ -58,8 +58,36 @@
 
 
 
+"""
+SELECT DISTINCT battle
+FROM Outcomes
+JOIN Ships ON Ships.name = Outcomes.ship
+WHERE Ships.class = 'Kongo'
+"""
 
+"""
+SELECT name FROM Ships
+WHERE name = class
+UNION
+SELECT ship FROM Classes, Outcomes
+WHERE Outcomes.ship = Classes.class
+"""
 
+"""
+SELECT DISTINCT ship
+FROM Outcomes 
+INTERSECT 
+SELECT DISTINCT class
+FROM Classes
+UNION
+SELECT DISTINCT class 
+FROM Classes
+"""
 
-
+"""
+SELECT DISTINCT class FROM Ships
+UNION
+SELECT DISTINCT ship FROM Outcomes
+WHERE ship IN (SELECT class from Classes)
+"""
 
