@@ -1,22 +1,32 @@
 import sqlite3
 from typing import Optional, List
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 DATA = [
     {'id': 0, 'title': 'A Byte of Python', 'author': 'Swaroop C.H.'},
     {'id': 1, 'title': 'Moby-Dick; or, The Whale', 'author': 'Herman Melville'},
     {'id': 3, 'title': 'War and Piece', 'author': 'Lev Tolstoy'}
 ]
-
+ENABLE_FOREIGN_KEYS = "PRAGMA foreign_keys = ON"
 BOOKS_TABLE_NAME = 'books'
 
 @dataclass
 class Book:
     title: str
     author: str
-    id: Optional[int]
+    id: Optional[int] = None
 
     def __getitem__(self, item):
+        return getattr(self, item)
+
+
+class Author:
+    first_name: str
+    last_name: str
+    middle_name: str = None
+    id: Optional[int] = None
+
+    def __getitem__(self, item: str):
         return getattr(self, item)
 
 
@@ -91,8 +101,8 @@ def add_record(book: Book) -> Book:
     with sqlite3.connect('module_17.db') as conn:
         cursor = conn.cursor()
         cursor.execute(
-            """
-            INSERT INTO {BOOKS_TABLE_NAME} (title, author)
+            f"""
+            INSERT INTO '{BOOKS_TABLE_NAME}' (title, author)
             VALUES (?, ?)
             """,
             (book.title, book.author)
@@ -105,8 +115,8 @@ def update_record(book: Book):
     with sqlite3.connect('module_17.db') as conn:
         cursor = conn.cursor()
         cursor.execute(
-            """
-            UPDATE {BOOKS_TABLE_NAME}
+            f"""
+            UPDATE '{BOOKS_TABLE_NAME}'
             SET title = ?, author = ?
             WHERE id = ?
             """,
@@ -118,8 +128,8 @@ def delete_record(id):
     with sqlite3.connect('module_17.db') as conn:
         cursor = conn.cursor()
         cursor.execute(
-            """
-            DELETE FROM {BOOKS_TABLE_NAME}
+            f"""
+            DELETE FROM '{BOOKS_TABLE_NAME}'
             WHERE id = ?
             """,
             (id,)
@@ -127,7 +137,15 @@ def delete_record(id):
         conn.commit()
 
 
-
+def get_record_by_title(title_book: str) -> Optional[Book]:
+    with sqlite3.connect('module_17.db') as conn:
+        cursor = conn.cursor()
+        cursor.execute(f"""
+                        SELECT * FROM '{BOOKS_TABLE_NAME}'
+                        WHERE title = ?""", (title_book,))
+        book = cursor.fetchone()
+        if book:
+            return get_book_obj_from_row(book)
 
 
 

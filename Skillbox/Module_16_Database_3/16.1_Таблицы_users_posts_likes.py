@@ -14,6 +14,20 @@ CREATE_USER_TABLE = """
     );
     """
 
+# ON DELETE CASCADE удалит всю запись, если её часть была удалена
+CREATE_BRIDGE_BETWEEN_TABLE = """
+DROP TABLE IF EXISTS likes;
+CREATE TABLE likes(
+    like_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL REFERENCES users (user_id) ON DELETE CASCADE,
+    post_id INTEGER NOT NULL,
+    FOREIGN KEY (post_id) REFERENCES posts (post_id) ON DELETE CASCADE
+);
+"""
+
+
+
+
 CREATE_POST_TABLE = """
     DROP TABLE IF EXISTS posts;
     CREATE TABLE posts(
@@ -24,16 +38,7 @@ CREATE_POST_TABLE = """
     """
 
 
-# ON DELETE CASCADE удалит всю запись, если её часть была удалена
-CREATE_LIKE_TABLE = """
-DROP TABLE IF EXISTS likes;
-CREATE TABLE likes(
-    like_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id INTEGER NOT NULL REFERENCES users (user_id) ON DELETE CASCADE,
-    post_id INTEGER NOT NULL,
-    FOREIGN KEY (post_id) REFERENCES posts (post_id) ON DELETE CASCADE
-);
-"""
+
 
 # С использованием естественного ключа
 CREATE_USER_NATURAL_TABLE = """
@@ -46,7 +51,7 @@ CREATE_USER_NATURAL_TABLE = """
     """
 
 # Композитный ключ
-CREATE_LIKE_TABLE_WITH_COMPOSITE_KEY = """
+CREATE_BRIDGE_BETWEEN_TABLE_WITH_COMPOSITE_KEY = """
 DROP TABLE IF EXISTS likes;
     CREATE TABLE likes(
         username INTEGER NOT NULL REFERENCES users(username) ON DELETE CASCADE,
@@ -61,7 +66,7 @@ def create_tables():
         cursor = conn.cursor()
         cursor.executescript(CREATE_USER_NATURAL_TABLE)
         cursor.executescript(CREATE_POST_TABLE)
-        cursor.executescript(CREATE_LIKE_TABLE_WITH_COMPOSITE_KEY)
+        cursor.executescript(CREATE_BRIDGE_BETWEEN_TABLE_WITH_COMPOSITE_KEY)
         conn.commit()
 
 
