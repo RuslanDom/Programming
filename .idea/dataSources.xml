@@ -161,11 +161,11 @@
         </library>
       </libraries>
     </data-source>
-    <data-source source="LOCAL" name="module_17" uuid="9e8a4bca-ad89-4b46-a498-360c44df3373">
+    <data-source source="LOCAL" name="module_17 [2]" uuid="42581101-0d81-4f46-91b9-8a449409907a">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\Admin\PycharmProjects\Programming\Skillbox\Module_17_RestAPI\17_1_Реализация_Rest\module_17.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/Skillbox/Module_17_RestAPI/m_17_1_Реализация_Rest/module_17.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
       <libraries>
         <library>
@@ -189,12 +189,6 @@
       <jdbc-url>jdbc:sqlite:C:\Users\Admin\PycharmProjects\Programming\Skillbox\Module_17_RestAPI\m_17_rest\module_17.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
       <libraries>
-        <library>
-          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.45.1/org/xerial/sqlite-jdbc/3.45.1.0/sqlite-jdbc-3.45.1.0.jar</url>
-        </library>
-        <library>
-          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.45.1/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar</url>
-        </library>
         <library>
           <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.45.1/org/xerial/sqlite-jdbc/3.45.1.0/sqlite-jdbc-3.45.1.0.jar</url>
         </library>
