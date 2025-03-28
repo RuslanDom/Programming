@@ -1,0 +1,188 @@
+openapi: 3.0.0
+info:
+  title: Магазин животных
+  version: 0.0.1
+servers:
+  - url: http://localhost:5000/api/v1
+    description: Dev server
+paths:
+  /pets:
+    get:
+      tags:
+        - Pets
+      summary: Получить всех животных
+      description: Получить список со всеми имеющимися животными
+      operationId: getAllPets
+      responses:
+        '200':
+          description: pets to be return
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pets'
+        'default':
+          description: error request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    post:
+      tags:
+        - Pets
+      summary: Добавить животное
+      description: Добавление нового животного в базу данных
+      operationId: addPet
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pet'
+      responses:
+        '201':
+          description: add new pet
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pets'
+        'default':
+          description: error request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+
+  /pets/{pet_id}:
+    get:
+      tags:
+        - Pets
+      summary: Получить всех животное по id
+      description: Получить животное с использованием его идентификационного номера
+      operationId: getPetById
+      parameters:
+        - name: pet_id
+          in: path
+          required: true
+          description: id животного
+          schema:
+            type: string
+          example: d2025a1
+      responses:
+        '200':
+          description: pet to be return
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pet'
+        'default':
+          description: error request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    delete:
+      tags:
+        - Pets
+      summary: Удалить животное по id
+      description: Удалить животное с использованием его идентификационного номера
+      operationId: delPetById
+      parameters:
+        - name: pet_id
+          in: path
+          required: true
+          description: id животного
+          schema:
+            type: string
+          example: d2025a1
+      responses:
+        '204':
+          description: delete pet
+          content:
+            application/json: {}
+        'default':
+          description: error request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+
+
+
+
+
+components:
+  schemas:
+    Pet:
+      type: object
+      required:
+        - name
+        - kind
+      properties:
+        pet_id:
+          type: string
+          example: d2025a1
+        name:
+          type: string
+          example: Jerry
+        kind:
+          type: string
+          enum:
+            - cat
+            - dog
+            - bird
+            - hamster
+          description: Вид животного
+          example: dog
+        created_at:
+          type: string
+          format: 2025-03-27T09:38:00+03:00
+
+    Pets:
+      type: array
+      items:
+        $ref: "#/components/schemas/Pet"
+
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
