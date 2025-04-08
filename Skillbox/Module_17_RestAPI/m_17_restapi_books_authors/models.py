@@ -211,8 +211,6 @@ def update_book_by_id(book: Book, id):
 
 def patch_book(book: Book, id: int) -> Book or tuple[str, int]:
     data: Book = get_book_by_id(id)
-    print(data)
-    print(book)
     if data:
         with sqlite3.connect(DATABASE_NAME) as conn:
             cursor = conn.cursor()

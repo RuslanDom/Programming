@@ -1,0 +1,133 @@
+{
+  "definitions": {
+    "Owner": {
+      "properties": {
+        "id": {
+          "readOnly": true,
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "type": "object"
+    },
+    "Pet": {
+      "properties": {
+        "age": {},
+        "id": {
+          "readOnly": true,
+          "type": "integer"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "name",
+        "owner"
+      ],
+      "type": "object"
+    }
+  },
+  "info": {
+    "title": "Pets",
+    "version": "0.0.1"
+  },
+  "paths": {
+    "/api/v1/owners": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "List of all owners",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Owner"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "summary": "Get all owners",
+        "tags": [
+          "owners"
+        ]
+      },
+      "post": {
+        "parameters": [
+          {
+            "in": "body",
+            "name": "owner parameters",
+            "schema": {
+              "$ref": "#/definitions/Owner"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "New owner created",
+            "schema": {
+              "$ref": "#/definitions/Owner"
+            }
+          }
+        },
+        "summary": "Create new owner",
+        "tags": [
+          "owners"
+        ]
+      }
+    },
+    "/api/v1/pets": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "List of all pets",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Pet"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "summary": "Get all pets",
+        "tags": [
+          "pets"
+        ]
+      },
+      "post": {
+        "parameters": [
+          {
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/Pet"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "New pet created",
+            "schema": {
+              "$ref": "#/definitions/Pet"
+            }
+          }
+        },
+        "summary": "Create new pet",
+        "tags": [
+          "pets"
+        ]
+      }
+    }
+  },
+  "swagger": "2.0.0"
+}
