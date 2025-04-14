@@ -1,0 +1,14 @@
+tags:
+  - books/id
+parameters:
+  - in: body
+    name: update_data_book
+    schema:
+      type: object
+      $ref: '#/definitions/Book'
+responses:
+  200:
+    description: Success put book by id
+    schema:
+      type: object
+      $ref: '#/definitions/Book'

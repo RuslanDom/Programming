@@ -195,7 +195,7 @@ api.add_resource(AuthorID, '/api/authors/<int:id>')
 #     app,
 #     definitions=[BookSchema, AuthorSchema]
 # )
-# swagger = Swagger(app, template=template)
+# swagger.json = Swagger(app, template=template)
 swagger = Swagger(app, template_file="swagger.json")
 
 

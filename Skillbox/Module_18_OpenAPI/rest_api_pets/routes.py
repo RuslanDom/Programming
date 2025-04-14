@@ -140,7 +140,7 @@ template = spec.to_flasgger(
     definitions=[PetSchema, OwnerSchema]
 )
 swagger = Swagger(app, template=template)
-# swagger = Swagger(app, template_file='swagger.json')
+# swagger.json = Swagger(app, template_file='swagger.json.json')
 
 api.add_resource(PetsList, '/api/v1/pets')
 api.add_resource(OwnerList, '/api/v1/owners')

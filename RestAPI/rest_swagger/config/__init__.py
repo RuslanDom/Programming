@@ -1,0 +1,1 @@
+CONFIG = "config.my_conf"
