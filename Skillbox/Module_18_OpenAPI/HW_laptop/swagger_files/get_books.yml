@@ -1,0 +1,9 @@
+tags:
+  - books
+responses:
+  200:
+    description: Success get all books
+    schema:
+      type: array
+      items:
+        $ref: '#/definitions/Book'

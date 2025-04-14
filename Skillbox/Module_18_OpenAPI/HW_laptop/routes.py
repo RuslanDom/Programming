@@ -2,9 +2,11 @@ from flask import Flask, request
 from flask_restx import Api, Resource
 from models import *
 from schemas import BookSchema, AuthorSchema, ValidationError
-from flasgger import Swagger, APISpec
+from flasgger import Swagger, APISpec, swag_from
 from apispec.ext.marshmallow import MarshmallowPlugin
 from apispec_webframeworks.flask import FlaskPlugin
+from swagger_files.spec_dict import *
+from werkzeug.serving import WSGIRequestHandler
 
 app = Flask(__name__)
 api = Api(app)
@@ -19,44 +21,15 @@ spec = APISpec(
 )
 
 
-@api.route('/api/books')
+@api.route('/api/books', endpoint='books')
 class Books(Resource):
+    @swag_from("swagger_files/get_books.yml")
     def get(self):
-        """
-        Get all books
-        ---
-        tags:
-          - books
-        responses:
-          200:
-            description: Success get all books
-            schema:
-              type: array
-              items:
-                $ref: '#/definitions/BookSchema'
-        """
         schema = BookSchema()
         return schema.dump(get_all_books(), many=True)
 
+    @swag_from("swagger_files/add_book.yml")
     def post(self):
-        """
-        Add book
-        ---
-        tags:
-          - books
-        parameters:
-          - in: body
-            name: new_book
-            required: true
-            schema:
-              $ref: '#/definitions/Book'
-        responses:
-          201:
-            description: Book added
-            schema:
-              type: object
-              $ref: '#/definitions/Book'
-        """
         data = request.json
         schema = BookSchema()
         data["author"]: int = exists_author(refactoring_author_name(data['author']))
@@ -68,133 +41,44 @@ class Books(Resource):
             return schema.dump(e), 400
 
 
-@api.route('/api/books/<int:id>')
+@api.route('/api/books/<int:id>', endpoint='books/id')
 class Book(Resource):
+    @swag_from("swagger_files/get_book_by_id.yml")
     def get(self, id: int):
-        """
-        Get book by id
-        ---
-        tags:
-          - books/id
-        responses:
-          200:
-            description: Success get book by id
-            schema:
-              $ref: '#/definitions/Book'
-        """
         schema = BookSchema()
         return schema.dump(get_book_by_id(id)), 200
 
+    @swag_from("swagger_files/put_book.yml")
     def put(self, id: int):
-        """
-        Update book by id
-        ---
-        tags:
-          - books/id
-        parameters:
-          - in: body
-            name: update_data_book
-            schema:
-              type: object
-              $ref: '#/definitions/Book'
-        responses:
-          200:
-            description: Success put book by id
-            schema:
-              type: object
-              $ref: '#/definitions/Book'
-        """
         schema = BookSchema()
         data: Book = schema.load(request.json)  # Десериализовали в объект python
         book = put_updated_book(data, id)
         return schema.dump(book), 200  # Сериализуем python объект в потоковые данные
 
+    @swag_from("swagger_files/patch_book.yml")
     def patch(self, id: int):
-        """
-        Patch book by id
-        ---
-        tags:
-          - books/id
-        parameters:
-          - in: body
-            name: patch_data_book
-            schema:
-              type: object
-              $ref: '#/definitions/Book'
-        responses:
-          200:
-            description: Success patch book by id
-            schema:
-              type: object
-              $ref: '#/definitions/Book'
-        """
         schema = BookSchema()
         data: Book = schema.load(request.json, partial=True)
         book = patch_book(data, id)
         return schema.dump(book), 200
 
+    @swag_from("swagger_files/delete_book.yml")
     def delete(self, id: int):
-        """
-        Delete book by id
-        ---
-        tags:
-          - books/id
-        responses:
-          204:
-            description: Success delete book by id
-            schema:
-              {}
-        """
         result = delete_book(id)
         if result:
             return result, 404
         return {}, 204
 
 
-@api.route('/api/authors')
+@api.route('/api/authors', endpoint='authors')
 class Authors(Resource):
-    """
-    Get all authors
-    ---
-    'tags': ['Authors']
-    'responses': {
-        '200': {
-            'description': 'Success get all authors',
-            'content': {
-                'application/json': {
-                    'schema': {
-                        'type': 'array',
-                        'items': {'$ref': '#/definitions/Author'}
-                    }
-                }
-            }
-        }
-    }
-    """
+    @swag_from(get_author_dict)
     def get(self):
         schema = AuthorSchema()
         return schema.dump(get_all_authors(), many=True), 200
 
+    @swag_from(add_author_dict)
     def post(self):
-        """
-        Add author
-        ---
-        'tags': ['Authors']
-        'parameters':
-          [
-            {'in': 'body', 'name': 'new_author_data', 'type': 'string', 'schema': {'type': 'object', $ref: '#/definitions/Author'}},
-          ]
-        'responses': {
-            '201': {
-                'description': 'Success add author',
-                'content': {
-                    'application/json': {
-                        'schema': {'type': 'object', $ref: '#/definitions/Author'}
-                    }
-                }
-            }
-        }
-        """
         data = request.json
         schema = AuthorSchema()
         try:
@@ -205,40 +89,16 @@ class Authors(Resource):
             return schema.dump(e), 400
 
 
-@api.route('/api/authors/<int:id>')
-class Author(Resource):
+@api.route('/api/authors/<int:id>', endpoint='author/id')
 
+class Author(Resource):
+    @swag_from(get_author_by_id_dict)
     def get(self, id: int):
-        """
-        Get author by id
-        ---
-        'tags': ['Authors/id']
-        'responses': {
-            '200': {
-                'description': 'Success get author by id',
-                'content': {
-                    'application/json': {
-                        'schema': {'type': 'object', $ref: '#/definitions/Author'}
-                    }
-                }
-            }
-        }
-        """
         schema = BookSchema()
         return schema.dump(get_all_books_by_author_id(id), many=True), 200
 
+    @swag_from(delete_author_by_id_dict)
     def delete(self, id: int):
-        """
-        Delete author by id
-        ---
-        'tags': ['Authors/id']
-        'responses': {
-            '204': {
-                'description': 'Success delete author by id',
-                'content': {}
-            }
-        }
-        """
         result = delete_author(id)
         if result:
             return result, 404
@@ -253,9 +113,9 @@ swagger = Swagger(app=app, template=template)
 
 
 if __name__ == '__main__':
+    WSGIRequestHandler.protocol_version = "HTTP/1.1"
     init_authors_table(DATA)
     init_books_table(DATA)
     app.run(debug=True)
-
 
 

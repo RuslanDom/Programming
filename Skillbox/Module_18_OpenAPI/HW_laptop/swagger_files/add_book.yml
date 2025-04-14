@@ -1,0 +1,14 @@
+tags:
+  - books
+parameters:
+  - in: body
+    name: new_book
+    required: true
+    schema:
+      $ref: '#/definitions/Book'
+responses:
+  201:
+    description: Book added
+    schema:
+      type: object
+      $ref: '#/definitions/Book'

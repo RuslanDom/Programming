@@ -1,5 +1,5 @@
 import asyncio
-from util import delay
+from ..util import delay
 
 # Здесь код выполняется НЕ АСИНХРОННО, а последовательно потому что не созданы задачи
 async def add_one(number: int):

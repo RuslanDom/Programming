@@ -1,0 +1,6 @@
+tags:
+  - books/id
+responses:
+  204:
+    description: Success delete book by id
+    schema: {}
