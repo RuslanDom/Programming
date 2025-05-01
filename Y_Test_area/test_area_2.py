@@ -90,4 +90,11 @@ UNION
 SELECT DISTINCT ship FROM Outcomes
 WHERE ship IN (SELECT class from Classes)
 """
+from typing import List
 
+N: int = int(input("Number limit: "))
+A: List[bool] = [True] * N
+A[0] = A[1] = False
+for k in range(2, N):
+    if A[k]:
+        A[k]
