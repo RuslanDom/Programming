@@ -1,0 +1,8 @@
+tags:
+  - books/id
+responses:
+  200:
+    description: Success get book by id
+    schema:
+      type: object
+      $ref: '#/definitions/Book'

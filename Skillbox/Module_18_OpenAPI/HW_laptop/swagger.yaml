@@ -30,10 +30,58 @@ info:
   title: Books API
   version: 1.0.0
 paths:
+  /api/authors:
+    get:
+      responses:
+        "200":
+          description: Success get all authors
+          schema:
+            items:
+              $ref: '#/definitions/Author'
+            type: array
+      summary: Get all authors
+      tags:
+        - Authors
+    post:
+      parameters:
+        - in: body
+          name: new_author_data
+          schema:
+            $ref: '#/definitions/Author'
+            type: object
+          type: string
+      responses:
+        "201":
+          description: Success add author
+          schema:
+            $ref: '#/definitions/Author'
+            type: object
+      summary: Add author
+      tags:
+        - Authors
+  /api/authors/{id}:
+    delete:
+      responses:
+        "204":
+          description: Success delete author by id
+          schema: {}
+      summary: Delete author by id
+      tags:
+        - Authors/id
+    get:
+      responses:
+        "200":
+          description: Success get author by id
+          schema:
+            $ref: '#/definitions/Author'
+            type: object
+      summary: Get author by id
+      tags:
+        - Authors/id
   /api/books:
     get:
       responses:
-        '200':
+        "200":
           description: Success get all books
           schema:
             items:
@@ -50,7 +98,7 @@ paths:
           schema:
             $ref: '#/definitions/Book'
       responses:
-        '201':
+        "201":
           description: Book added
           schema:
             $ref: '#/definitions/Book'
@@ -61,7 +109,7 @@ paths:
   /api/books/{id}:
     delete:
       responses:
-        '204':
+        "204":
           description: Success delete book by id
           schema: {}
       summary: Delete book by id
@@ -69,7 +117,7 @@ paths:
         - books/id
     get:
       responses:
-        '200':
+        "200":
           description: Success get book by id
           schema:
             $ref: '#/definitions/Book'
@@ -85,7 +133,7 @@ paths:
             $ref: '#/definitions/Book'
             type: object
       responses:
-        '200':
+        "200":
           description: Success patch book by id
           schema:
             $ref: '#/definitions/Book'
@@ -101,7 +149,7 @@ paths:
             $ref: '#/definitions/Book'
             type: object
       responses:
-        '200':
+        "200":
           description: Success put book by id
           schema:
             $ref: '#/definitions/Book'
