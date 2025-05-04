@@ -1,0 +1,22 @@
+{
+  "tags": ["Authors"],
+  "parameters":
+    [
+      {
+        "in": "body",
+        "name": "new_author_data",
+        "type": "string",
+        "schema": {"type": "object", "$ref": "#/definitions/Author"}
+      }
+    ],
+    "responses": {
+      "201": {
+        "description": "Success add author",
+        "schema":
+        {
+          "type": "object",
+          "$ref": "#/definitions/Author"
+        }
+      }
+    }
+}

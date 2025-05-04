@@ -1,3 +1,7 @@
+import functools
+import json
+from typing import Callable
+
 from flask import Flask, request
 from flask_restx import Api, Resource
 from models import *
@@ -19,6 +23,21 @@ spec = APISpec(
         FlaskPlugin()
     ]
 )
+
+def swagger_decorator(_func=None, *, path) -> Callable:
+    def wrapper(func: Callable) -> Callable:
+        with open(path, 'r') as f:
+            new_file = json.load(f)
+        @swag_from(new_file)
+        def wrapped(*args, **kwargs):
+            result = func(*args, **kwargs)
+            return result
+        return wrapped
+    if _func is None:
+        return wrapper
+    return wrapper(_func)
+
+
 
 
 @api.route('/api/books', endpoint='books')
@@ -72,12 +91,12 @@ class Book(Resource):
 
 @api.route('/api/authors', endpoint='authors')
 class Authors(Resource):
-    @swag_from(get_author_dict)
+    @swagger_decorator(path="swagger_files/get_authors.json")
     def get(self):
         schema = AuthorSchema()
         return schema.dump(get_all_authors(), many=True), 200
 
-    @swag_from(add_author_dict)
+    @swagger_decorator(path="swagger_files/add_author.json")
     def post(self):
         data = request.json
         schema = AuthorSchema()
@@ -90,14 +109,13 @@ class Authors(Resource):
 
 
 @api.route('/api/authors/<int:id>', endpoint='author/id')
-
 class Author(Resource):
-    @swag_from(get_author_by_id_dict)
+    @swagger_decorator(path="swagger_files/get_author_by_id.json")
     def get(self, id: int):
         schema = BookSchema()
         return schema.dump(get_all_books_by_author_id(id), many=True), 200
 
-    @swag_from(delete_author_by_id_dict)
+    @swagger_decorator(path="swagger_files/delete_author_by_id.json")
     def delete(self, id: int):
         result = delete_author(id)
         if result:

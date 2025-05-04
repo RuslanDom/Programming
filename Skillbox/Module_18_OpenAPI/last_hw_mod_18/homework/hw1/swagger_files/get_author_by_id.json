@@ -1,0 +1,10 @@
+{
+  "tags": ["Authors/id"],
+  "responses": {
+    "200":
+    {
+      "description": "Success get author by id",
+      "schema": {"type": "object", "$ref": "#/definitions/Author"}
+    }
+  }
+}

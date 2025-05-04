@@ -5,6 +5,7 @@ from apispec import APISpec
 from apispec_webframeworks.flask import FlaskPlugin
 from schemas import PetSchema, OwnerSchema
 import config
+from models import init_table_owner, init_table_pet, DATA
 
 app = Flask(__name__)
 app.config.from_object(config.CONFIG)
@@ -21,3 +22,10 @@ spec = APISpec(
 class Pet(Resource):
     def get(self):
         schema = PetSchema()
+
+
+if __name__ == "__main__":
+    init_table_owner(DATA)
+    init_table_pet(DATA)
+    app.run(debug=True)
+

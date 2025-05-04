@@ -25,10 +25,10 @@ def bubble_sort(num_list: List[int]) -> List[int]:
     :return: отсортированный список
     """
     N = len(num_list)
-    for k in range(N):
-        for i in range(1, N - k):
-            if num_list[i - 1] > num_list[i]:
-                num_list[i], num_list[i - 1] = num_list[i - 1], num_list[i]
+    for k in range(1, N):
+        for i in range(N - k):
+            if num_list[i + 1] < num_list[i]:
+                num_list[i], num_list[i + 1] = num_list[i + 1], num_list[i]
     return num_list
 
 

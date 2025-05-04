@@ -84,6 +84,12 @@ SELECT DISTINCT class
 FROM Classes
 """
 
+def fib(n):
+    if n <= 2:
+        return 1
+    return fib(n - 1) + fib(n - 2)
+
+print(fib(7))
 """
 SELECT DISTINCT class FROM Ships
 UNION

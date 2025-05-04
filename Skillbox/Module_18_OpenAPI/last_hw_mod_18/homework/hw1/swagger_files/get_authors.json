@@ -1,0 +1,13 @@
+{
+  "tags": ["Authors"],
+  "responses": {
+    "200":
+      {
+        "description": "Success get all authors",
+        "schema": {
+        "type": "array",
+        "items": {"$ref": "#/definitions/Author"}
+      }
+    }
+  }
+}

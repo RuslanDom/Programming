@@ -1,0 +1,11 @@
+{
+  "tags": ["Authors/id"],
+  "responses":
+  {
+    "204":
+    {
+      "description": "Success delete author by id",
+      "schema": {}
+    }
+  }
+}
