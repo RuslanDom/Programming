@@ -1,8 +1,8 @@
-def tester(A):
+def tester(A, ascending=True):
     flag = True
     N = len(A)
     for i in range(N - 1):
-        if A[i] > A[i + 1]:
+        if (A[i] > A[i + 1] and ascending) or (A[i] < A[i + 1] and not ascending):
             flag = False
     return flag
 
@@ -42,11 +42,11 @@ def bubble_sort(A):
             if A[k] > A[k + 1]:
                 A[k], A[k + 1] = A[k + 1], A[k]
 
-def choice_sort(A):
+def choice_sort(A, ascending=True):
     N = len(A)
     for i in range(N - 1):
         for k in range(i + 1, N):
-            if A[k] < A[i]:
+            if (A[k] < A[i] and ascending) or (A[k] > A[i] and not ascending):
                 A[k], A[i] = A[i], A[k]
 
 def sort_test(A):
@@ -78,7 +78,7 @@ A = [3, 5, 8, 2, 4, 1, 7, 6]
 # hoar(A)
 # insert_sort(A)
 # bubble_sort(A)
-# choice_sort(A)
-sort_test(A)
+choice_sort(A, ascending=True)
+# sort_test(A)
 print(A)
-print(tester(A))
+print(tester(A, ascending=True))

@@ -80,7 +80,7 @@ def check_sorted(A, ascending=True):
     :param ascending: Показывает восходящий ли список или нисходящий
     """
     flag = True
-    s = 2 * int(ascending) - 1
+    s = 2 * int(ascending) - 1  # Алгебра f(x)=2x - 1, при x=True=1 "2*1-1=1"; при x=False=0 "2*0-1=-1"
     N = len(A)
     for i in range(0, N - 1):
         if s * A[i] > s * A[i + 1]:
