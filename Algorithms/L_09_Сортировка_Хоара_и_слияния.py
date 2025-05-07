@@ -3,24 +3,24 @@ from typing import List
 # Сортировка слиянием
 # Алгоритм слияния
 def merge(A: List, B: List):
-    C = [0] * (len(A) + len(B))
-    i = k = n = 0
-    while i < len(A) and k < len(B):
-        if A[i] <= B[k]:
-            C[n] = A[i]
+    C = [0] * (len(A) + len(B))          # Сделал список для слияния
+    i = k = c = 0                        # Определил начальное значение коэффициентов
+    while i < len(A) and k < len(B):     # Цикл, который проверяет не выходят ли коэф., за границы списков
+        if A[i] <= B[k]:                 # Условие сравнения
+            C[c] = A[i]
             i += 1
         else:
-            C[n] = B[k]
+            C[c] = B[k]
             k += 1
-        n += 1
-    while i < len(A):
-        C[n] = A[i]
+        c += 1
+    while i < len(A):                    # Цикл до записи остатков списка
+        C[c] = A[i]
         i += 1
-        n += 1
+        c += 1
     while k < len(B):
-        C[n] = B[k]
+        C[c] = B[k]
         k += 1
-        n += 1
+        c += 1
     return C
 
 # Рекуррентная функция
