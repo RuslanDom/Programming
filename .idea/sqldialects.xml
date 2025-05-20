@@ -16,5 +16,6 @@
     <file url="file://$PROJECT_DIR$/Skillbox/Module_18_OpenAPI/hw_1/models.py" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/Skillbox/Module_18_OpenAPI/light_app/models.py" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/Skillbox/Module_18_OpenAPI/light_app/schemas.py" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/Skillbox/Module_20_ORM/20.2_Способы_подключения.py" dialect="GenericSQL" />
   </component>
 </project>
