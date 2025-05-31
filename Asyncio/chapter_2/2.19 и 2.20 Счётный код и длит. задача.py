@@ -1,5 +1,5 @@
 import asyncio
-from Asyncio.util import async_timer, delay
+from Asyncio.chapter_1.util import async_timer, delay
 import requests
 
 """ПРИМЕР НЕПРАВАЛЬНОЙ РАБОТЫ КОДА"""

@@ -1,5 +1,5 @@
 import asyncio, asyncpg
-from Asyncio.util import async_timer
+from Asyncio.chapter_1.util import async_timer
 
 
 product_query = \

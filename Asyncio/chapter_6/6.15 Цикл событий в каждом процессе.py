@@ -2,7 +2,7 @@ import asyncio
 import asyncpg
 from watchfiles import awatch
 
-from Asyncio.util import async_timer
+from Asyncio.chapter_1.util import async_timer
 from typing import List, Dict
 from concurrent.futures import ProcessPoolExecutor
 
