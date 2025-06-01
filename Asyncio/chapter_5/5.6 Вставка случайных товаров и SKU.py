@@ -1,7 +1,7 @@
 import asyncio, asyncpg
 from typing import List, Tuple
 from random import sample, randint
-from Asyncio.util import load_common_words
+from Asyncio.chapter_1.util import load_common_words
 
 def generate_products(
         common_words: List[str],

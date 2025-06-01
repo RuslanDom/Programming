@@ -1,7 +1,7 @@
 import asyncio, aiohttp
 import logging
 
-from Asyncio.util import async_timer, fetch_status
+from Asyncio.chapter_1.util import async_timer, fetch_status
 
 
 @async_timer()

@@ -1,7 +1,7 @@
 import asyncio
 from aiohttp import ClientSession
 import logging
-from Asyncio.util import fetch_status, async_timer
+from Asyncio.chapter_1.util import fetch_status, async_timer
 
 @async_timer()
 async def main():

@@ -1,6 +1,5 @@
 import asyncio
-from asyncio import timeout
-from Asyncio.util import delay
+from Asyncio.chapter_1.util import delay
 
 
 async def main():

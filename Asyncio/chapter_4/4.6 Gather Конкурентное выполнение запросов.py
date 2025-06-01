@@ -1,6 +1,6 @@
-import asyncio, aiohttp
+import asyncio
 from aiohttp import ClientSession
-from Asyncio.util import fetch_status, async_timer
+from Asyncio.chapter_1.util import fetch_status, async_timer
 
 """
 gather хоть и не детерминирован, но возвращает результаты работы сопрограмм в том порядке 

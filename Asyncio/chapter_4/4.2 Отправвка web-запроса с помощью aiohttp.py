@@ -1,6 +1,6 @@
 import asyncio, aiohttp
 from aiohttp import ClientSession
-from Asyncio.util import async_timer
+from Asyncio.chapter_1.util import async_timer
 
 @async_timer()
 async def fetch_status(session: ClientSession, url: str) -> int:
