@@ -67,6 +67,8 @@ class LoginPage:
                                         alignment=ft.alignment.center,
                                         height=40,
                                         bgcolor=hoverBgColor,
+                                        border_radius=15,
+                                        on_click=lambda e: page.go("/general")
 
                                     ),
                                     ft.Container(
