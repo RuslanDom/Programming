@@ -10,9 +10,9 @@ class Router():
     def __init__(self, page: ft.Page):
         self.page = page
         self.app_routes = [
-            path(url="/", clear=True, view=LoginPage().view),
+            path(url="/vcf", clear=True, view=LoginPage().view),
             path(url="/signup", clear=False, view=SignupPage().view),
-            path(url="/general", clear=False, view=GeneralPage().view)
+            path(url="/", clear=False, view=GeneralPage().view)
         ]
 
         Routing(
