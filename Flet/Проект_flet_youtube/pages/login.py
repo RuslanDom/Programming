@@ -1,7 +1,9 @@
 import flet as ft
 from flet_route import Params, Basket
 from Flet.Проект_flet_youtube.utils.styles import *
-
+from Flet.Проект_flet_youtube.models import db, AdminUser
+from Flet.Проект_flet_youtube.utils.funcs import hash_password
+import time
 
 class LoginPage:
 
@@ -29,12 +31,63 @@ class LoginPage:
         border_radius=15
     )
 
+    auth_error = ft.Container(
+        content=ft.Text(
+            "",
+            color="red",
+            size=20,
+            text_align=ft.TextAlign.CENTER
+        ),
+        alignment=ft.alignment.center
+    )
+
     def view(self, page: ft.Page, params: Params, basket: Basket):
         page.title = "Страница авторизации"
         page.window.width = defaultWidthWindow
         page.window.height = defaultHeightWindow
         page.window.min_width = 600
         page.window.min_height = 400
+
+
+        def authorization(e):
+            user = AdminUser()
+            email: str = self.email_input.content.value
+            password: str = self.password_input.content.value
+            if user.check_authorization(email, hash_password(password)):
+                page.session.set("auth_user", True)
+                page.go("/general")
+            else:
+                self.auth_error.content.value = "Ошибка авторизации"
+                self.auth_error.update()
+                time.sleep(3)
+                self.auth_error.content.value = ""
+                self.auth_error.update()
+
+
+
+        enter_button = ft.Container(
+                                        content=
+                                            ft.Text(
+                                                "Войти в аккаунт",
+                                                color=defaultFgColor,
+                                                size=20
+                                            ),
+                                        alignment=ft.alignment.center,
+                                        height=40,
+                                        bgcolor=hoverBgColor,
+                                        border_radius=15,
+                                        on_click=lambda e: authorization(e)
+
+                                    )
+        register_button = ft.Container(
+                                        content=
+                                            ft.Text(
+                                                "Регистрация",
+                                                color=defaultFgColor,
+                                                size=20
+                                            ),
+                                        on_click=lambda e: page.go("/signup")
+                                    )
 
 
         return ft.View(
@@ -55,31 +108,11 @@ class LoginPage:
                                         color=defaultFgColor,
                                         size=25,
                                         weight=ft.FontWeight.NORMAL),
+                                    self.auth_error,
                                     self.email_input,
                                     self.password_input,
-                                    ft.Container(
-                                        content=
-                                            ft.Text(
-                                                "Войти в аккаунт",
-                                                color=defaultFgColor,
-                                                size=20
-                                            ),
-                                        alignment=ft.alignment.center,
-                                        height=40,
-                                        bgcolor=hoverBgColor,
-                                        border_radius=15,
-                                        on_click=lambda e: page.go("/general")
-
-                                    ),
-                                    ft.Container(
-                                        content=
-                                            ft.Text(
-                                                "Регистрация",
-                                                color=defaultFgColor,
-                                                size=20
-                                            ),
-                                        on_click=lambda e: page.go("/signup")
-                                    )
+                                    enter_button,
+                                    register_button
                                 ]
                             )
                         ),

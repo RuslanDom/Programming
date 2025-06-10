@@ -66,16 +66,16 @@ class ReceivingBook(Base):
     date_of_issue = Column(DateTime, nullable=False)
     date_of_return = Column(DateTime or None, default=None)
 
+
+    # Счётчик дней задолжности студентов
     @hybrid_property
-    def count_date_with_book(self, student_id):
-        data = session.query(ReceivingBook).filter_by(student_id=student_id).one_or_none()
-        if data:
-            if data.date_of_return:
-                pass
-            else:
-                return datetime.datetime.now().day - data.date_of_issue.days
+    def count_days_of_debt(self):
+        day = self.date_of_return or datetime.datetime.now()
+        count_day = (day - self.date_of_issue).days
+        if count_day > 14:
+            return {"student_id": self.student_id, "count_day": count_day}
         else:
-            return None
+            return {"student_id": self.student_id, "count_day": "not debt"}
 
     def to_json(self):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}

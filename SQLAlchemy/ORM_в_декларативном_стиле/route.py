@@ -1,5 +1,5 @@
 import datetime
-from sqlalchemy import create_engine, Column, Integer, String, DateTime, ForeignKey, Float, Boolean, update
+from sqlalchemy import update
 from flask import request, jsonify
 from config import app, Base, engine, session
 from models import Student, Book, ReceivingBook, Author
@@ -8,9 +8,12 @@ from models import Student, Book, ReceivingBook, Author
 def starting_app():
     Base.metadata.create_all(engine)
 
-# получение всех книг в библиотеке. (GET)
 @app.route('/books', methods=['GET', 'POST'])
 def book_endpoint():
+    """
+    Получение списка книг в библиотеке и добавление новой
+    :return: Список книг или новая книга добавленная в библиотеку, статус код
+    """
     if request.method == 'GET':
         books = session.query(Book).all()
         books_list = []
@@ -30,9 +33,12 @@ def book_endpoint():
         return jsonify(book.to_json()), 201
 
 
-
 @app.route('/students', methods=['GET', 'POST'])
 def student_endpoint():
+    """
+    Получение списка студентов и добавление новых
+    :return: Список студентов или новый добавленный студент, статус код
+    """
     if request.method == 'GET':
         students = session.query(Student).all()
         students_list = []
@@ -62,6 +68,10 @@ def student_endpoint():
 
 @app.route('/authors', methods=['GET', 'POST'])
 def authors_endpoint():
+    """
+    Получение списка авторов книг и добавление нового
+    :return: Список авторов или новый добавленный автор, статус код
+    """
     if request.method == 'GET':
         authors = session.query(Author).all()
         authors_list = []
@@ -77,8 +87,13 @@ def authors_endpoint():
         session.commit()
         return jsonify(new_author.to_json()), 201
 
+
 @app.route("/receiving_books", methods=['GET', 'POST'])
 def receiving_books_endpoint():
+    """
+    Получение списка книг, которые брались из библиотеки и непосредственно само взятие книги
+    :return: Список взятых книг из библиотеки или новую запись, статус код
+    """
     if request.method == 'GET':
         receiving_books = session.query(ReceivingBook).all()
         receiving_books_list = []
@@ -104,11 +119,15 @@ def receiving_books_endpoint():
         return jsonify(new_received_book.to_json()), 201
 
 
-# выдать книгу студенту (POST - входные параметры ID книги и ID студента)
 
-# сдать книгу в библиотеку (POST - входные параметры ID книги и ID студента, в случае если такой связки нет, выдать ошибку)
+
+
 @app.route('/receiving_books/return_book', methods=['POST'])
 def return_book_in_library():
+    """
+    Вернуть книгу в библиотеку (POST - входные параметры ID книги и ID студента, в случае если такой связки нет, выдать ошибку)
+    :return: Запись о книге которую вернули в библиотеку или ошибка. Статус код
+    """
     book_id = request.form.get('book_id')
     student_id = request.form.get('student_id')
     date_of_return = datetime.datetime.strptime(request.form.get('date_of_return'), "%Y-%m-%d")
@@ -123,26 +142,45 @@ def return_book_in_library():
         order.date_of_return = date_of_return
         session.commit()
         book = session.query(Book).filter_by(id=book_id).one_or_none()
-        # book.count += 1
-        session.execute(update(Book).where(Book.id == book_id).values(count=book.count + 1))
+        if book:
+            session.execute(update(Book).where(Book.id == book_id).values(count=book.count + 1))
         session.commit()
         return jsonify(new_entry_receiving_book.to_json()), 200
     else:
         session.close()
         return {"error": "Такой связки нет"}, 204
 
-# получение список должников, которые держат книги у себя более 14 дней. (GET)
+
 @app.route('/debtors', methods=['GET'])
 def debtors_endpoint():
-    receiving_books = session.query(ReceivingBook).all()
-    debtors_list = []
-    for book in receiving_books:
-        days = book.count_date_with_book()
-        if days:
-            if days > 14:
-                debtors_list.append(session.query(Student).filter(Student.id == book.student_id).one())
+    """
+    Получение список должников, которые держат книги у себя более 14 дней.
+    :return: Список должников, статус код
+    """
+    if request.method == 'GET':
+        receiving_books = session.query(ReceivingBook).all()
+        debtors_list = []
+        for book in receiving_books:
+            student_id = book.count_days_of_debt
+            debtors_list.append(student_id)
+        session.close()
+        return jsonify(debtors_list), 200
+
+
+@app.route('/books/<name>', methods=['GET'])
+def get_book_by_name(name: str):
+    """
+    Получение книги по названию.
+    :param name: Название книги
+    :return: Список книг имеющих искомое слово в название, статус код
+    """
+    find_name = f"%{name}%"
+    books = session.query(Book).filter(Book.name.like(find_name)).all()
+    books_list = []
+    for book in books:
+        books_list.append(book.to_json())
     session.close()
-    return jsonify(debtors_list), 200
+    return jsonify(books_list), 200
 
 
 if __name__ == '__main__':
