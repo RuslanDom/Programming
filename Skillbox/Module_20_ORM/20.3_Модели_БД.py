@@ -2,12 +2,20 @@ from sqlalchemy import (Table, MetaData, create_engine, Column, Integer,
                         String, UniqueConstraint, Index)
 from sqlalchemy.exc import NoResultFound, MultipleResultsFound
 from sqlalchemy.orm import sessionmaker, registry, declarative_base
-engine = create_engine("sqlite:///pythonsql.db")
 
+# config
+engine = create_engine("sqlite:///pythonsql.db")
 Session = sessionmaker(bind=engine)
 session = Session()
-mapper_registry = registry()
+
+"""
+КЛАССИЧЕСКИЙ СТИЛЬ
+----------------------------------------------------------------------------
+"""
+# classic config
 metadata = MetaData()
+mapper_registry = registry()  # Для связывания объекта Table(сущность таблицы) и объекта User(отображения класса)
+
 
 users = Table(
     "users",
@@ -27,25 +35,16 @@ class User:
     def __repr__(self):
         return f"Name: {self.name} Email: {self.email} Login: {self.login}"
 
-    @classmethod
-    def get_all_users(cls):
-        return session.query(User).all()
-
-    @classmethod
-    def get_name_user(cls, name):
-        try:
-            name = session.query(User).filter_by(name=name).one()
-            return name
-        except NoResultFound:
-            print("Животное не существует")
-        except MultipleResultsFound:
-            print("Животных с этим именем больше одного")
-
 
 # Создание таблицы классическим способом
+
 mapper_registry.map_imperatively(User, users)
 metadata.create_all(bind=engine)
 
+"""
+ДЕКЛАРАТИВНЫЙ СТИЛЬ
+-------------------------------------------------------------------------------------------
+"""
 # Декларативный подход создания таблиц в БД
 Base = declarative_base()
 
@@ -59,6 +58,20 @@ class Animal(Base):
 
     def __repr__(self):
         return f"Name: {self.name} Age: {self.age}"
+
+    @classmethod
+    def get_all_users(cls):
+        return session.query(User).all()
+
+    @classmethod
+    def get_name_user(cls, name):
+        try:
+            name = session.query(User).filter_by(name=name).one()
+            return name
+        except NoResultFound:
+            print("Животное не существует")
+        except MultipleResultsFound:
+            print("Животных с этим именем больше одного")
 
 # Создание таблицы используя декларативный подход
 Base.metadata.create_all(bind=engine)
