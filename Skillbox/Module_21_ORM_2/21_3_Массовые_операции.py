@@ -22,7 +22,7 @@ class Parent(Base):
 if __name__ == '__main__':
     Base.metadata.create_all(engine)
 
-    # bulk_save_objects
+    # bulk_save_objects - массово вставляет и если такие записи есть обновляет(insert, update)
     parent_1 = Parent(name="Parent 1")
     parent_2 = Parent(name="Parent 2")
     parent_3 = Parent(name="Parent 3")
@@ -34,7 +34,7 @@ if __name__ == '__main__':
     parents = session.query(Parent).all()
     print(parents)
 
-    # bulk_insert_mappings
+    # bulk_insert_mappings - массово добавляет новые записи в БД (insert)
     insert_parents: List[dict] = [
         {"name": "Dad_1"},
         {"name": "Dad_2"},
@@ -48,7 +48,7 @@ if __name__ == '__main__':
     parents = session.query(Parent).all()
     print(parents)
 
-    # bulk_update_mappings
+    # bulk_update_mappings - массово обновляет старые записи на новые в БД
 
     update_parents: List[dict] = [
         {"id": 1, "name": "Mom_1"},
