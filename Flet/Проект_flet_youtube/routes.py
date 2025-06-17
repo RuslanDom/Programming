@@ -1,18 +1,19 @@
 import flet as ft
 from flet_route import Routing, path
-from Flet.Проект_flet_youtube.pages.general import GeneralPage
 from pages.login import LoginPage
 from pages.signup import SignupPage
 from pages.general import GeneralPage
+from pages.posting import PostingPage
 
 
 class Router():
     def __init__(self, page: ft.Page):
         self.page = page
         self.app_routes = [
-            path(url="/general", clear=True, view=LoginPage().view),
+            path(url="/posting", clear=True, view=LoginPage().view),
+            path(url="/general", clear=False, view=GeneralPage().view),
             path(url="/signup", clear=False, view=SignupPage().view),
-            path(url="/", clear=False, view=GeneralPage().view)
+            path(url="/", clear=False, view=PostingPage().view)
         ]
 
         Routing(

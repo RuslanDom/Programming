@@ -1,95 +1,60 @@
 import flet as ft
 from flet_route import Params, Basket
-from dotenv import set_key, load_dotenv
-from pathlib import Path
 import os
 from Flet.Проект_flet_youtube.utils.styles import *
+from Flet.Проект_flet_youtube.utils.validation import Validator
+from Flet.Проект_flet_youtube.models import db, AdminUser
 
 
 
-class GeneralPage:
-    load_dotenv()
-    AUTH_USER = False
-    # check_token = ""
-    # check_channel = ""
-    env_file_path = Path("Flet/Проект_flet_youtube") / ".env"
+class PostingPage:
+    # Валидатор
+    validation = Validator()
     token_bot = os.getenv("BOT_TOKEN")
     channel_link = os.getenv("CHANNEL")
+    admin_user = AdminUser()
 
     def view(self, page: ft.Page, params: Params, basket: Basket):
-        # Получение данных из хранилища сессии
-        self.AUTH_USER = page.session.get("auth_user")
-
-        page.title = "Главная страница"
+        page.title = "Постинг страница"
         page.window.width = defaultWidthWindow
         page.window.height = defaultHeightWindow
         page.window.min_width = 800
         page.window.min_height = 500
 
         # ФУНКЦИИ
-        def save_settings(e):
-            # Получение токенов с полей ввода
-            token = token_input.content.value
-            channel = channel_input.content.value
-            # Установка полученных токенов в файл .env
-            set_key(dotenv_path=self.env_file_path, key_to_set="BOT_TOKEN", value_to_set=token)
-            set_key(dotenv_path=self.env_file_path, key_to_set="CHANNEL", value_to_set=channel)
-            # Отключение редактирование этих полей
-            token_input.disabled = True
-            channel_input.disabled = True
-            # Внесение токенов в хранилище сессии
-            page.session.set("TOKEN", token)
-            page.session.set("CHANNEL", channel)
-            # Определяем эти значения в переменные
-            # self.check_token = page.session.get("TOKEN")
-            # self.check_channel = page.session.get("CHTrueANNEL")
-            send_btn.text = "Сохранено"
-            send_btn.icon = "save"
-            send_btn.disabled = True
-            # Обновления
-            send_btn.update()
-            token_input.update()
-            channel_input.update()
-            page.update()
+        def checkbox_change(e):
+            if e.control.value:
+                posting_data_field.visible, posting_button.visible = True, True
+            else:
+                posting_data_field.visible, posting_button.visible = False, False
+            posting_button.update()
+            posting_data_field.update()
 
-        send_btn = ft.ElevatedButton(
-            text="Сохранить данные",
-            bgcolor=hoverBgColor,
-            color=defaultFgColor,
-            width=200,
-            icon="settings",
-            on_click=lambda e: save_settings(e)
-        )
-
-        def update_value(e):
-            send_btn.disabled = False
-            send_btn.text = "Сохранить изменения"
-            send_btn.icon = "settings"
-            send_btn.update()
 
         # КОНСТРУКТОР ПОЛЕЙ ВВОДА
         def input_field(label, disabled=False, val=''):
             return ft.Container(
                 padding=ft.padding.symmetric(5, 5),
                 content=ft.TextField(
-                    label=ft.Text(label, color="yellow", weight=ft.FontWeight.BOLD),
+                    label=ft.Text(label, color="blue", weight=ft.FontWeight.BOLD),
                     value=val,
                     bgcolor=secondaryBgColor,
                     border_radius=15,
                     disabled=disabled,
                     filled=True,
-                    color="yellow",
+                    color="blue",
                     opacity=0.8,
-                    on_change=lambda e: update_value(e)
+                    on_change=...
                 )
             )
+
         # БОКОВАЯ ПАНЕЛЬ
         logo = ft.Container(
             padding=ft.padding.symmetric(5, 5),
             content=ft.Row(
                 controls=[
                     ft.Image(src="rubik.png", width=100, height=100, fit=ft.ImageFit.FILL),
-                    ft.Text("Go to play", expand=True, color="yellow", size=35, weight=ft.FontWeight.BOLD, text_align=ft.TextAlign.START
+                    ft.Text("Go to play", expand=True, color="blue", size=35, weight=ft.FontWeight.BOLD, text_align=ft.TextAlign.START
                             ),
                 ],
                 alignment=ft.MainAxisAlignment.START,
@@ -97,11 +62,12 @@ class GeneralPage:
                 vertical_alignment=ft.CrossAxisAlignment.CENTER
             )
         )
-        # КОНСТРУКТОР КНОПОК
+
+        # КОНСТРУКТОР КНОПОК И КНОПКИ
         def btn_build(label, bg='white', f=None):
             return ft.Container(
                         expand=True,
-                        content=ft.Text(value=label, color="yellow", size=20, text_align=ft.TextAlign.CENTER),
+                        content=ft.Text(value=label, color="white", size=20, text_align=ft.TextAlign.CENTER),
                         bgcolor=bg,
                         height=30,
                         border_radius=15,
@@ -110,6 +76,14 @@ class GeneralPage:
                         on_click=f
                         )
 
+        send_btn = ft.ElevatedButton(
+            text="Сохранить данные",
+            bgcolor=hoverBgColor,
+            color=defaultFgColor,
+            width=200,
+            icon="settings",
+            on_click=...
+        )
 
         # РЕДАКТОР НАДПИСЕЙ КЛАССОМ И ФУНКЦИЕЙ
         class My_Field:
@@ -119,7 +93,7 @@ class GeneralPage:
                     value,
                     bg=ft.Colors.TRANSPARENT,
                     expand:bool or int=True,
-                    color="yellow"
+                    color="blue"
                     ):
                 self.icon = icon
                 self.value = value
@@ -130,9 +104,7 @@ class GeneralPage:
 
             def __call__(self):
                 return self.container(
-                    # expand=self.expand,
                     bgcolor=self.bg,
-                    # on_click=lambda e: self.hover_func(e),
                     content=ft.Row(
                         controls=[
                             ft.Icon(name=self.icon, color=self.color),
@@ -143,17 +115,19 @@ class GeneralPage:
                     )
                 )
 
-        def my_field(icon: ft.Icons, value="", bg=ft.Colors.TRANSPARENT, expand:bool or int=True, color="yellow"):
-            return ft.Container(
-                expand=expand,
-                bgcolor=bg,
-                content=ft.Row(
-                    controls=[
-                        ft.Icon(name=icon, color=color),
-                        ft.Text(value=value, color=color, size=20, text_align=ft.TextAlign.CENTER)
-                    ]
-                )
+        # ТЕКСТОВЫЕ ПОЛЯ
+        def form_message(label):
+            return ft.TextField(
+                label=label,
+                bgcolor=secondaryBgColor,
+                border=ft.InputBorder.NONE,
+                multiline=True,
+                min_lines=1,
+                max_lines=4,
+                filled=True,
+                color=secondaryFgColor
             )
+
 
         # РЕДАКТОР КОНТЕЙНЕРОВ
         def my_cont(bgcolor=None, content=None, expand: bool or int=True, local=ft.alignment.center):
@@ -164,20 +138,19 @@ class GeneralPage:
                 opacity=0.8,
                 alignment=local
             )
-
+        # СТИЛЬ КНОПОК
         style_menu = ft.ButtonStyle(
             color={ft.ControlState.HOVERED: ft.colors.WHITE,
-                   ft.ControlState.DEFAULT: ft.colors.YELLOW},
+                   ft.ControlState.DEFAULT: ft.colors.BLUE},
             icon_size=20,
             overlay_color=hoverBgColor
         )
 
-        # ПРАВАЯ ЧАСТЬ
-        # HEADER BODY
+        # HEADER
         header = ft.Container(
             content=ft.Row(
                 controls=[
-                    ft.Text("Панель управления", color="yellow", weight=ft.FontWeight.BOLD, size=20),
+                    ft.Text(value="Страница постинга", color="blue", weight=ft.FontWeight.BOLD, size=20),
                     ft.Row(
                         controls=[
                             ft.CircleAvatar(
@@ -186,7 +159,7 @@ class GeneralPage:
                             ),
                             ft.IconButton(
                                 icon=ft.icons.NOTIFICATION_ADD_ROUNDED,
-                                icon_color="yellow",
+                                icon_color="blue",
                                 icon_size=20
                             )
                         ]
@@ -195,26 +168,63 @@ class GeneralPage:
             )
         )
 
-        # КНОПКИ ВВОДА ТОКЕНА И КАНАЛА
-        if not self.token_bot and not page.session.get("TOKEN"):
-            token_input = input_field(label="Введите токен бота")
-        elif page.session.get("TOKEN"):
-            token_input = input_field(label=page.session.get("TOKEN"), disabled=True)
-        else:
-            token_input = input_field(label="token", val=self.token_bot, disabled=False)
-        if not self.channel_link and not page.session.get("CHANNEL"):
-            channel_input = input_field(label="Название канала")
-        elif page.session.get("CHANNEL"):
-            channel_input = input_field(label=page.session.get("CHANNEL"), disabled=True)
-        else:
-            channel_input = input_field(label="channel", val=self.channel_link, disabled=False)
-        if self.token_bot and self.channel_link:
-            send_btn.disabled = True
-            send_btn.text = "Сохранено"
-            send_btn.icon = "save"
+        # КНОПКИ И СООБЩЕНИЯ
+
+        selected_files = ft.Image(
+            src="preview.png",
+            error_content=ft.Text("Нет изображения", size=30, color="white",
+                                  text_align=ft.TextAlign.CENTER, bgcolor="red", opacity=0.8),
+            width=200,
+            height=200,
+            fit=ft.ImageFit.FILL
+        )
+        message_filled = form_message(
+            "Введите текст сообщения"
+        )
+        message_btn = ft.ElevatedButton(
+            "Отправить сразу", icon="send", bgcolor="blue", color=defaultFgColor
+        )
+        upload_button = ft.ElevatedButton(
+            "Выберите файл"
+        )
+        posting_data = ft.Checkbox(
+            label="Отложенный постинг",
+            label_style=ft.TextStyle(color=defaultFgColor),
+            on_change=checkbox_change
+        )
+        posting_data_field = ft.TextField(
+            label="Укажите дату в формате '12:00'", bgcolor=secondaryBgColor, border=ft.InputBorder.NONE,
+            visible=False, filled=True, color="blue"
+        )
+        posting_button = ft.ElevatedButton(
+            "Отложенный постинг", bgcolor=hoverBgColor,
+            color=defaultFgColor, icon="schedule_send_rounded", visible=False
+        )
+
+        setting_content = ft.Column(
+            controls=[
+                selected_files,
+                message_filled,
+                posting_data,
+                ft.Row(
+                    controls=[
+                        message_btn,
+                        upload_button,
+                    ]
+                ),
+                ft.Row(
+                    controls=[
+                        posting_button,
+                        posting_data_field
+                    ]
+                )
+            ]
+        )
+
+
 
         return ft.View(
-            route="/general",
+            route="/posting",
             controls=[
                 ft.Container(
                     expand=True,
@@ -228,10 +238,7 @@ class GeneralPage:
                                 # expand=1,
                                 content=ft.Row(
                                     controls=[
-                                        my_cont(content=logo, expand=2),
-                                        # my_cont(bgcolor="red"),
-                                        # my_cont(bgcolor="yellow"),
-                                        # my_cont(bgcolor="blue")
+                                        my_cont(content=logo, expand=2)
                                     ],
                                     alignment=ft.MainAxisAlignment.START
                                 )
@@ -265,14 +272,10 @@ class GeneralPage:
                                                 content=ft.Column(
                                                     controls=[
                                                         header,
-                                                        token_input,
-                                                        channel_input,
-                                                        send_btn
+                                                        setting_content
                                                     ]
                                                 )
                                                 ),
-                                        # my_cont(bgcolor="blue"),
-                                        # my_cont(bgcolor="orange")
                                     ]
                                 )
                             ),
@@ -281,11 +284,11 @@ class GeneralPage:
                                 expand=1,
                                 content=ft.Row(
                                     controls=[
-                                        my_cont(expand=2, content=btn_build(label="EXIT", bg=hoverBgColor, f=lambda e: page.go("/"))),
-                                        my_cont(bgcolor="red"),
-                                        my_cont(bgcolor="yellow"),
-                                        my_cont(bgcolor="blue"),
-                                        my_cont(bgcolor="orange")
+                                        my_cont(expand=1, content=btn_build(label="EXIT", bg="blue", f=lambda e: page.go("/"))),
+                                        my_cont(expand=3),
+                                        # my_cont(bgcolor="yellow"),
+                                        # my_cont(bgcolor="blue"),
+                                        # my_cont(bgcolor="orange")
                                     ]
                                 )
                             )
@@ -296,4 +299,3 @@ class GeneralPage:
             bgcolor=defaultBgColor,
             padding=0
         )
-    # www@m.r qwe111!!!

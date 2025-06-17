@@ -52,6 +52,7 @@ class Animal(Base):
     __tablename__ = "animals"
     # Index - добавляет индекс, UniqueConstraint - проверяет на уникальность
     __table_args__ = (Index("name_index", "name"), UniqueConstraint("name"))
+    __mapper_args__ = {"polymorphic_identity": "animal"}
     id = Column(Integer, primary_key=True)
     name = Column(String(30), nullable=False)
     age = Column(Integer)
