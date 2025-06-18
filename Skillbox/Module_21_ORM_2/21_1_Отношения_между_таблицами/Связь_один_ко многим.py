@@ -46,6 +46,29 @@ class User(Base):
 #     )
 
 
+def admin_users():
+    try:
+        # start
+        Base.metadata.create_all(bind=engine)
+        query = Admin(name="Ruslan", password="qwerty")
+        session.add(query)
+        session.commit()
+
+        query = Admin(name="Kristina", password="fff")
+        session.add(query)
+        session.commit()
+
+        query = User(name="Bogdan", password="123", chief=1)
+        session.add(query)
+        session.commit()
+
+        query = User(name="Zlata", password="321", chief=2)
+        session.add(query)
+        session.commit()
+
+    finally:
+        session.close()
+
 """
 ----------------------- Основная часть ------------------------
 """
@@ -69,28 +92,6 @@ class Child(Base):
     def __repr__(self):
         return f"name: {self.name}"
 
-def admin_users():
-    try:
-        # start
-        Base.metadata.create_all(bind=engine)
-        query = Admin(name="Ruslan", password="qwerty")
-        session.add(query)
-        session.commit()
-
-        query = Admin(name="Kristina", password="fff")
-        session.add(query)
-        session.commit()
-
-        query = User(name="Bogdan", password="123", chief=1)
-        session.add(query)
-        session.commit()
-
-        query = User(name="Zlata", password="321", chief=2)
-        session.add(query)
-        session.commit()
-
-    finally:
-        session.close()
 
 
 def parent_children():

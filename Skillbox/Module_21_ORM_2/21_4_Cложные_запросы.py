@@ -1,7 +1,5 @@
-from datetime import datetime
-import time
-from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, DateTime, Date, Float, Boolean, func, \
-    Subquery
+from datetime import date, datetime
+from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, DateTime, Date, Float, Boolean, func
 from sqlalchemy.orm import sessionmaker, relationship, declarative_base, backref, joinedload
 
 engine = create_engine('sqlite:///m21_4.db')
@@ -70,10 +68,10 @@ class ReceivingBook(Base):
     book = relationship("Book", back_populates="students")
 
     def __repr__(self):
-        return f"{self.book_id} {self.author_id}"
+        return f"{self.book_id} {self.student_id}"
 
     def __repr__(self):
-        return f"{self.book_id} {self.author_id}"
+        return f"{self.book_id} {self.student_id}"
 
 
 def insert_data():
@@ -84,26 +82,26 @@ def insert_data():
     ]
     authors[0].books.extend(
         [
-            Book(name="Капитанская дочка", count=5, release_date=datetime.date( 1836, 1, 1)),
-            Book(name="Евгений Онегин", count=3, release_date=datetime.date(1838, 1, 1))
+            Book(name="Капитанская дочка", count=5, release_date=date( 1836, 1, 1)),
+            Book(name="Евгений Онегин", count=3, release_date=date(1838, 1, 1))
         ]
     )
     authors[1].books.extend(
         [
-            Book(name="Война и мир", count=10, release_date=datetime.date(1867, 1, 1)),
-            Book(name="Анна Каренина", count=7, release_date=datetime.date(1877, 1, 1))
+            Book(name="Война и мир", count=10, release_date=date(1867, 1, 1)),
+            Book(name="Анна Каренина", count=7, release_date=date(1877, 1, 1))
         ]
     )
     authors[2].books.extend(
         [
-            Book(name="Морфий", count=5, release_date=datetime.date(1926, 1, 1)),
-            Book(name="Собачье сердце", count=3, release_date=datetime.date(1925, 1, 1))
+            Book(name="Морфий", count=5, release_date=date(1926, 1, 1)),
+            Book(name="Собачье сердце", count=3, release_date=date(1925, 1, 1))
         ]
     )
 
     students = [
-        Student(name="Oleg", surname="Son", phone="3-15-18", email="son@mail.us", average_score="4.5", scholarship=True),
-        Student(name="Alex", surname="Krot", phone="3-26-45", email="Krot@gmail.us", average_score="3.9", scholarship=True),
+        Student(name="Oleg", surname="Son", phone="3-15-18", email="son@mail.us", average_score=4.5, scholarship=True),
+        Student(name="Alex", surname="Krot", phone="3-26-45", email="Krot@gmail.us", average_score=3.9, scholarship=True),
     ]
     session.add_all(authors)
     session.add_all(students)
