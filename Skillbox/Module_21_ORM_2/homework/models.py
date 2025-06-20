@@ -1,4 +1,5 @@
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, DateTime, Date, Float, Boolean, Table, func
+from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import sessionmaker, relationship, declarative_base, backref
 from sqlalchemy.ext.associationproxy import association_proxy
 from datetime import date, datetime
@@ -63,6 +64,9 @@ class ReceivingBook(Base):
     students= relationship('Student',backref=backref('receiving_books', lazy="joined", cascade='all, delete-orphan'))
     books = relationship('Book',backref=backref('receiving_books', lazy="subquery", cascade='all, delete-orphan'))
 
+    @hybrid_property
+    def count_date_with_book(self):
+        return
 
     def __repr__(self):
         return (f"ReceivingBook(book_id={self.book_id}, student_id={self.student_id}, "
@@ -134,13 +138,13 @@ def received_books():
     session.commit()
 
 
-if __name__ == '__main__':
-    try:
-        Base.metadata.create_all(engine)
-        # insert_data()
-        # received_books()
-        receiving_request = session.query(ReceivingBook).all()
-        for record in receiving_request:
-            print(record)
-    finally:
-        session.close()
+# if __name__ == '__main__':
+#     try:
+#         Base.metadata.create_all(engine)
+#         insert_data()
+#         received_books()
+#         # receiving_request = session.query(ReceivingBook).all()
+#         # for record in receiving_request:
+#         #     print(record)
+#     finally:
+#         session.close()
