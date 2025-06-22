@@ -10,9 +10,8 @@ from Flet.Проект_flet_youtube.utils.styles import *
 class GeneralPage:
     load_dotenv()
     AUTH_USER = False
-    # check_token = ""
-    # check_channel = ""
-    env_file_path = Path("Flet/Проект_flet_youtube") / ".env"
+    env_file_path = Path(__file__).resolve().parent.parent / ".env"  # Путь до директории windows
+    # env_file_path = Path("Flet/Проект_flet_youtube") / ".env"  # Путь до скрытой директории Linux
     token_bot = os.getenv("BOT_TOKEN")
     channel_link = os.getenv("CHANNEL")
 
@@ -34,6 +33,7 @@ class GeneralPage:
             # Установка полученных токенов в файл .env
             set_key(dotenv_path=self.env_file_path, key_to_set="BOT_TOKEN", value_to_set=token)
             set_key(dotenv_path=self.env_file_path, key_to_set="CHANNEL", value_to_set=channel)
+            print(os.getenv("BOT_TOKEN"), "\n", os.getenv("CHANNEL"))
             # Отключение редактирование этих полей
             token_input.disabled = True
             channel_input.disabled = True
@@ -42,7 +42,7 @@ class GeneralPage:
             page.session.set("CHANNEL", channel)
             # Определяем эти значения в переменные
             # self.check_token = page.session.get("TOKEN")
-            # self.check_channel = page.session.get("CHTrueANNEL")
+            # self.check_channel = page.session.get("CHANNEL")
             send_btn.text = "Сохранено"
             send_btn.icon = "save"
             send_btn.disabled = True
@@ -52,6 +52,7 @@ class GeneralPage:
             channel_input.update()
             page.update()
 
+        # Кнопка сохранения данных
         send_btn = ft.ElevatedButton(
             text="Сохранить данные",
             bgcolor=hoverBgColor,
@@ -61,6 +62,7 @@ class GeneralPage:
             on_click=lambda e: save_settings(e)
         )
 
+        # Функция изменения кнопки
         def update_value(e):
             send_btn.disabled = False
             send_btn.text = "Сохранить изменения"
@@ -195,7 +197,7 @@ class GeneralPage:
             )
         )
 
-        # КНОПКИ ВВОДА ТОКЕНА И КАНАЛА
+        # КНОПКА И ПОЛЯ ВВОДА ТОКЕНА И КАНАЛА
         if not self.token_bot and not page.session.get("TOKEN"):
             token_input = input_field(label="Введите токен бота")
         elif page.session.get("TOKEN"):
