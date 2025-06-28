@@ -26,7 +26,7 @@ class GeneralPage:
         page.window.min_width = 800
         page.window.min_height = 500
 
-        # ФУНКЦИИ
+        # ФУНКЦИЯ СОХРАНЕНИЯ ТОКЕНА И КАНАЛА
         def save_settings(e):
             # Получение токенов с полей ввода
             token = token_input.content.value
@@ -43,6 +43,7 @@ class GeneralPage:
             # Определяем эти значения в переменные
             # self.check_token = page.session.get("TOKEN")
             # self.check_channel = page.session.get("CHTrueANNEL")
+            # Изменение кнопки сохранения
             send_btn.text = "Сохранено"
             send_btn.icon = "save"
             send_btn.disabled = True
@@ -195,7 +196,7 @@ class GeneralPage:
             )
         )
 
-        # КНОПКИ ВВОДА ТОКЕНА И КАНАЛА
+        # ПОВЕДЕНИЕ КНОПКИ ВВОДА ТОКЕНА И КАНАЛА
         if not self.token_bot and not page.session.get("TOKEN"):
             token_input = input_field(label="Введите токен бота")
         elif page.session.get("TOKEN"):

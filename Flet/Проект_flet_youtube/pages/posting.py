@@ -1,18 +1,24 @@
+import time
 import flet as ft
 from flet_route import Params, Basket
 import os
 from Flet.Проект_flet_youtube.utils.styles import *
 from Flet.Проект_flet_youtube.utils.validation import Validator
 from Flet.Проект_flet_youtube.models import db, AdminUser
-
+from Flet.Проект_flet_youtube.utils.request import sendMessage, sendMessagePhoto
+from Flet.Проект_flet_youtube.utils.funcs import p_link_generate
+import shutil
 
 
 class PostingPage:
     # Валидатор
     validation = Validator()
+
     token_bot = os.getenv("BOT_TOKEN")
     channel_link = os.getenv("CHANNEL")
     admin_user = AdminUser()
+    no_preview = False
+    preview = ""
 
     def view(self, page: ft.Page, params: Params, basket: Basket):
         page.title = "Постинг страница"
@@ -21,14 +27,48 @@ class PostingPage:
         page.window.min_width = 800
         page.window.min_height = 500
 
-        # ФУНКЦИИ
+        # ФУНКЦИЯ КНОПКИ ОТЛОЖЕННОГО ПОСТИНГА
         def checkbox_change(e):
-            if e.control.value:
+            if e.control.value:  # ПРОВЕРКА
                 posting_data_field.visible, posting_button.visible = True, True
             else:
                 posting_data_field.visible, posting_button.visible = False, False
             posting_button.update()
             posting_data_field.update()
+
+        # ФУНКЦИЯ КНОПКИ ОТПРАВИТ СРАЗУ
+        def on_submit(e):
+            message = message_filled.value
+            if self.no_preview:
+                sendMessagePhoto(token=self.token_bot, channel=self.channel_link, photo=selected_files.src, caption=message)
+                selected_files.src = "preview.png"
+                selected_files.update()
+                self.no_preview = False
+            else:
+                sendMessage(self.token_bot, self.channel_link, message)
+            message_send_success.value = "Сообщение успешно отправлено"
+            message_send_success.update()
+            message_filled.value = ""
+            message_filled.update()
+            time.sleep(2)
+            message_send_success.value = ""
+            message_send_success.update()
+
+        # ФУНКЦИЯ ДЛЯ ЗАГРУЗКИ КАРТИНКИ
+        def pick_files_result(e: ft.FilePickerResultEvent):
+            if e.files:
+                file_name = p_link_generate(length=7)
+                selected_files.src = e.files[0].path
+                path_dir = os.path.dirname(os.path.abspath(__file__))
+                upload_files = os.path.join(os.path.dirname(path_dir), "assets/upload") # возвращает строку, представляющую собой полный путь к текущей рабочей директории
+                new_file_name = f"{file_name}_{os.path.basename(e.files[0].path)}"
+                new_file_path = os.path.join(upload_files, new_file_name)
+                shutil.copy(e.files[0].path, new_file_path)
+                self.preview = new_file_name
+                self.no_preview = True
+                selected_files.update()
+            else:
+                pass
 
 
         # КОНСТРУКТОР ПОЛЕЙ ВВОДА
@@ -48,7 +88,7 @@ class PostingPage:
                 )
             )
 
-        # БОКОВАЯ ПАНЕЛЬ
+        # БОКОВАЯ ЛЕВАЯ ПАНЕЛЬ
         logo = ft.Container(
             padding=ft.padding.symmetric(5, 5),
             content=ft.Row(
@@ -76,14 +116,6 @@ class PostingPage:
                         on_click=f
                         )
 
-        send_btn = ft.ElevatedButton(
-            text="Сохранить данные",
-            bgcolor=hoverBgColor,
-            color=defaultFgColor,
-            width=200,
-            icon="settings",
-            on_click=...
-        )
 
         # РЕДАКТОР НАДПИСЕЙ КЛАССОМ И ФУНКЦИЕЙ
         class My_Field:
@@ -121,7 +153,7 @@ class PostingPage:
                 label=label,
                 bgcolor=secondaryBgColor,
                 border=ft.InputBorder.NONE,
-                multiline=True,
+                multiline=True,  # Возможность добавление мин и макс числа строк
                 min_lines=1,
                 max_lines=4,
                 filled=True,
@@ -169,7 +201,6 @@ class PostingPage:
         )
 
         # КНОПКИ И СООБЩЕНИЯ
-
         selected_files = ft.Image(
             src="preview.png",
             error_content=ft.Text("Нет изображения", size=30, color="white",
@@ -178,15 +209,29 @@ class PostingPage:
             height=200,
             fit=ft.ImageFit.FILL
         )
+
+        # ПОЛЕ ДЛЯ ОТПРАВКИ СООБЩЕНИЯ
         message_filled = form_message(
             "Введите текст сообщения"
         )
         message_btn = ft.ElevatedButton(
-            "Отправить сразу", icon="send", bgcolor="blue", color=defaultFgColor
+            "Отправить сразу", icon="send", bgcolor="blue", color=defaultFgColor, on_click=lambda e: on_submit(e)
         )
+        pick_files_dialog = ft.FilePicker(on_result=pick_files_result)
+        page.overlay.append(pick_files_dialog)
+
+        # КНОПКА ДЛЯ ОТПРАВКИ КАРТИНКИ
         upload_button = ft.ElevatedButton(
-            "Выберите файл"
+            "Выберите файл", on_click=lambda _: pick_files_dialog.pick_files(allow_multiple=False)
         )
+
+        # СООБЩЕНИЕ О УСПЕШНОЙ ОТПРАВКИ
+        message_send_success = ft.Text(
+            value="",
+            color="green",
+            size=20
+        )
+        # ЧЕК_БОКС ОТЛОЖЕННОГО ПОСТИНГА
         posting_data = ft.Checkbox(
             label="Отложенный постинг",
             label_style=ft.TextStyle(color=defaultFgColor),
@@ -200,9 +245,10 @@ class PostingPage:
             "Отложенный постинг", bgcolor=hoverBgColor,
             color=defaultFgColor, icon="schedule_send_rounded", visible=False
         )
-
+        # Структура расположения кнопок
         setting_content = ft.Column(
             controls=[
+                message_send_success,
                 selected_files,
                 message_filled,
                 posting_data,
@@ -275,7 +321,7 @@ class PostingPage:
                                                         setting_content
                                                     ]
                                                 )
-                                                ),
+                                        ),
                                     ]
                                 )
                             ),

@@ -6,3 +6,4 @@ import datetime
 
 print(date(2024, 3, 4))
 print(datetime.datetime.now().strftime("%Y-%m-%d"))
+print(os.getcwd())

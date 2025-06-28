@@ -1,3 +1,5 @@
+import os
+
 import requests
 
 proxies = {
@@ -7,6 +9,6 @@ proxies = {
 
 url = 'http://flibustaongezhld6dibs2dps6vm4nvqg2kp7vgowbu76tzopgnhazqd.onion/'
 
-r = requests.get(url, proxies=proxies, verify=False)  # using TOR network
-print(r.text)
-
+# r = requests.get(url, proxies=proxies, verify=False)  # using TOR network
+# print(r.text)
+print(os.getcwd())
