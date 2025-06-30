@@ -4,27 +4,21 @@ from flet_route import Params, Basket
 import os
 from Flet.Проект_flet_youtube.utils.styles import *
 from Flet.Проект_flet_youtube.utils.validation import Validator
-from Flet.Проект_flet_youtube.models import db, AdminUserTable, PendingPostTable
+from Flet.Проект_flet_youtube.models import db, AdminUser
 from Flet.Проект_flet_youtube.utils.request import sendMessage, sendMessagePhoto
 from Flet.Проект_flet_youtube.utils.funcs import p_link_generate
 import shutil
-from pathlib import Path
-from apscheduler.schedulers.background import BackgroundScheduler
-import datetime
+
 
 class PostingPage:
-    # ВАЛИДАТОР
+    # Валидатор
     validation = Validator()
 
     token_bot = os.getenv("BOT_TOKEN")
     channel_link = os.getenv("CHANNEL")
-    admin_user = AdminUserTable()
-    pending_post = PendingPostTable()
+    admin_user = AdminUser()
     no_preview = False
     preview = ""
-    # ФОНОВЫЙ ПЛАНИРОВЩИК ЗАДАЧ ДЛЯ ВЫПОЛНЕНИЯ ОТЛОЖЕННЫХ ЗАДАЧ
-    scheduler = BackgroundScheduler(timezone="Europe/Moscow")
-    scheduler.start()
 
     def view(self, page: ft.Page, params: Params, basket: Basket):
         page.title = "Постинг страница"
@@ -33,19 +27,14 @@ class PostingPage:
         page.window.min_width = 800
         page.window.min_height = 500
 
-        # БЛОК С СООБЩЕНИЕМ ОБ ОШИБКЕ
-        error_message = ft.Container(
-            content=ft.Text("", size=25, color="red"),
-            alignment=ft.alignment.center
-        )
         # ФУНКЦИЯ КНОПКИ ОТЛОЖЕННОГО ПОСТИНГА
         def checkbox_change(e):
             if e.control.value:  # ПРОВЕРКА
-                deferred_posting_data_field.visible, posting_button.visible = True, True
+                posting_data_field.visible, posting_button.visible = True, True
             else:
-                deferred_posting_data_field.visible, posting_button.visible = False, False
+                posting_data_field.visible, posting_button.visible = False, False
             posting_button.update()
-            deferred_posting_data_field.update()
+            posting_data_field.update()
 
         # ФУНКЦИЯ КНОПКИ ОТПРАВИТ СРАЗУ
         def on_submit(e):
@@ -65,112 +54,40 @@ class PostingPage:
             message_send_success.value = ""
             message_send_success.update()
 
-        # ФУНКЦИЯ ДОБАВЛЕНИЯ ПОСТА С КАРТИНКОЙ
-        def deferred_img(link):
-            data_record = self.pending_post.get_post(link=link)
-            images = f"assets/upload/{data_record.path_image}"
-            sendMessagePhoto(token=self.token_bot, channel=self.channel_link, photo=images, caption=data_record.message)
-
-        # ФУНКЦИЯ ДОБАВЛЕНИЯ ПОСТА БЕЗ КАРТИНКИ
-        def deferred_message(link):
-            data_record = self.pending_post.get_post(link=link)
-            sendMessage(token=self.token_bot, channel=self.channel_link, text=data_record.message)
-
-        # ФУНКЦИЯ ОТЛОЖЕННОЙ ОТПРАВКИ
-        def on_deferred_post(e):
-            if self.validation.time_valid(deferred_posting_data_field.value):
-                time_data = deferred_posting_data_field.value
-                time_for_message = datetime.datetime.strptime(time_data, "%H:%M")
-                link = p_link_generate(9)
-
-                if self.no_preview:
-                    new_post = PendingPostTable(
-                        message=message_filled.value,
-                        path_image=self.preview,
-                        link_post=link,
-                        time=time_for_message,
-                    )
-                    db.session.add(new_post)
-                    db.session.commit()
-                    self.scheduler.add_job(
-                        func=deferred_img,
-                        args=[link],
-                        trigger='date',
-                        run_date=datetime.datetime.today().replace(hour=time_for_message.hour, minute=time_for_message.minute, second=0)
-                    )
-
-                    selected_files.src = "preview.png"
-                    self.preview = ""
-                    self.no_preview = False
-                    selected_files.update()
-                else:
-                    new_post = PendingPostTable(
-                        message=message_filled.value,
-                        path_image="NULL",
-                        link_post=link,
-                        time=time_for_message,
-                    )
-                    db.session.add(new_post)
-                    db.session.commit()
-                    self.scheduler.add_job(
-                        func=deferred_message,
-                        args=[link],
-                        trigger='date',
-                        run_date=datetime.datetime.today().replace(hour=time_for_message.hour,
-                                                                   minute=time_for_message.minute, second=0)
-                    )
-                message_send_success.value = f"Congratulations! Your message has been sent at {time_for_message.strftime('%H:%M')}"
-                message_filled.value = ""
-                deferred_posting_data_field.value = ""
-                deferred_posting_data_field.update()
-                message_filled.update()
-                message_send_success.update()
-                time.sleep(2)
-                message_send_success.value = ""
-                message_send_success.update()
-                db.session.close()
-            else:
-                error_message.content.value = "Неверный формат времени"
-                error_message.update()
-                time.sleep(5)
-                error_message.content.value = ""
-                error_message.update()
-
-        # ФУНКЦИЯ ДЛЯ ВЫБОРА И ЗАГРУЗКИ КАРТИНКИ
+        # ФУНКЦИЯ ДЛЯ ЗАГРУЗКИ КАРТИНКИ
         def pick_files_result(e: ft.FilePickerResultEvent):
             if e.files:
-                file_name = p_link_generate(length=7)
-                selected_files.src = e.files[0].path
-                path_dir = os.path.dirname(os.path.abspath(__file__))
-                # LINUX
-                # upload_files = os.path.join(os.path.dirname(path_dir), "assets/upload") # возвращает строку, представляющую собой полный путь к текущей рабочей директории
-                # WINDOWS
-                upload_files = Path(path_dir).parent  / "assets" / "upload"
-                new_file_name = f"{file_name}_{os.path.basename(e.files[0].path)}"
-                new_file_path = os.path.join(upload_files, new_file_name)
-                shutil.copy(e.files[0].path, new_file_path)
-                self.preview = new_file_name
-                # ЧТОБЫ ОТПРАВИЛАСЬ КАРТИНКА В ФУНКЦИИ on_submit нужно перевести в True
+                prefix = p_link_generate(5)
+                dir_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # полный путь к текущей рабочей директории
+                folder = os.path.join(dir_path, "assets/upload")
+                selected_files.src = e.files[0].path  # Картинка отобразится в приложении
+                file_name = os.path.basename(e.files[0].path)  # Убирает путь, а оставляет только имя файла
+                file_name = f"{prefix}_{file_name}"
+                new_path = os.path.join(folder, file_name)
+                shutil.copy(e.files[0].path , new_path)
                 self.no_preview = True
                 selected_files.update()
 
+            else:
+                pass
+
 
         # КОНСТРУКТОР ПОЛЕЙ ВВОДА
-        # def input_field(label, disabled=False, val=''):
-        #     return ft.Container(
-        #         padding=ft.padding.symmetric(5, 5),
-        #         content=ft.TextField(
-        #             label=ft.Text(label, color="blue", weight=ft.FontWeight.BOLD),
-        #             value=val,
-        #             bgcolor=secondaryBgColor,
-        #             border_radius=15,
-        #             disabled=disabled,
-        #             filled=True,
-        #             color="blue",
-        #             opacity=0.8,
-        #             on_change=...
-        #         )
-        #     )
+        def input_field(label, disabled=False, val=''):
+            return ft.Container(
+                padding=ft.padding.symmetric(5, 5),
+                content=ft.TextField(
+                    label=ft.Text(label, color="blue", weight=ft.FontWeight.BOLD),
+                    value=val,
+                    bgcolor=secondaryBgColor,
+                    border_radius=15,
+                    disabled=disabled,
+                    filled=True,
+                    color="blue",
+                    opacity=0.8,
+                    on_change=...
+                )
+            )
 
         # БОКОВАЯ ЛЕВАЯ ПАНЕЛЬ
         logo = ft.Container(
@@ -244,6 +161,7 @@ class PostingPage:
                 color=secondaryFgColor
             )
 
+
         # РЕДАКТОР КОНТЕЙНЕРОВ
         def my_cont(bgcolor=None, content=None, expand: bool or int=True, local=ft.alignment.center):
             return ft.Container(
@@ -253,11 +171,10 @@ class PostingPage:
                 opacity=0.8,
                 alignment=local
             )
-
         # СТИЛЬ КНОПОК
         style_menu = ft.ButtonStyle(
-            color={ft.ControlState.HOVERED: ft.Colors.WHITE,
-                   ft.ControlState.DEFAULT: ft.Colors.BLUE},
+            color={ft.ControlState.HOVERED: ft.colors.WHITE,
+                   ft.ControlState.DEFAULT: ft.colors.BLUE},
             icon_size=20,
             overlay_color=hoverBgColor
         )
@@ -274,7 +191,7 @@ class PostingPage:
                                 content=ft.Text("A")
                             ),
                             ft.IconButton(
-                                icon=ft.Icons.NOTIFICATION_ADD_ROUNDED,
+                                icon=ft.icons.NOTIFICATION_ADD_ROUNDED,
                                 icon_color="blue",
                                 icon_size=20
                             )
@@ -298,11 +215,9 @@ class PostingPage:
         message_filled = form_message(
             "Введите текст сообщения"
         )
-        # КНОПКА ДЛЯ ОТПРАВКИ СООБЩЕНИЯ
         message_btn = ft.ElevatedButton(
             "Отправить сразу", icon="send", bgcolor="blue", color=defaultFgColor, on_click=lambda e: on_submit(e)
         )
-        # ВЫБОРЩИК ФАЙЛОВ ДЛЯ ОТПРАВКИ
         pick_files_dialog = ft.FilePicker(on_result=pick_files_result)
         page.overlay.append(pick_files_dialog)
 
@@ -311,7 +226,7 @@ class PostingPage:
             "Выберите файл", on_click=lambda _: pick_files_dialog.pick_files(allow_multiple=False)
         )
 
-        # СООБЩЕНИЕ ОБ УСПЕШНОЙ ОТПРАВКИ
+        # СООБЩЕНИЕ О УСПЕШНОЙ ОТПРАВКИ
         message_send_success = ft.Text(
             value="",
             color="green",
@@ -323,17 +238,15 @@ class PostingPage:
             label_style=ft.TextStyle(color=defaultFgColor),
             on_change=checkbox_change
         )
-        # ПОЛЕ ДЛЯ ВВОДА ВРЕМЕНИ ОТПРАКИ ОТЛОЖЕННОГО СООБЩЕНИЯ
-        deferred_posting_data_field = ft.TextField(
+        posting_data_field = ft.TextField(
             label="Укажите дату в формате '12:00'", bgcolor=secondaryBgColor, border=ft.InputBorder.NONE,
             visible=False, filled=True, color="blue"
         )
-        # КНОПКА ДЛЯ ОТПРАВКИ ОТЛОЖЕННОГО СООБЩЕНИЯ
         posting_button = ft.ElevatedButton(
             "Отложенный постинг", bgcolor=hoverBgColor,
-            color=defaultFgColor, icon="schedule_send_rounded", visible=False, on_click=lambda e: on_deferred_post(e)
+            color=defaultFgColor, icon="schedule_send_rounded", visible=False
         )
-        # СТРУКТУРА РАСПОЛОЖЕНИЯ КНОПОК
+        # Структура расположения кнопок
         setting_content = ft.Column(
             controls=[
                 message_send_success,
@@ -346,11 +259,10 @@ class PostingPage:
                         upload_button,
                     ]
                 ),
-                error_message,
                 ft.Row(
                     controls=[
                         posting_button,
-                        deferred_posting_data_field
+                        posting_data_field
                     ]
                 )
             ]
@@ -363,7 +275,8 @@ class PostingPage:
             controls=[
                 ft.Container(
                     expand=True,
-                    image=ft.DecorationImage(src="girl_with_racoon.png", fit=ft.ImageFit.COVER),
+                    image_src="girl_with_racoon.png",
+                    image_fit=ft.ImageFit.COVER,
                     content=ft.Column(
                         expand=True,
                         controls=[
@@ -409,22 +322,22 @@ class PostingPage:
                                                         setting_content
                                                     ]
                                                 )
-                                            ),
-                                        ]
-                                    )
-                                ),
+                                        ),
+                                    ]
+                                )
+                            ),
                             # FOOTER
                             ft.Container(
+                                expand=1,
                                 content=ft.Row(
                                     controls=[
                                         my_cont(expand=1, content=btn_build(label="EXIT", bg="blue", f=lambda e: page.go("/"))),
-                                        # my_cont(expand=3),
+                                        my_cont(expand=3),
                                         # my_cont(bgcolor="yellow"),
                                         # my_cont(bgcolor="blue"),
                                         # my_cont(bgcolor="orange")
                                     ]
-                                ),
-                                padding=ft.padding.only(bottom=5)
+                                )
                             )
                         ]
                     )
@@ -433,10 +346,3 @@ class PostingPage:
             bgcolor=defaultBgColor,
             padding=0
         )
-
-# СЛОВАРЬ
-# deferred - отложенный
-# pending - в ожидании
-# waiting, expectation - ожидание
-# scheduler - планировщик
-#
