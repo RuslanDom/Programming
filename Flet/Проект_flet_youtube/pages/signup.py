@@ -3,7 +3,7 @@ from flet_route import Params, Basket
 from Flet.Проект_flet_youtube.utils.styles import *
 from Flet.Проект_flet_youtube.utils.validation import Validator
 from Flet.Проект_flet_youtube.utils.funcs import hash_password
-from Flet.Проект_flet_youtube.models import db, AdminUser
+from Flet.Проект_flet_youtube.models import db, AdminUserTable
 import time
 
 class SignupPage:
@@ -115,17 +115,17 @@ class SignupPage:
                                     )
 
 
-
+        # ФУНКЦИЯ РЕГИСТРАЦИИ
         def signup(e):
-            db.Base.metadata.create_all(db.engine)
-            user: AdminUser = AdminUser()
+            user: AdminUserTable = AdminUserTable()
+
             login: str = self.login_input.content.value
             email: str = self.email_input.content.value
             password: str = self.password_input.content.value
             confirm_password: str = self.confirm_password_input.content.value
-            print(login, email, password, confirm_password)
+            # print(login, email, password, confirm_password)
 
-            # Проверки на актуальность передаваемых данных при регистрации
+            # Проверки (валидация) на актуальность передаваемых данных при регистрации
             if email and password and confirm_password:
                 if self.validation.email_valid(email):
                     self.error.content.value = "EMAIL не верный формат"
@@ -162,10 +162,9 @@ class SignupPage:
                     self.error.content.value = "Вернитесь на страницу авторизации ->"
                     self.error.update()
                     time.sleep(5)
-
-                self.error.content.color = "red"
-                self.error.content.value = ""
-                self.error.update()
+                    self.error.content.color = "red"
+                    self.error.content.value = ""
+                    self.error.update()
             else:
                 self.error.content.value = "Не все поля заполнены"
                 self.error.update()

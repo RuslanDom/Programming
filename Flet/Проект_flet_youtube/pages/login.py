@@ -1,7 +1,7 @@
 import flet as ft
 from flet_route import Params, Basket
 from Flet.Проект_flet_youtube.utils.styles import *
-from Flet.Проект_flet_youtube.models import db, AdminUser
+from Flet.Проект_flet_youtube.models import db, AdminUserTable
 from Flet.Проект_flet_youtube.utils.funcs import hash_password
 import time
 
@@ -50,7 +50,7 @@ class LoginPage:
 
 
         def authorization(e):
-            user = AdminUser()
+            user = AdminUserTable()
             email: str = self.email_input.content.value
             password: str = self.password_input.content.value
             if user.check_authorization(email, hash_password(password)):

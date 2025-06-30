@@ -26,7 +26,7 @@ print(man.keys())
 print(man.values())
 print(man.items())
 
-# country.update()  ==  country["code"] = "RUS"
+# country.upload()  ==  country["code"] = "RUS"
 country["code"] = "RUS" #Изменил значение элемента по ключу
 print(country['code'])
 

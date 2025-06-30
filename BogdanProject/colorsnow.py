@@ -20,7 +20,7 @@
 #
 #
 #
-#     def update(self):
+#     def upload(self):
 #         self.py += self.size
 #         if self.py > height:
 #             self.py = randint(- height, 0)
@@ -44,11 +44,11 @@
 #
 #     display.fill('black')
 #     for snez in snezinka:
-#         snez.update()
+#         snez.upload()
 #     for snez in snezinka:
 #         snez.draw()
 #
-#     pygame.display.update()
+#     pygame.display.upload()
 #     clock.tick(fps)
 # pygame.quit()
 #
@@ -149,7 +149,7 @@ pygame.quit()
 #         self.color = [r, g, b]
 #         self.speed = 2
 #         self.size = randint(1, 5)
-#     def update(self):
+#     def upload(self):
 #         self.y += self.size * self.speed
 #         if self.y > Play.H:
 #             Play.rain.remove(self)
@@ -179,10 +179,10 @@ pygame.quit()
 #                     Play.play = False
 #
 #         for r in Play.rain:
-#             r.update()
+#             r.upload()
 #         for r in Play.rain:
 #             r.draw()
-#         pygame.display.update()
+#         pygame.display.upload()
 #         Play.clock.tick(60)
 #         Play().stop()
 #     def stop(self):

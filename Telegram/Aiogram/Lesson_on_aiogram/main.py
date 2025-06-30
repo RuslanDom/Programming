@@ -29,7 +29,7 @@ async def stop(bot: Bot):
 async def lets_go():
     bot = Bot(token=BOT_TOKEN, parse_mode='html')
     dp = Dispatcher()
-    # dp.update.middleware.register(OfficeHoursMiddleware()) - будет все объекты регулировать middleware
+    # dp.upload.middleware.register(OfficeHoursMiddleware()) - будет все объекты регулировать middleware
     dp.message.middleware.register(OfficeHoursMiddleware())  # Бот будет работать только в установленные часы
     dp.startup.register(start)
     # Регистрация команды start

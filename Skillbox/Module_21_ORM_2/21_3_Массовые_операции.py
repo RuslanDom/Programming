@@ -22,7 +22,7 @@ class Parent(Base):
 if __name__ == '__main__':
     Base.metadata.create_all(engine)
 
-    # bulk_save_objects - массово вставляет и если такие записи есть обновляет(insert, update)
+    # bulk_save_objects - массово вставляет и если такие записи есть обновляет(insert, upload)
     parent_1 = Parent(name="Parent 1")
     parent_2 = Parent(name="Parent 2")
     parent_3 = Parent(name="Parent 3")

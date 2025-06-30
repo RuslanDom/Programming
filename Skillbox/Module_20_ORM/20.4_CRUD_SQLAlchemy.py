@@ -97,7 +97,7 @@ def update_product(id: int):
         prod.count = count
     session.commit()
     # 2 вариант
-    # session.query(Product).filter_by(id=id).update(
+    # session.query(Product).filter_by(id=id).upload(
     #     {
     #         Product.title: title,
     #         Product.price: price,
@@ -105,12 +105,12 @@ def update_product(id: int):
     # )
     # session.commit()
     # 3 вариант
-    # from sqlalchemy import update
-    # query = update(Product).where(Product.id == id).values(title=title, price=price, count=count)
+    # from sqlalchemy import upload
+    # query = upload(Product).where(Product.id == id).values(title=title, price=price, count=count)
     # Можно сделать print(query)
     # session.execute(query)
     # session.commit()
-    return jsonify({"message": "Product update"}), 200
+    return jsonify({"message": "Product upload"}), 200
 
 if __name__ == "__main__":
     app.run(debug=True)

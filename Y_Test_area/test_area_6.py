@@ -4,6 +4,9 @@ from pathlib import Path
 from datetime import date
 import datetime
 from sqlalchemy import func
+from pathlib import Path
+from dotenv import load_dotenv
+load_dotenv()
 
 # print("1 example:", Path(__file__).resolve().parent / "test_area_5.py")
 # print("2 example:",date(2024, 3, 4))
@@ -21,5 +24,18 @@ def validate_phone(phone: str) -> None:
 
 # validate_phone(input("Enter your phone number: "))
 # +7(905)-122-33-11
-i = input("enter num: ")
-print(ast.literal_eval(i))
+# i = input("enter num: ")
+# print(ast.literal_eval(i))
+
+path = Path(__file__)
+print(path)
+
+from hashlib import sha256
+
+words = input("Enter: ")
+
+def crypto_load(text: str):
+    part = sha256(text.encode()).hexdigest()
+    return part
+
+print(crypto_load(words))

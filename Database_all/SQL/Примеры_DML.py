@@ -71,6 +71,6 @@ def update(delta_amount):
 if __name__ == '__main__':
     # insert()
     # delete()
-    # update(delta_amount=1)
+    # upload(delta_amount=1)
     print("Обновлённые данные")
     select()

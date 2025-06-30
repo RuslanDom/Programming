@@ -305,11 +305,11 @@
         </library>
       </libraries>
     </data-source>
-    <data-source source="LOCAL" name="flet_project" uuid="faa430c5-3fce-47a1-9e41-b5852be298cb">
+    <data-source source="LOCAL" name="pythonORM" uuid="afff0725-5387-4ac4-8e3f-7178e7030275">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/Flet/Проект_flet_youtube/flet_project.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/Skillbox/Module_21_ORM_2/pythonORM.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
       <libraries>
         <library>
@@ -320,13 +320,19 @@
         </library>
       </libraries>
     </data-source>
-    <data-source source="LOCAL" name="pythonORM" uuid="afff0725-5387-4ac4-8e3f-7178e7030275">
+    <data-source source="LOCAL" name="flet_project" uuid="f3917363-53e8-434f-8fa1-3c90ca142cfb">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/Skillbox/Module_21_ORM_2/pythonORM.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:C:\Users\Admin\PycharmProjects\Programming\Flet\Проект_flet_youtube\flet_project.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
       <libraries>
+        <library>
+          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.45.1/org/xerial/sqlite-jdbc/3.45.1.0/sqlite-jdbc-3.45.1.0.jar</url>
+        </library>
+        <library>
+          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.45.1/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar</url>
+        </library>
         <library>
           <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.45.1/org/xerial/sqlite-jdbc/3.45.1.0/sqlite-jdbc-3.45.1.0.jar</url>
         </library>

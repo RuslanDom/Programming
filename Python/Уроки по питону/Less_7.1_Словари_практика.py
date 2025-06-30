@@ -53,7 +53,7 @@ def method_dict():
 
     print(f'Максимальная частота повторения символа: {max(hist.values())}')
 
-    print('/n----------------- Method update() and pop() -----------------\n')
+    print('/n----------------- Method upload() and pop() -----------------\n')
     first_dict = {
         'Rus': 34,
         'Kris': 33
@@ -132,7 +132,7 @@ def sets():
 
 
 print("Какую часть кода выполнить?\n1 - Создание словаря\n2 - Работа с методами sorted(), max(),"
-      " update() and pop()\n3 - Вложенные словари\n4 - Множества. Функция set")
+      " upload() and pop()\n3 - Вложенные словари\n4 - Множества. Функция set")
 select = int(input())
 if select == 1:
     create_dict()

@@ -2,7 +2,7 @@
 #
 # count['city'] = {1: 'boston', 2: 'mexico'}
 # print(count['city'])
-# count['city'].update({3: 'moskow'})
+# count['city'].upload({3: 'moskow'})
 # print(count['city'])
 
 message = ''

@@ -12,7 +12,10 @@ class GeneralPage:
     AUTH_USER = False
     # check_token = ""
     # check_channel = ""
-    env_file_path = Path("Flet/Проект_flet_youtube") / ".env"
+    # LINUX
+    # env_file_path = Path("Flet/Проект_flet_youtube") / ".env"
+    # WINDOWS
+    env_file_path = Path(__file__).parent.parent / ".env"
     token_bot = os.getenv("BOT_TOKEN")
     channel_link = os.getenv("CHANNEL")
 
@@ -34,6 +37,7 @@ class GeneralPage:
             # Установка полученных токенов в файл .env
             set_key(dotenv_path=self.env_file_path, key_to_set="BOT_TOKEN", value_to_set=token)
             set_key(dotenv_path=self.env_file_path, key_to_set="CHANNEL", value_to_set=channel)
+            print(token, channel)
             # Отключение редактирование этих полей
             token_input.disabled = True
             channel_input.disabled = True
@@ -282,11 +286,11 @@ class GeneralPage:
                                 expand=1,
                                 content=ft.Row(
                                     controls=[
-                                        my_cont(expand=2, content=btn_build(label="EXIT", bg=hoverBgColor, f=lambda e: page.go("/"))),
-                                        my_cont(bgcolor="red"),
-                                        my_cont(bgcolor="yellow"),
-                                        my_cont(bgcolor="blue"),
-                                        my_cont(bgcolor="orange")
+                                        my_cont(expand=1, content=btn_build(label="EXIT", bg=hoverBgColor, f=lambda e: page.go("/"))),
+                                        my_cont(expand=3),
+                                        # my_cont(),
+                                        # my_cont(),
+                                        # my_cont()
                                     ]
                                 )
                             )

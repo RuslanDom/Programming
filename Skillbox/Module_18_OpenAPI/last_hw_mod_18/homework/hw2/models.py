@@ -224,7 +224,7 @@ def get_all_books_by_author_id(author_id: int) -> List[Book]:
         books_list = cursor.fetchall()
         return [Book(id=book[0], title=book[1], author=book[2]) for book in books_list]
 
-# Обновление update данных книги по ID
+# Обновление upload данных книги по ID
 def put_updated_book(book: Book, id: int) -> Book:
     with sqlite3.connect(DATABASE_NAME) as conn:
         cursor = conn.cursor()
