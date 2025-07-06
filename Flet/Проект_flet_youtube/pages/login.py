@@ -118,12 +118,11 @@ class LoginPage:
                         ),
                         ft.Container(
                             expand=3,
-                            image_src="red_girl.png",
-                            image_fit=ft.ImageFit.COVER,
+                            image=ft.DecorationImage(src="red_girl.png", fit=ft.ImageFit.COVER),
                             content=ft.Column(
                                 controls=[
                                     ft.Icon(
-                                        name=ft.icons.LOCK_PERSON_ROUNDED,
+                                        name=ft.Icons.LOCK_PERSON_ROUNDED,
                                         color=hoverBgColorPink,
                                         size=140,
                                         opacity=0.3

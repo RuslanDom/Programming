@@ -11,12 +11,11 @@ class SignupPage:
 
     image_container = ft.Container(
         expand=3,
-        image_src="white_girl.png",
-        image_fit=ft.ImageFit.COVER,
+        image=ft.DecorationImage(src="white_girl.png", fit=ft.ImageFit.COVER),
         content=ft.Column(
             controls=[
                 ft.Icon(
-                    name=ft.icons.VERIFIED_USER_ROUNDED,
+                    name=ft.Icons.VERIFIED_USER_ROUNDED,
                     color=hoverBgColorPink,
                     size=140,
                     opacity=0.4

@@ -11,8 +11,8 @@ class Router:
         self.page = page
         self.app_routes = [
             path(url="/", clear=True, view=WelcomePage().view),
-            path(url="/login", clear=True, view=LoginPage().view),
-            path(url="/signup", clear=True, view=SignupPage().view)
+            # path(url="/login", clear=True, view=LoginPage().view),
+            # path(url="/signup", clear=True, view=SignupPage().view)
         ]
 
         Routing(

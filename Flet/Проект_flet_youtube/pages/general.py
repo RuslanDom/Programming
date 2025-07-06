@@ -171,8 +171,8 @@ class GeneralPage:
             )
 
         style_menu = ft.ButtonStyle(
-            color={ft.ControlState.HOVERED: ft.colors.WHITE,
-                   ft.ControlState.DEFAULT: ft.colors.YELLOW},
+            color={ft.ControlState.HOVERED: ft.Colors.WHITE,
+                   ft.ControlState.DEFAULT: ft.Colors.YELLOW},
             icon_size=20,
             overlay_color=hoverBgColor
         )
@@ -190,7 +190,7 @@ class GeneralPage:
                                 content=ft.Text("A")
                             ),
                             ft.IconButton(
-                                icon=ft.icons.NOTIFICATION_ADD_ROUNDED,
+                                icon=ft.Icons.NOTIFICATION_ADD_ROUNDED,
                                 icon_color="yellow",
                                 icon_size=20
                             )
@@ -223,8 +223,7 @@ class GeneralPage:
             controls=[
                 ft.Container(
                     expand=True,
-                    image_src="girl_with_racoon.png",
-                    image_fit=ft.ImageFit.COVER,
+                    image=ft.DecorationImage(src="girl_with_racoon.png", fit=ft.ImageFit.COVER),
                     content=ft.Column(
                         expand=True,
                         controls=[
