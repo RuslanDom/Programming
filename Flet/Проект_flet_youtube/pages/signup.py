@@ -8,7 +8,6 @@ import time
 
 class SignupPage:
     validation = Validator()
-
     image_container = ft.Container(
         expand=3,
         image=ft.DecorationImage(src="white_girl.png", fit=ft.ImageFit.COVER),

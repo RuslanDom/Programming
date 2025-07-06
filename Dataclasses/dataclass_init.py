@@ -15,13 +15,16 @@ class Book:
     def total_cost(self):
         return self.price * self.count
 
-# Декоратор @dataclass помимо прочего, добавит метод __init__(), который будет выглядеть так:
-"""
-def __init__(self, name: str, unit_price: float, quantity_on_hand: int=0):
-    self.name = name
-    self.unit_price = unit_price
-    self.quantity_on_hand = quantity_on_hand
-"""
+# Декоратор @dataclass помимо прочего, добавит метод __init__(), который выглядел бы так:
+    """
+    def __init__(self, title: str, price: float, count: int=0):
+        self.title = title
+        self.price = price
+        self.count = count
+    """
+# Пример
+b = Book("jungle", 500, 10)
+print("Book -", b.title, ":", b.total_cost(), "price all books")
 
 """2. Обработка после инициализации, метод __post_init__()"""
 # Позволяет инициализировать значения полей, которые зависят от одного или нескольких других полей
@@ -67,7 +70,7 @@ class MyNewType:
 # >>> mytype
 # Point(x=7, y=9)
 
-# хотя со значением `d` можно работать
+# хотя со значением `n` можно работать
 # >>> mytype.n
 # 5
 
