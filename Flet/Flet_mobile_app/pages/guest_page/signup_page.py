@@ -1,9 +1,15 @@
 import flet as ft
-from Flet.Flet_mobile_app.pages.components.inputs import *
-from Flet.Flet_mobile_app.utils.style import *
 from flet_route import Params, Basket
-from Flet.Flet_mobile_app.pages.components.buttons import button_blue, button_white, MyButton
-from Flet.Flet_mobile_app.utils.validator import Validator
+# linux
+# from Flet.Flet_mobile_app.pages.components.inputs import *
+# from Flet.Flet_mobile_app.utils.style import *
+# from Flet.Flet_mobile_app.pages.components.buttons import button_blue, button_white, MyButton
+# from Flet.Flet_mobile_app.utils.validator import Validator
+# windows
+from Programming.Flet.Flet_mobile_app.pages.components.inputs import *
+from Programming.Flet.Flet_mobile_app.pages.components.buttons import button_blue, button_white, MyButton
+from Programming.Flet.Flet_mobile_app.utils.style import *
+from Programming.Flet.Flet_mobile_app.utils.validator import Validator
 
 class SignupPage:
     validator = Validator()

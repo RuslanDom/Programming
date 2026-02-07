@@ -1,7 +1,12 @@
 import flet as ft
-from Flet.Flet_mobile_app.utils.style import *
 from flet_route import Params, Basket
-from Flet.Flet_mobile_app.pages.components.buttons import button_blue, button_white, MyButton
+# linux
+# from Flet.Flet_mobile_app.utils.style import *
+# from Flet.Flet_mobile_app.pages.components.buttons import button_blue, button_white, MyButton
+# windows
+from Programming.Flet.Flet_mobile_app.utils.style import *
+from Programming.Flet.Flet_mobile_app.pages.components.buttons import button_blue, button_white, MyButton
+
 
 class WelcomePage:
 

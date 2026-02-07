@@ -1,6 +1,7 @@
 import flet as ft
 from flet_route import Basket, Params
-from Flet.project_2.app2.utils.styles import *
+# from Flet.project_2.app2.utils.styles import *
+from Programming.Flet.project_2.app2.utils.styles import *
 import sqlite3
 import time
 

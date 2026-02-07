@@ -1,10 +1,13 @@
 from flet_route import Routing, path
 import flet as ft
-from Flet.Flet_mobile_app.pages.guest_page.login_page import LoginPage
-from Flet.Flet_mobile_app.pages.guest_page.signup_page import SignupPage
-from Flet.Flet_mobile_app.pages.guest_page.welcome_page import WelcomePage
-
-
+# linux
+# from Flet.Flet_mobile_app.pages.guest_page.login_page import LoginPage
+# from Flet.Flet_mobile_app.pages.guest_page.signup_page import SignupPage
+# from Flet.Flet_mobile_app.pages.guest_page.welcome_page import WelcomePage
+# windows
+from pages.guest_page.login_page import LoginPage
+from pages.guest_page.welcome_page import WelcomePage
+from pages.guest_page.signup_page import SignupPage
 
 class Router:
     def __init__(self, page: ft.Page):

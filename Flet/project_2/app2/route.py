@@ -1,9 +1,11 @@
 import flet as ft
 from flet_route import Routing, path
-from Flet.project_2.app2.pages.login import LoginPage
-from Flet.project_2.app2.pages.signup import SignupPage
-from Flet.project_2.app2.pages.app_page import AppPage
-
+# from Flet.project_2.app2.pages.login import LoginPage
+# from Flet.project_2.app2.pages.signup import SignupPage
+# from Flet.project_2.app2.pages.app_page import AppPage
+from Programming.Flet.project_2.app2.pages.login import LoginPage
+from Programming.Flet.project_2.app2.pages.signup import SignupPage
+from Programming.Flet.project_2.app2.pages.app_page import AppPage
 
 class Router:
     def __init__(self, page: ft.Page) -> None:
