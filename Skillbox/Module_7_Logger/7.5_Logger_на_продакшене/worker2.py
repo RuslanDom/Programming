@@ -1,6 +1,6 @@
 import logging, time, datetime
 
-logger = logging.getLogger('main.worker2')
+logger = logging.getLogger('src.worker2')
 
 def worker2(x: int, y: int) -> int:
     logger.debug(f"Entered worker2({x}, {y})")

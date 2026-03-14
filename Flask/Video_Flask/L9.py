@@ -12,7 +12,7 @@ SECRET_KEY = os.urandom(10).hex()
 DEBUG = True
 
 
-logger = logging.getLogger("main")
+logger = logging.getLogger("src")
 logging.config.dictConfig(dict_config)
 logger.setLevel("DEBUG")
 # print(logger)

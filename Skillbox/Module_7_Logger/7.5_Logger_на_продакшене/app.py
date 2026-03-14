@@ -15,7 +15,7 @@ from worker3 import worker3
 app = Flask(__name__)
 
 logging.config.dictConfig(dict_config)
-logger = logging.getLogger('main')
+logger = logging.getLogger('src')
 
 class WorkerForm(FlaskForm):
     x = IntegerField(validators=[InputRequired()])

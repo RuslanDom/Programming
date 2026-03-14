@@ -17,7 +17,7 @@ def get_weather(message):
     if res.status_code == 200:
 
         data = json.loads(res.text)
-        temp = data["main"]["temp"]
+        temp = data["src"]["temp"]
         bot.reply_to(message, f'В {city}  сейчас температура: {temp} скорость ветра: {data["wind"]["speed"]}')
         image = 'pushin_hot_weather.png' if temp > 15.0 else 'pushin_cold_weather.png'
         file = open('temp/image/' + image, 'rb')

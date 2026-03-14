@@ -8,8 +8,8 @@ from subprocess_utils import get_kernel_version
 root_logger = logging.getLogger()
 root_logger.setLevel('WARNING')  # Корневой логгер на WARNING
 
-logger = logging.getLogger('main')
-logger.setLevel('DEBUG')  # main на DEBUG
+logger = logging.getLogger('src')
+logger.setLevel('DEBUG')  # src на DEBUG
 
 utils = logging.getLogger('logger_utils')
 utils.setLevel("DEBUG")  # logger_utils на DEBUG

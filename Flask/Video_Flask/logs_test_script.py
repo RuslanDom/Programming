@@ -4,7 +4,7 @@ from utils.logger_config import dict_config
 
 
 
-logger = logging.getLogger("main")
+logger = logging.getLogger("src")
 logging.config.dictConfig(dict_config)
 logger.setLevel("DEBUG")
 

@@ -72,7 +72,7 @@ dict_config = {
         }
     },
     "loggers": {
-        "main": {
+        "src": {
             "level": "DEBUG",
             "handlers": ["console", "file_error", "file_info", "file_debug"]
         }

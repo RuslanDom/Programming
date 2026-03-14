@@ -96,7 +96,7 @@ if __name__ == '__main__':
 #     await bot.send_message(admin_id, text='Бот запущен')
 #
 #
-# async def main():
+# async def src():
 #     dp.startup.register(start_bot)
 #     try:
 #         await dp.start_polling(bot)
@@ -107,6 +107,6 @@ if __name__ == '__main__':
 # if __name__ == "__main__":
 #     try:
 #         logging.basicConfig(level=logging.INFO)
-#         asyncio.run(main())
+#         asyncio.run(src())
 #     except KeyboardInterrupt:
 #         print('EXIT')

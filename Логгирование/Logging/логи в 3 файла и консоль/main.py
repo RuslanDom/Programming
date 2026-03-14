@@ -4,7 +4,7 @@ from logging.config import dictConfig
 from config import dict_config
 
 logging.config.dictConfig(dict_config)
-logger = logging.getLogger("main")
+logger = logging.getLogger("src")
 
 
 def func():

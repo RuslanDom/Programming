@@ -25,7 +25,7 @@ dict_config = {
         }
     },
     "loggers": {
-        "main": {
+        "src": {
             "level": "DEBUG",
             "handlers": ["screen"]
         }

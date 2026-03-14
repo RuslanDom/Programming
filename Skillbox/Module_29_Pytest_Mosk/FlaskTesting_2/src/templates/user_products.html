@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test_project</title>
+</head>
+<body>
+<h1>Тестовая страница</h1>
+<ul id="navigation">
+    {% for product in products %}
+    <li>
+        Пользователь {{ product.user_id.name }} имеет {{ product.name }} за {{ product.price }} руб
+    </li>
+    {% endfor %}
+</ul>
+</body>
+</html>

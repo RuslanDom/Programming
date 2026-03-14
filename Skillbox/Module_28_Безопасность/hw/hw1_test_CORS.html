@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>CORS Test</title>
+</head>
+<body>
+    <h1>Тестирование CORS-блокировки методов</h1>
+
+    <button onclick="sendGet()">GET запрос</button>
+    <button onclick="sendPost()">POST запрос</button>
+    <button onclick="sendDelete()">DELETE запрос</button>
+    <button onclick="sendPut()">PUT запрос</button>
+    <button onclick="clearBlock()">Очистить</button>
+    <div id="result"></div>
+
+    <script>
+        const API_URL = 'http://localhost:5000/users';
+        const resultDiv = document.getElementById('result');
+
+        function showResult(text) {
+            resultDiv.innerHTML += `<p>${text}</p>`;
+        }
+
+        async function sendGet() {
+            try {
+                const response = await fetch(API_URL, { method: 'GET' });
+                const data = await response.json();
+                showResult(`✅ GET успешен: ${JSON.stringify(data)}`);
+            } catch (error) {
+                showResult(`❌ GET ошибка: ${error.message}`);
+            }
+        }
+
+        async function sendPost() {
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: 'Test User' })
+                });
+                const data = await response.json();
+                showResult(`✅ POST успешен: ${JSON.stringify(data)}`);
+            } catch (error) {
+                showResult(`❌ POST ошибка: ${error.message}`);
+            }
+        }
+
+        async function sendDelete() {
+            try {
+                const response = await fetch(API_URL, { method: 'DELETE' });
+                const data = await response.json();
+                showResult(`✅ DELETE успешен: ${JSON.stringify(data)}`);
+            } catch (error) {
+                showResult(`❌ DELETE ошибка (ожидаемо): ${error.message}`);
+            }
+        }
+
+        async function sendPut() {
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id: 1, name: 'Updated User' })
+                });
+                const data = await response.json();
+                showResult(`✅ PUT успешен: ${JSON.stringify(data)}`);
+            } catch (error) {
+                showResult(`❌ PUT ошибка (ожидаемо): ${error.message}`);
+            }
+        }
+
+        async function clearBlock(){
+            resultDiv.innerHTML = '';
+        }
+    </script>
+</body>
+</html>

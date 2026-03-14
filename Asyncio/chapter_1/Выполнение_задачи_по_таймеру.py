@@ -53,6 +53,6 @@ async def main2():
 
 if __name__ == '__main__':
     # Запуска асинхронного цикла
-    # asyncio.run(main())
+    # asyncio.run(src())
     asyncio.run(main2())
 

@@ -50,7 +50,7 @@ if __name__ == "__main__":
     r = hard_popen()
 
 # ____________________________ТРЕНИРОВКА____________________________
-# def main():
+# def src():
 #     start = time.time()
 #     processes = []
 #     for i in range(1, 6):
@@ -71,4 +71,4 @@ if __name__ == "__main__":
 #     print(f'Время выполнения: {round(time.time() - start, 5)} c')
 #
 # if __name__ == "__main__":
-#     main()
+#     src()

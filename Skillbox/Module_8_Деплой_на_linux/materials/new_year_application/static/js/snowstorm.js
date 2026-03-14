@@ -466,7 +466,7 @@ var snowStorm = (function(window, document) {
     };
 
     this.animate = function() {
-      // main animation loop
+      // src animation loop
       // move, check status, die etc.
       s.move();
     };

@@ -71,4 +71,4 @@ if __name__ == "__main__":
     logging.info("Started sort server")
     app.config["WTF_CSRF_ENABLED"] = False
     app.run(debug=True)
-    # main()
+    # src()
